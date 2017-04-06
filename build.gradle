@@ -1,0 +1,39 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'http://dl.bintray.com/jetbrains/intellij-plugin-service' }
+    }
+}
+
+plugins {
+    id "org.jetbrains.intellij" version "0.2.7"
+}
+
+apply plugin: 'idea'
+apply plugin: 'java'
+
+sourceCompatibility = javaVersion
+targetCompatibility = javaVersion
+
+tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
+
+intellij {
+    version ideaVersion
+    //IntelliJ IDEA 2016.3 dependency; for a full list of IntelliJ IDEA releases please see https://www.jetbrains.com/intellij-repository/releases
+    plugins 'IdeaVIM:0.46' //Bundled plugin dependencies
+    pluginName 'IdeaVimExtension'
+    updateSinceUntilBuild false
+    downloadSources Boolean.valueOf(downloadIdeaSources)
+}
+
+sourceSets {
+    main {
+        java.srcDir 'src'
+        resources.srcDir 'resources'
+    }
+    test {
+        java.srcDir 'test'
+    }
+}
+
+group 'io.github.hadix'
