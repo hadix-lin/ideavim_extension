@@ -10,6 +10,7 @@ import com.maddyhome.idea.vim.extension.VimExtension;
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
 
+import javax.swing.plaf.multi.MultiTabbedPaneUI;
 import java.util.Set;
 
 /**
@@ -18,7 +19,13 @@ import java.util.Set;
 public class InputSourceSwitchExtension implements VimExtension {
 
     private static final Set<String> AUTO_SWITCH_TRIGGER_COMMANDS
-      = ImmutableSet.of("Vim Exit Insert Mode");
+            = ImmutableSet.of("Vim Exit Insert Mode");
+    private static final Set<String> UPDATE_TRIGGER_COMMANDS = ImmutableSet.of(
+            "Vim Insert Before Cursor",
+            "Vim Insert After Cursor",
+            "Vim Change Characters",
+            "Vim Change Motion"
+    );
     private CommandListener exitInsertModeListener;
 
     @NotNull
@@ -47,6 +54,10 @@ public class InputSourceSwitchExtension implements VimExtension {
                 if (AUTO_SWITCH_TRIGGER_COMMANDS.contains(commandName)) {
                     SystemInputSource.switchToEnglish();
                 }
+                if (UPDATE_TRIGGER_COMMANDS.contains(commandName)) {
+                    SystemInputSource.switchToFormer();
+                }
+
             }
         };
     }
