@@ -20,11 +20,17 @@ public class InputSourceSwitchExtension implements VimExtension {
 
     private static final Set<String> AUTO_SWITCH_TRIGGER_COMMANDS
             = ImmutableSet.of("Vim Exit Insert Mode");
+    //undo 和 typing 的存在导致 罗列貌似是一种更好的方式?
+    // 会有 undo Vim Change Motion 之类东西的存在
+    // S o O 显示的都是 typing (不知道能不能用其他方法解决)
     private static final Set<String> UPDATE_TRIGGER_COMMANDS = ImmutableSet.of(
-            "Vim Insert Before Cursor",
-            "Vim Insert After Cursor",
-            "Vim Change Characters",
-            "Vim Change Motion"
+            "Vim Insert Before Cursor",//i
+            "Vim Insert After Cursor",//a
+            "Vim Change Characters",//s
+            "Vim Change to End-of-Line",//C
+            "Vim Change Motion",//  c+action
+            "Vim Insert Before First non-Blank",//I
+            "Vim Insert After Line End"//A
     );
     private CommandListener exitInsertModeListener;
 
