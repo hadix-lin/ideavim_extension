@@ -6,11 +6,9 @@ import com.intellij.openapi.command.CommandEvent;
 import com.intellij.openapi.command.CommandListener;
 import com.intellij.openapi.command.CommandProcessor;
 import com.maddyhome.idea.vim.extension.VimExtension;
-
 import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.plaf.multi.MultiTabbedPaneUI;
 import java.util.Set;
 
 /**
