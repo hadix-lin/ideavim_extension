@@ -20,7 +20,8 @@ tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
 intellij {
     version ideaVersion
     //IntelliJ IDEA 2016.3 dependency; for a full list of IntelliJ IDEA releases please see https://www.jetbrains.com/intellij-repository/releases
-    plugins 'IdeaVIM:0.46' //Bundled plugin dependencies
+    plugins = ['IdeaVIM:0.48']
+    //Bundled plugin dependencies
     pluginName 'IdeaVimExtension'
     updateSinceUntilBuild false
     downloadSources Boolean.valueOf(downloadIdeaSources)

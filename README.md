@@ -20,4 +20,12 @@ gradle buildPlugin
 
 ## 使用
 
-该插件利用 **IdeaVIM**插件的扩展点实现的.安装插件后默认是不启用的,需要启用IdeaVim插件后,在编辑器中输入`:set switch-to-english-when-exit-insert-mode`后生效.或者直接将这句命令加入到**~/.ideavimrc**文件中.
+通过在编辑器中normal模式下输入 :set keep-english-in-normal 来启用该功能.或者直接将该命令加入到~/.ideavimrc.
+如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
+
+## 更新历史
+* 1.1
+  自动注册按键映射`:nmap <Esc> a<Esc>`以保证normal模式下可以按esc切换到英文输入法.
+  添加回到insert模式恢复为原来的输入方式的能力
+* 1.0 
+  首次发布,macOS下,退出插入模式可以自动切换到英文输入法

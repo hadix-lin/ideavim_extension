@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>IdeaVimExtension</id>
     <name>IdeaVimExtension</name>
-    <version>1.0</version>
+    <version>1.1</version>
     <vendor email="hadix.lin@gmail.com">hadix</vendor>
 
     <description><![CDATA[
@@ -9,8 +9,9 @@
       为IdeaVim插件增加自动切换为英文输入法的功能<br>
       </p>
       <p>
-      通过在编辑器中normal模式下输入 :set switch-to-english-when-exit-insert-mode 来启用该功能.
-      或者直接将该命令加入到~/.ideavimrc
+      通过在编辑器中normal模式下输入 :set keep-english-in-normal 来启用该功能.<br/>
+      或者直接将该命令加入到~/.ideavimrc<br/>
+      如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
       </p>
       <p>
       <a href="https://github.com/hadix-lin/ideavim_extension">GitHub Repository</a>: 源码和问题反馈
@@ -18,20 +19,21 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      1.1
+       自动注册按键映射<code>:nmap <Esc> a<Esc></code>以保证normal模式下可以按esc切换到英文输入法.<br/>
+       添加回到insert模式恢复为原来的输入方式的能力<br/>
+       <br/>
       1.0 首次发布,macOS下,退出插入模式可以自动切换到英文输入法
     ]]>
     </change-notes>
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="143" />
+    <idea-version since-build="143"/>
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-         on how to target different products -->
     <depends>com.intellij.modules.lang</depends>
 
     <extensions defaultExtensionNs="IdeaVIM">
-        <!-- Add your extensions here -->
-        <vimExtension implementation="io.github.hadixlin.iss.InputSourceSwitchExtension" />
+        <vimExtension implementation="io.github.hadixlin.iss.KeepEnglishInNormalExtension"/>
+        <vimExtension implementation="io.github.hadixlin.iss.KeepEnglishInNormalAndRestoreInInsertExtension"/>
     </extensions>
     <depends>IdeaVIM</depends>
 </idea-plugin>
