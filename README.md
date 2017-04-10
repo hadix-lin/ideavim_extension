@@ -24,8 +24,13 @@ gradle buildPlugin
 如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
 
 ## 更新历史
+* 1.1.1
+
+  更改自动注册的按键映射为`:nnoremap <Esc> a<Esc><Esc>`保证在normal模式下按esc切换到英文输入法.并且执行一次默认操作
+
 * 1.1
   自动注册按键映射`:nmap <Esc> a<Esc>`以保证normal模式下可以按esc切换到英文输入法.
   添加回到insert模式恢复为原来的输入方式的能力
+
 * 1.0 
   首次发布,macOS下,退出插入模式可以自动切换到英文输入法

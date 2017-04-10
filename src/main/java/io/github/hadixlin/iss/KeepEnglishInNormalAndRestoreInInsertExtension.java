@@ -57,7 +57,7 @@ public class KeepEnglishInNormalAndRestoreInInsertExtension implements VimExtens
         }
         CommandProcessor.getInstance().addCommandListener(this.exitInsertModeListener);
         VimExtensionFacade.putKeyMapping(
-                MappingMode.N, parseKeys("<Esc>"), parseKeys("a<Esc>"), true);
+                MappingMode.N, parseKeys("<Esc>"), parseKeys("a<Esc><Esc>"), false);
     }
 
     @NotNull

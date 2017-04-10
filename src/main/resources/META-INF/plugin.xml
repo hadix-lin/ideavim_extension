@@ -19,11 +19,15 @@
     ]]></description>
 
     <change-notes><![CDATA[
-      1.1
-       自动注册按键映射<code>:nmap <Esc> a<Esc></code>以保证normal模式下可以按esc切换到英文输入法.<br/>
+      1.1.1<br/>
+       更改自动注册的按键映射为<code>:nnoremap &lt;Esc&gt; a&lt;Esc&gt;&lt;Esc&gt;</code>保证在normal模式下按esc切换到英文输入法.并且执行一次默认操作<br/>
+       <br/>
+      1.1<br/>
+       自动注册按键映射<code>:nmap &lt;Esc&gt; a&lt;Esc&gt;</code>以保证normal模式下可以按esc切换到英文输入法.<br/>
        添加回到insert模式恢复为原来的输入方式的能力<br/>
        <br/>
-      1.0 首次发布,macOS下,退出插入模式可以自动切换到英文输入法
+      1.0<br/>
+       首次发布,macOS下,退出插入模式可以自动切换到英文输入法
     ]]>
     </change-notes>
 
