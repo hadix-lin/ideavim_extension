@@ -16,9 +16,19 @@
       <p>
       <a href="https://github.com/hadix-lin/ideavim_extension">GitHub Repository</a>: 源码和问题反馈
       </p>
+      <p>The plugin is an extension of &#39;IdeaVim&#39; , can switch to English input source in normal mode and restore input source in insert mode.</p>
+      <h3>How To Enable:</h3>
+      <p>In normal mode ,in an editor input <code>:set keep-english-in-normal</code> for auto swith to English input source.</p>
+      <p>use <code>:set keep-english-in-normal-and-restore-in-insert</code>, if you want to restore original input source after return insert mode.</p>
+      <p>Or add the command to the file <code>~/.ideavimrc</code></p>
+      <h3>Notice:</h3>
+      <p>The plugin only support <strong>macOS</strong></p>
+      <p><a href="https://github.com/hadix-lin/ideavim_extension">GitHub Repository</a>Source and Feedback</p>
     ]]></description>
 
     <change-notes><![CDATA[
+      1.1.2<br/>
+       增加英文说明.append information in English.
       1.1.1<br/>
        更改自动注册的按键映射为<code>:nnoremap &lt;Esc&gt; a&lt;Esc&gt;&lt;Esc&gt;</code>保证在normal模式下按esc切换到英文输入法.并且执行一次默认操作<br/>
        <br/>

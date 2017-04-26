@@ -34,3 +34,21 @@ gradle buildPlugin
 
 * 1.0 
   首次发布,macOS下,退出插入模式可以自动切换到英文输入法
+
+
+
+## IdeaVimExtension
+
+The plugin is an extension of 'IdeaVim' , can switch to English input source in normal mode and restore input source in insert mode.
+
+### How To Enable:
+
+In normal mode ,in an editor input `:set keep-english-in-normal` for auto swith to English input source.
+
+use `:set keep-english-in-normal-and-restore-in-insert`, if you want to restore original input source after return insert mode.
+
+Or add the command to the file `~/.ideavimrc`
+
+### Notice:
+
+The plugin only support **macOS
