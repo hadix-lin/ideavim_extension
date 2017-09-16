@@ -26,11 +26,10 @@ public class KeepEnglishInNormalAndRestoreInInsertExtension implements VimExtens
     private static final Set<String> SWITCH_TO_LAST_INPUT_SOURCE_COMMAND_NAMES = ImmutableSet.of(
             "Vim Insert After Cursor", "Vim Insert After Line End", "Vim Insert Before Cursor",
             "Vim Insert Before First non-Blank", "Vim Insert Character Above Cursor",
-            "Vim Insert Character Below Cursor", "Vim Delete Inserted Text", "Vim Delete Previous Word",
+            "Vim Insert Character Below Cursor", 
             "Vim Enter", "Vim Insert at Line Start", "Vim Insert New Line Above",
             "Vim Insert New Line Below", "Vim Insert Previous Text", "Vim Insert Previous Text",
-            "Vim Insert Register", "Vim Toggle Insert/Replace", "Vim Change Line", "Vim Change Character",
-            "Vim Change Characters", "Vim Replace"
+            "Vim Insert Register" 
     );
 
     private boolean restoreInInsert = true;
