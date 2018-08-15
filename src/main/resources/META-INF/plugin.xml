@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>IdeaVimExtension</id>
     <name>IdeaVimExtension</name>
-    <version>1.1.3</version>
+    <version>1.1.4</version>
     <vendor email="hadix.lin@gmail.com">hadix</vendor>
 
     <description><![CDATA[
@@ -13,9 +13,11 @@
       或者直接将该命令加入到~/.ideavimrc<br/>
       如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
       </p>
+      <h3>注意:仅支持macOS</h3>
       <p>
       <a href="https://github.com/hadix-lin/ideavim_extension">GitHub Repository</a>: 源码和问题反馈
       </p>
+
       <p>The plugin is an extension of &#39;IdeaVim&#39; , can switch to English input source in normal mode and restore input source in insert mode.</p>
       <h3>How To Enable:</h3>
       <p>In normal mode ,in an editor input <code>:set keep-english-in-normal</code> for auto swith to English input source.</p>
@@ -27,19 +29,21 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      1.1.4<br/>
+        <p>增加对macOS的ABC键盘支持
       1.1.3<br/>
-        解决一个偶尔出现的空值异常问题. resolve a NPE problem which happen rarely;<br/>
+        <p>解决一个偶尔出现的空值异常问题. resolve a NPE problem which happen rarely;<br/>
       1.1.2<br/>
-       增加英文说明.append information in English.<br/>
+       <p>增加英文说明.append information in English.<br/>
       1.1.1<br/>
-       更改自动注册的按键映射为<code>:nnoremap &lt;Esc&gt; a&lt;Esc&gt;&lt;Esc&gt;</code>保证在normal模式下按esc切换到英文输入法.并且执行一次默认操作<br/>
+       <p>更改自动注册的按键映射为<code>:nnoremap &lt;Esc&gt; a&lt;Esc&gt;&lt;Esc&gt;</code>保证在normal模式下按esc切换到英文输入法.并且执行一次默认操作<br/>
        <br/>
       1.1<br/>
-       自动注册按键映射<code>:nmap &lt;Esc&gt; a&lt;Esc&gt;</code>以保证normal模式下可以按esc切换到英文输入法.<br/>
+       <p>自动注册按键映射<code>:nmap &lt;Esc&gt; a&lt;Esc&gt;</code>以保证normal模式下可以按esc切换到英文输入法.<br/>
        添加回到insert模式恢复为原来的输入方式的能力<br/>
        <br/>
       1.0<br/>
-       首次发布,macOS下,退出插入模式可以自动切换到英文输入法
+       <p>首次发布,macOS下,退出插入模式可以自动切换到英文输入法
     ]]>
     </change-notes>
 

@@ -24,8 +24,16 @@ gradle buildPlugin
 如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
 
 ## 更新历史
-* 1.1.1
+* 1.1.4
+  增加对macOS的ABC键盘支持. support keylayout ABC.
 
+* 1.1.3
+  解决一个偶尔出现的空值异常问题. resolve a NPE problem which happen rarely;
+
+* 1.1.2
+  增加英文说明.append information in English.
+
+* 1.1.1
   更改自动注册的按键映射为`:nnoremap <Esc> a<Esc><Esc>`保证在normal模式下按esc切换到英文输入法.并且执行一次默认操作
 
 * 1.1
