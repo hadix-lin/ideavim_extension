@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>IdeaVimExtension</id>
     <name>IdeaVimExtension</name>
-    <version>1.1.4</version>
+    <version>1.2</version>
     <vendor email="hadix.lin@gmail.com">hadix</vendor>
 
     <description><![CDATA[
@@ -13,7 +13,7 @@
       或者直接将该命令加入到~/.ideavimrc<br/>
       如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
       </p>
-      <h3>注意:仅支持macOS</h3>
+      <h3>注意:支持MacOS和Windows, <strong>不</strong>支持Linux</h3>
       <p>
       <a href="https://github.com/hadix-lin/ideavim_extension">GitHub Repository</a>: 源码和问题反馈
       </p>
@@ -24,11 +24,13 @@
       <p>use <code>:set keep-english-in-normal-and-restore-in-insert</code>, if you want to restore original input source after return insert mode.</p>
       <p>Or add the command to the file <code>~/.ideavimrc</code></p>
       <h3>Notice:</h3>
-      <p>The plugin only support <strong>macOS</strong></p>
+      <p>The plugin only support MacOS and Windows, <strong>NOT</strong>support Linux</p>
       <p><a href="https://github.com/hadix-lin/ideavim_extension">GitHub Repository</a>Source and Feedback</p>
     ]]></description>
 
     <change-notes><![CDATA[
+      1.2<br/>
+        <p>增加对Windows的支持,需要开启英语美国键盘
       1.1.4<br/>
         <p>增加对macOS的ABC键盘支持
       1.1.3<br/>

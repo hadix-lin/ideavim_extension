@@ -2,7 +2,9 @@
 
 本插件作为[IdeaVim](https://plugins.jetbrains.com/plugin/164)存在.暂时只有一个功能,就是在退出插入模式时可以切换回系统的英文输入法.
 
-由于本人不会写操作系统代码,暂时只找到macOS切换输入法的动态库,所以仅支持macOS.
+支持Windows和MacOS
+Windows 需要开启英语美国键盘
+MacOS 需要开启英语美国键盘或ABC键盘
 
 ## 构建/安装方法
 
@@ -24,6 +26,8 @@ gradle buildPlugin
 如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
 
 ## 更新历史
+* 1.2
+  增加对Windows的支持, support Windows.
 * 1.1.4
   增加对macOS的ABC键盘支持. support keylayout ABC.
 

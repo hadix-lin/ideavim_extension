@@ -29,11 +29,11 @@ intellij {
 
 sourceSets {
     main {
-        java.srcDir 'src'
-        resources.srcDir 'resources'
+        java.srcDir 'src/main/java'
+        resources.srcDir 'src/main/resources'
     }
     test {
-        java.srcDir 'test'
+        java.srcDir 'src/test/java'
     }
 }
 
