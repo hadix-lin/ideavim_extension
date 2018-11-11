@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ideavim_extension.iml" filepath="$PROJECT_DIR$/.idea/ideavim_extension.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ideavim_extension_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ideavim_extension_main.iml" group="ideavim_extension" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ideavim_extension_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ideavim_extension_test.iml" group="ideavim_extension" />
     </modules>
   </component>
 </project>

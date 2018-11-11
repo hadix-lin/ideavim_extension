@@ -1,11 +1,12 @@
 package io.github.hadixlin.iss.win;
 
+import com.sun.jna.Pointer;
 import com.sun.jna.platform.win32.WinDef;
 import com.sun.jna.platform.win32.WinNT;
 import io.github.hadixlin.iss.InputSourceSwitcher;
 
-public class WinInpuSourceSwitcher implements InputSourceSwitcher {
-    private static final long KEY_LAYOUT_US = 0x3423423;
+public class WinInputSourceSwitcher implements InputSourceSwitcher {
+    private static final long KEY_LAYOUT_US = 0x4090409;
 
     private long lastInputSource = -1;
 
@@ -27,7 +28,7 @@ public class WinInpuSourceSwitcher implements InputSourceSwitcher {
     private static long getCurrentInputSource(WinDef.HWND hwnd) {
         int pid = WinNative.INSTANCE.GetWindowThreadProcessId(hwnd, null);
         WinNT.HANDLE hkl = WinNative.INSTANCE.GetKeyboardLayout(new WinDef.DWORD(pid));
-        return hkl.getPointer().getLong(0);
+        return Pointer.nativeValue(hkl.getPointer());
     }
 
     @Override
