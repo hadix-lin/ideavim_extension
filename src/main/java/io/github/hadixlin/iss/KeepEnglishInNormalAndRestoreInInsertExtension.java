@@ -14,7 +14,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 
 import static com.maddyhome.idea.vim.helper.StringHelper.parseKeys;
-import static io.github.hadixlin.iss.SystemInputSourceSwitcher.*;
 
 /**
  * Created by hadix on 31/03/2017.
@@ -85,7 +84,10 @@ public class KeepEnglishInNormalAndRestoreInInsertExtension implements VimExtens
                 if (StringUtils.isBlank(commandName)) {
                     return;
                 }
-                switcher.switchToEnglish();
+                if (SWITCH_TO_ENGLISH_COMMAND_NAMES.contains(commandName)) {
+                    switcher.switchToEnglish();
+                    return;
+                }
                 if (!restoreInInsert) {
                     return;
                 }

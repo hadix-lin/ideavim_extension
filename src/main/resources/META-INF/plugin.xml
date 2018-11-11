@@ -5,6 +5,15 @@
     <vendor email="hadix.lin@gmail.com">hadix</vendor>
 
     <description><![CDATA[
+      <p>The plugin is an extension of &#39;IdeaVim&#39; , can switch to English input source in normal mode and restore input source in insert mode.</p>
+      <h3>How To Enable:</h3>
+      <p>In normal mode ,in an editor input <code>:set keep-english-in-normal</code> for auto swith to English input source.</p>
+      <p>use <code>:set keep-english-in-normal-and-restore-in-insert</code>, if you want to restore original input source after return insert mode.</p>
+      <p>Or add the command to the file <code>~/.ideavimrc</code></p>
+      <h3>Notice:</h3>
+      <p>The plugin only support <strong>macOS</strong></p>
+      <p><a href="https://github.com/hadix-lin/ideavim_extension">GitHub Repository</a>Source and Feedback</p>
+      <br/>
       <p>
       为IdeaVim插件增加自动切换为英文输入法的功能<br>
       </p>
@@ -14,6 +23,10 @@
       如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
       </p>
       <h3>注意:支持MacOS和Windows, <strong>不</strong>支持Linux</h3>
+
+      MacOS需要开启英语美国键盘或ABC键盘
+      Windows需要开启英语美国键盘
+
       <p>
       <a href="https://github.com/hadix-lin/ideavim_extension">GitHub Repository</a>: 源码和问题反馈
       </p>
@@ -30,9 +43,25 @@
 
     <change-notes><![CDATA[
       1.2<br/>
-        <p>增加对Windows的支持,需要开启英语美国键盘
-      1.1.4<br/>
-        <p>增加对macOS的ABC键盘支持
+        <p>support windows, need enable English American Keyboard
+      1.1.5<br/>
+        <p>support key layout ABC<br/>
+      1.1.3<br/>
+        <p>resolve a NPE problem which happen rarely;<br/>
+      1.1.2<br/>
+       <p>append information in English.<br/>
+      1.1.1<br/>
+       <p>automatic register <code>:nnoremap &lt;Esc&gt; a&lt;Esc&gt;&lt;Esc&gt;</code> so that press esc to switch keylayout to English in normal mode.<br/>
+      1.1<br/>
+       <p>restore original keyloyout when return back insert mode.<br/>
+      1.0<br/>
+       <p>swith keylayout to english when existing insert mode.<br/>
+      <br/>
+
+      1.2<br/>
+        <p>增加对Windows的支持,需要开启英语美国键盘<br/>
+      1.1.5<br/>
+        <p>增加对macOS的ABC键盘支持<br/>
       1.1.3<br/>
         <p>解决一个偶尔出现的空值异常问题. resolve a NPE problem which happen rarely;<br/>
       1.1.2<br/>

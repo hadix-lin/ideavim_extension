@@ -28,7 +28,8 @@ gradle buildPlugin
 ## 更新历史
 * 1.2
   增加对Windows的支持, support Windows.
-* 1.1.4
+  
+* 1.1.5
   增加对macOS的ABC键盘支持. support keylayout ABC.
 
 * 1.1.3
