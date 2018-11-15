@@ -26,6 +26,9 @@ gradle buildPlugin
 如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
 
 ## 更新历史
+* 1.2.1
+  修正导致不能恢复到英文输入法的问题
+  
 * 1.2
   增加对Windows的支持, support Windows.
   
@@ -64,4 +67,4 @@ Or add the command to the file `~/.ideavimrc`
 
 ### Notice:
 
-The plugin only support **macOS
+The plugin only support **macOS** and **Windows** , **NOT** support Linux

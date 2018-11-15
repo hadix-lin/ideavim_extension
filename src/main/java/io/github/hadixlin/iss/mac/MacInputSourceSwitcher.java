@@ -14,7 +14,8 @@ public class MacInputSourceSwitcher implements InputSourceSwitcher {
 
     @Override
     public void switchToEnglish() {
-        String current = MacNative.getCurrentInputSourceID();
+        String current = getCurrentInputSourceID();
+        lastInputSource = current;
         if (StringUtils.equals(current, ENGLISH_INPUT_SOURCE)) {
             return;
         }
@@ -23,15 +24,14 @@ public class MacInputSourceSwitcher implements InputSourceSwitcher {
             ENGLISH_INPUT_SOURCE = KEY_LAYOUT_US;
             switchInputSource(ENGLISH_INPUT_SOURCE);
         }
-        lastInputSource = current;
     }
 
     @Override
     public void restore() {
-        String current = MacNative.getCurrentInputSourceID();
-        if (lastInputSource==null || StringUtils.equals(lastInputSource, current)) {
+        String current = getCurrentInputSourceID();
+        if (lastInputSource == null || StringUtils.equals(lastInputSource, current)) {
             return;
         }
-        MacNative.switchInputSource(lastInputSource);
+        switchInputSource(lastInputSource);
     }
 }

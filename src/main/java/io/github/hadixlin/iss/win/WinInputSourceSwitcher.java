@@ -14,11 +14,11 @@ public class WinInputSourceSwitcher implements InputSourceSwitcher {
     public void switchToEnglish() {
         WinDef.HWND hwnd = WinNative.INSTANCE.GetForegroundWindow();
         long current = getCurrentInputSource(hwnd);
+        lastInputSource = current;
         if (current == KEY_LAYOUT_US) {
             return;
         }
         switchToInputSource(hwnd, KEY_LAYOUT_US);
-        lastInputSource = current;
     }
 
     private void switchToInputSource(WinDef.HWND hwnd, long inputSourceId) {
