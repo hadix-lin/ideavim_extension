@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>IdeaVimExtension</id>
     <name>IdeaVimExtension</name>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
     <vendor email="hadix.lin@gmail.com">hadix</vendor>
 
     <description><![CDATA[
@@ -33,6 +33,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      1.2.2<br/>
+        <p>fix the bug cause IDE crash.
       1.2.1<br/>
         <p>fix the bug cause English input method can not be restored<br/>
       1.2<br/>
@@ -51,6 +53,8 @@
        <p>swith keylayout to english when existing insert mode.<br/>
       <br/>
 
+      1.2.2<br/>
+        <p>修正导致IDE崩溃的bug
       1.2.1<br/>
         <p>修正导致不能恢复到英文输入法的问题<br/>
       1.2<br/>

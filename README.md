@@ -26,6 +26,9 @@ gradle buildPlugin
 如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
 
 ## 更新历史
+* 1.2.2
+  修正导致IDE崩溃的bug
+  
 * 1.2.1
   修正导致不能恢复到英文输入法的问题
   
