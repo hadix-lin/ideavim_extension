@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>IdeaVimExtension</id>
     <name>IdeaVimExtension</name>
-    <version>1.2.2</version>
+    <version>1.2.3</version>
     <vendor email="hadix.lin@gmail.com">hadix</vendor>
 
     <description><![CDATA[
@@ -33,6 +33,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      1.2.3<br/>
+        <p> avoid the IDE loss response with asynchronous operations
       1.2.2<br/>
         <p>fix the bug cause IDE crash.
       1.2.1<br/>
@@ -53,6 +55,8 @@
        <p>swith keylayout to english when existing insert mode.<br/>
       <br/>
 
+      1.2.3<br/>
+        <p>利用异步操作避免IDE失去响应
       1.2.2<br/>
         <p>修正导致IDE崩溃的bug
       1.2.1<br/>

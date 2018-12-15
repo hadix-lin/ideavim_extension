@@ -12,40 +12,50 @@ import org.apache.commons.lang.StringUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
+import java.util.concurrent.*;
 
 import static com.maddyhome.idea.vim.helper.StringHelper.parseKeys;
 
 /**
- * Created by hadix on 31/03/2017.
+ * @author hadix
+ * @date 31/03/2017
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class KeepEnglishInNormalAndRestoreInInsertExtension implements VimExtension {
 
     private static final Set<String> SWITCH_TO_ENGLISH_COMMAND_NAMES =
-            ImmutableSet.of("Vim Exit Insert Mode");
+        ImmutableSet.of("Vim Exit Insert Mode");
     private static final Set<String> SWITCH_TO_LAST_INPUT_SOURCE_COMMAND_NAMES =
-            ImmutableSet.of(
-                    "Vim Insert After Cursor",
-                    "Vim Insert After Line End",
-                    "Vim Insert Before Cursor",
-                    "Vim Insert Before First non-Blank",
-                    "Vim Insert Character Above Cursor",
-                    "Vim Insert Character Below Cursor",
-                    "Vim Delete Inserted Text",
-                    "Vim Delete Previous Word",
-                    "Vim Enter",
-                    "Vim Insert at Line Start",
-                    "Vim Insert New Line Above",
-                    "Vim Insert New Line Below",
-                    "Vim Insert Previous Text",
-                    "Vim Insert Previous Text",
-                    "Vim Insert Register",
-                    "Vim Toggle Insert/Replace",
-                    "Vim Change Line",
-                    "Vim Change Character",
-                    "Vim Change Characters",
-                    "Vim Replace");
+        ImmutableSet.of(
+            "Vim Insert After Cursor",
+            "Vim Insert After Line End",
+            "Vim Insert Before Cursor",
+            "Vim Insert Before First non-Blank",
+            "Vim Insert Character Above Cursor",
+            "Vim Insert Character Below Cursor",
+            "Vim Delete Inserted Text",
+            "Vim Delete Previous Word",
+            "Vim Enter",
+            "Vim Insert at Line Start",
+            "Vim Insert New Line Above",
+            "Vim Insert New Line Below",
+            "Vim Insert Previous Text",
+            "Vim Insert Previous Text",
+            "Vim Insert Register",
+            "Vim Toggle Insert/Replace",
+            "Vim Change Line",
+            "Vim Change Character",
+            "Vim Change Characters",
+            "Vim Replace");
 
     private boolean restoreInInsert = true;
+
+    private ExecutorService executor = new ThreadPoolExecutor(1, 1, Long.MAX_VALUE, TimeUnit.DAYS, new ArrayBlockingQueue<>(10), r -> {
+        Thread thread = new Thread(r, "ideavim_extension");
+        thread.setDaemon(true);
+        thread.setPriority(Thread.MAX_PRIORITY);
+        return thread;
+    }, new ThreadPoolExecutor.DiscardPolicy());
 
     private CommandListener exitInsertModeListener;
 
@@ -69,7 +79,7 @@ public class KeepEnglishInNormalAndRestoreInInsertExtension implements VimExtens
         }
         CommandProcessor.getInstance().addCommandListener(this.exitInsertModeListener);
         VimExtensionFacade.putKeyMapping(
-                MappingMode.N, parseKeys("<Esc>"), parseKeys("a<Esc><Esc>"), false);
+            MappingMode.N, parseKeys("<Esc>"), parseKeys("a<Esc><Esc>"), false);
     }
 
     @NotNull
@@ -85,14 +95,14 @@ public class KeepEnglishInNormalAndRestoreInInsertExtension implements VimExtens
                     return;
                 }
                 if (SWITCH_TO_ENGLISH_COMMAND_NAMES.contains(commandName)) {
-                    switcher.switchToEnglish();
+                    executor.execute(() -> switcher.switchToEnglish());
                     return;
                 }
                 if (!restoreInInsert) {
                     return;
                 }
                 if (SWITCH_TO_LAST_INPUT_SOURCE_COMMAND_NAMES.contains(commandName)) {
-                    switcher.restore();
+                    executor.execute(() -> switcher.restore());
                 }
             }
         };
