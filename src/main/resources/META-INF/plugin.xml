@@ -34,9 +34,9 @@
 
     <change-notes><![CDATA[
       1.2.3<br/>
-        <p> avoid the IDE loss response with asynchronous operations
+        <p> avoid the IDE loss response with asynchronous operations<br/>
       1.2.2<br/>
-        <p>fix the bug cause IDE crash.
+        <p>fix the bug cause IDE crash.<br/>
       1.2.1<br/>
         <p>fix the bug cause English input method can not be restored<br/>
       1.2<br/>
@@ -56,9 +56,9 @@
       <br/>
 
       1.2.3<br/>
-        <p>利用异步操作避免IDE失去响应
+        <p>利用异步操作避免IDE失去响应<br/>
       1.2.2<br/>
-        <p>修正导致IDE崩溃的bug
+        <p>修正导致IDE崩溃的bug<br/>
       1.2.1<br/>
         <p>修正导致不能恢复到英文输入法的问题<br/>
       1.2<br/>
