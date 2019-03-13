@@ -1,13 +1,22 @@
 package io.github.hadixlin.iss
 
+import com.intellij.openapi.Disposable
 import com.intellij.openapi.command.CommandAdapter
 import com.intellij.openapi.command.CommandEvent
 import com.intellij.openapi.command.CommandProcessor
+import com.intellij.openapi.editor.Editor
+import com.intellij.openapi.editor.EditorFactory
+import com.intellij.openapi.editor.ex.EditorEventMulticasterEx
+import com.intellij.openapi.editor.ex.FocusChangeListener
+import com.maddyhome.idea.vim.command.CommandState
+import com.maddyhome.idea.vim.command.CommandState.Mode.*
 import com.maddyhome.idea.vim.command.MappingMode
 import com.maddyhome.idea.vim.extension.VimExtension
 import com.maddyhome.idea.vim.extension.VimExtensionFacade
 import com.maddyhome.idea.vim.helper.StringHelper.parseKeys
 import org.apache.commons.lang.StringUtils
+import java.lang.Long.MAX_VALUE
+import java.util.*
 import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.ThreadFactory
 import java.util.concurrent.ThreadPoolExecutor
@@ -20,7 +29,7 @@ import java.util.concurrent.TimeUnit
 open class KeepEnglishInNormalAndRestoreInInsertExtension(val restoreInInsert: Boolean = true) : VimExtension {
 
     private val executor = ThreadPoolExecutor(1, 1,
-            java.lang.Long.MAX_VALUE, TimeUnit.DAYS,
+            MAX_VALUE, TimeUnit.DAYS,
             ArrayBlockingQueue(10),
             ThreadFactory { r ->
                 val thread = Thread(r, "ideavim_extension")
@@ -33,6 +42,43 @@ open class KeepEnglishInNormalAndRestoreInInsertExtension(val restoreInInsert: B
     private val exitInsertModeListener = object : CommandAdapter() {
 
         private val switcher = SystemInputSourceSwitcher()
+
+        init {
+            val eventMulticaster = EditorFactory.getInstance().eventMulticaster
+            if (eventMulticaster is EditorEventMulticasterEx) {
+                val focusListener = object : FocusChangeListener {
+                    private val EDITING_MODE = EnumSet.of(INSERT, REPLACE)
+
+                    override fun focusLost(editor: Editor?) {}
+
+                    override fun focusGained(editor: Editor?) {
+                        val state = CommandState.getInstance(editor)
+                        if (state.mode !in EDITING_MODE) {
+                            executor.execute { switcher.switchToEnglish() }
+                        }
+                    }
+                }
+                registerFocusChangeListener(eventMulticaster, focusListener)
+            }
+        }
+
+        /**
+         * 由于EditorEventMulticasterEx中添加焦点变化监听器的方法在IDEA-2018.3以前有个拼写错误.
+         * 所以在此使用反射方法进行调用以向前兼容
+         */
+        private fun registerFocusChangeListener(eventMulticaster: EditorEventMulticasterEx, focusListener: FocusChangeListener) {
+            val methods = EditorEventMulticasterEx::class.java.methods
+            //IDEA-2018.3以前方法名称
+            var func = methods.find { f -> f.name == "addFocusChangeListner" }
+            if (func == null) {
+                //IDEA-2018.3以后方法名
+                func = methods.find { f -> f.name == "addFocusChangeListener" }
+            }
+            if (func == null) {
+                throw IllegalArgumentException("找不到addFocusChangeListener或addFocusChangeListner")
+            }
+            func.invoke(eventMulticaster, focusListener, Disposable {})
+        }
 
         override fun beforeCommandFinished(commandEvent: CommandEvent) {
             val commandName = commandEvent.commandName
@@ -57,6 +103,7 @@ open class KeepEnglishInNormalAndRestoreInInsertExtension(val restoreInInsert: B
     }
 
     override fun init() {
+
         CommandProcessor.getInstance().addCommandListener(this.exitInsertModeListener)
         VimExtensionFacade.putKeyMapping(
                 MappingMode.N, parseKeys("<Esc>"), parseKeys("a<Esc><Esc>"), false)

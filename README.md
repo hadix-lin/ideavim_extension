@@ -26,6 +26,9 @@ gradle buildPlugin
 如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
 
 ## 更新历史
+* 1.3.1
+  编辑器重新获得焦点时,如果编辑器处于NORMAL/VISUAL模式,保持输入法为英文状态
+  
 * 1.3.0
   使用kotlin重写插件
   
