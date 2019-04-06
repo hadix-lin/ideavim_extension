@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>IdeaVimExtension</id>
     <name>IdeaVimExtension</name>
-    <version>1.3.1</version>
+    <version>1.3.2</version>
     <vendor email="hadix.lin@gmail.com">hadix</vendor>
 
     <description><![CDATA[
@@ -33,6 +33,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      1.3.2<br/>
+        <p>fix a problem caused the function of auto switch input method not working in old IDEA.<br/>
       1.3.1<br/>
         <p>keep input source in English when refocus the editor in normal mode<br/>
       1.3.0<br/>
@@ -59,6 +61,8 @@
        <p>swith keylayout to english when existing insert mode.<br/>
       <br/>
 
+      1.3.2<br/>
+        <p>修正自动切换输入法功能在旧版IDEA失效问题<br/>
       1.3.1<br/>
         <p>编辑器重新获得焦点时,如果编辑器处于NORMAL/VISUAL模式,保持输入法为英文状态<br/>
       1.3.0<br/>

@@ -9,7 +9,8 @@ import com.intellij.openapi.editor.EditorFactory
 import com.intellij.openapi.editor.ex.EditorEventMulticasterEx
 import com.intellij.openapi.editor.ex.FocusChangeListener
 import com.maddyhome.idea.vim.command.CommandState
-import com.maddyhome.idea.vim.command.CommandState.Mode.*
+import com.maddyhome.idea.vim.command.CommandState.Mode.INSERT
+import com.maddyhome.idea.vim.command.CommandState.Mode.REPLACE
 import com.maddyhome.idea.vim.command.MappingMode
 import com.maddyhome.idea.vim.extension.VimExtension
 import com.maddyhome.idea.vim.extension.VimExtensionFacade
@@ -68,7 +69,7 @@ open class KeepEnglishInNormalAndRestoreInInsertExtension(val restoreInInsert: B
          */
         private fun registerFocusChangeListener(eventMulticaster: EditorEventMulticasterEx, focusListener: FocusChangeListener) {
             val methods = EditorEventMulticasterEx::class.java.methods
-            //IDEA-2018.3以前方法名称
+            //IDEA-2018.3以前方法名称为addFocusChangeListner,2018.3后修正为addFocusChangeListener
             val func = methods.find {
                 it.name in setOf("addFocusChangeListner", "addFocusChangeListener") && it.parameterCount == 2
             } ?: throw IllegalArgumentException("找不到addFocusChangeListener或addFocusChangeListner")
@@ -98,7 +99,6 @@ open class KeepEnglishInNormalAndRestoreInInsertExtension(val restoreInInsert: B
     }
 
     override fun init() {
-
         CommandProcessor.getInstance().addCommandListener(this.exitInsertModeListener)
         VimExtensionFacade.putKeyMapping(
                 MappingMode.N, parseKeys("<Esc>"), parseKeys("a<Esc><Esc>"), false)
@@ -133,4 +133,5 @@ open class KeepEnglishInNormalAndRestoreInInsertExtension(val restoreInInsert: B
                 "Vim Change Characters",
                 "Vim Replace")
     }
+
 }
