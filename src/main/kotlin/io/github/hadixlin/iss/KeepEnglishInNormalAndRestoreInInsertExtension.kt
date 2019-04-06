@@ -69,14 +69,9 @@ open class KeepEnglishInNormalAndRestoreInInsertExtension(val restoreInInsert: B
         private fun registerFocusChangeListener(eventMulticaster: EditorEventMulticasterEx, focusListener: FocusChangeListener) {
             val methods = EditorEventMulticasterEx::class.java.methods
             //IDEA-2018.3以前方法名称
-            var func = methods.find { f -> f.name == "addFocusChangeListner" }
-            if (func == null) {
-                //IDEA-2018.3以后方法名
-                func = methods.find { f -> f.name == "addFocusChangeListener" }
-            }
-            if (func == null) {
-                throw IllegalArgumentException("找不到addFocusChangeListener或addFocusChangeListner")
-            }
+            val func = methods.find {
+                it.name in setOf("addFocusChangeListner", "addFocusChangeListener") && it.parameterCount == 2
+            } ?: throw IllegalArgumentException("找不到addFocusChangeListener或addFocusChangeListner")
             func.invoke(eventMulticaster, focusListener, Disposable {})
         }
 
