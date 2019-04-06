@@ -6,7 +6,7 @@ package io.github.hadixlin.iss
  */
 class KeepEnglishInNormalExtension : KeepEnglishInNormalAndRestoreInInsertExtension(false) {
 
-    override fun getName(): String {
-        return "keep-english-in-normal"
-    }
+	override fun getName(): String {
+		return "keep-english-in-normal"
+	}
 }

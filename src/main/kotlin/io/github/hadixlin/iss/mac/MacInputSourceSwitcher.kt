@@ -1,10 +1,9 @@
 package io.github.hadixlin.iss.mac
 
 import io.github.hadixlin.iss.InputSourceSwitcher
-import org.apache.commons.lang.StringUtils
-
 import io.github.hadixlin.iss.mac.MacNative.getCurrentInputSourceID
 import io.github.hadixlin.iss.mac.MacNative.switchInputSource
+import org.apache.commons.lang.StringUtils
 
 /**
  * @author hadix
@@ -12,32 +11,32 @@ import io.github.hadixlin.iss.mac.MacNative.switchInputSource
  */
 class MacInputSourceSwitcher : InputSourceSwitcher {
 
-    private var lastInputSource: String = StringUtils.EMPTY
+	private var lastInputSource: String = StringUtils.EMPTY
 
-    override fun switchToEnglish() {
-        val current = getCurrentInputSourceID()
-        lastInputSource = current
-        if (StringUtils.equals(current, ENGLISH_INPUT_SOURCE)) {
-            return
-        }
-        val code = switchInputSource(ENGLISH_INPUT_SOURCE)
-        if (code < 0) {
-            ENGLISH_INPUT_SOURCE = KEY_LAYOUT_US
-            switchInputSource(ENGLISH_INPUT_SOURCE)
-        }
-    }
+	override fun switchToEnglish() {
+		val current = getCurrentInputSourceID()
+		lastInputSource = current
+		if (StringUtils.equals(current, ENGLISH_INPUT_SOURCE)) {
+			return
+		}
+		val code = switchInputSource(ENGLISH_INPUT_SOURCE)
+		if (code < 0) {
+			ENGLISH_INPUT_SOURCE = KEY_LAYOUT_US
+			switchInputSource(ENGLISH_INPUT_SOURCE)
+		}
+	}
 
-    override fun restore() {
-        val current = getCurrentInputSourceID()
-        if (lastInputSource == StringUtils.EMPTY || StringUtils.equals(lastInputSource, current)) {
-            return
-        }
-        switchInputSource(lastInputSource)
-    }
+	override fun restore() {
+		val current = getCurrentInputSourceID()
+		if (lastInputSource == StringUtils.EMPTY || StringUtils.equals(lastInputSource, current)) {
+			return
+		}
+		switchInputSource(lastInputSource)
+	}
 
-    companion object {
-        const val KEY_LAYOUT_US = "com.apple.keylayout.US"
-        private const val KEY_LAYOUT_ABC = "com.apple.keylayout.ABC"
-        var ENGLISH_INPUT_SOURCE = KEY_LAYOUT_ABC
-    }
+	companion object {
+		const val KEY_LAYOUT_US = "com.apple.keylayout.US"
+		private const val KEY_LAYOUT_ABC = "com.apple.keylayout.ABC"
+		var ENGLISH_INPUT_SOURCE = KEY_LAYOUT_ABC
+	}
 }
