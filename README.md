@@ -2,9 +2,10 @@
 
 本插件作为[IdeaVim](https://plugins.jetbrains.com/plugin/164)存在.暂时只有一个功能,就是在退出插入模式时可以切换回系统的英文输入法.
 
-支持Windows和MacOS
-Windows 需要开启英语美国键盘
-MacOS 需要开启英语美国键盘或ABC键盘
+支持Windows，MacOS和Linux
+- Windows 需要开启英语美国键盘
+- MacOS 需要开启英语美国键盘或ABC键盘
+- Linux 需要使用fcitx输入法，通过fcitx-remote切换
 
 ## 构建/安装方法
 
@@ -13,7 +14,7 @@ MacOS 需要开启英语美国键盘或ABC键盘
 执行如下命令进行构建
 
 ```shell
-gradle buildPlugin
+gradle buildPluginja
 ```
 
 之后会生成 **build/distributions/IdeaVimExtension-\*.\*.\*.zip**.
@@ -26,6 +27,10 @@ gradle buildPlugin
 如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
 
 ## 更新历史
+
+* 1.3.3
+  增加Linux下Fcitx输入法支持，ubuntu 18.04下测试通过，理论上支持所有`fcitx`。
+
 * 1.3.2
   修正自动切换输入法功能在旧版IDEA失效问题
   
@@ -82,4 +87,4 @@ Or add the command to the file `~/.ideavimrc`
 
 ### Notice:
 
-The plugin only support **macOS** and **Windows** , **NOT** support Linux
+The plugin only support **macOS** and **Windows**, support **Linux** via fcitx
