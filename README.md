@@ -71,7 +71,8 @@ gradle buildPlugin
 * 1.0 
   首次发布,macOS下,退出插入模式可以自动切换到英文输入法
 
-
+### 感谢
+[史荣久](https://github.com/trydofor) 贡献了支持linux的代码
 
 ## IdeaVimExtension
 
@@ -88,3 +89,7 @@ Or add the command to the file `~/.ideavimrc`
 ### Notice:
 
 The plugin only support **macOS** and **Windows**, support **Linux** via fcitx
+
+### Thanks:
+
+[trydofor](https://github.com/trydofor) contributed to support linux code
