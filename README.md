@@ -14,7 +14,7 @@
 执行如下命令进行构建
 
 ```shell
-gradle buildPluginja
+gradle buildPlugin
 ```
 
 之后会生成 **build/distributions/IdeaVimExtension-\*.\*.\*.zip**.
