@@ -6,11 +6,11 @@ import java.util.concurrent.TimeUnit
 class LinFcitxRemoteSwitcher : InputSourceSwitcher {
 
     override fun switchToEnglish() {
-        execFcitxRemote(FCTIX_INACTIVE)
+        execFcitxRemote(FCITX_INACTIVE)
     }
 
     override fun restore() {
-        execFcitxRemote(FCTIX_ACTIVE)
+        execFcitxRemote(FCITX_ACTIVE)
     }
 
     private fun execFcitxRemote(cmd: Array<String>): Int {
@@ -21,7 +21,7 @@ class LinFcitxRemoteSwitcher : InputSourceSwitcher {
 
     companion object {
         private const val FCITX_REMOTE = "fcitx-remote"
-        private val FCTIX_ACTIVE = arrayOf(FCITX_REMOTE, "-o") //activate input method
-        private val FCTIX_INACTIVE = arrayOf(FCITX_REMOTE, "-c") //inactivate input method
+        private val FCITX_ACTIVE = arrayOf(FCITX_REMOTE, "-o") //activate input method
+        private val FCITX_INACTIVE = arrayOf(FCITX_REMOTE, "-c") //inactivate input method
     }
 }

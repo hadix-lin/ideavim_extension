@@ -11,32 +11,32 @@ import org.apache.commons.lang.StringUtils
  */
 class MacInputSourceSwitcher : InputSourceSwitcher {
 
-	private var lastInputSource: String = StringUtils.EMPTY
+    private var lastInputSource: String = StringUtils.EMPTY
 
-	override fun switchToEnglish() {
-		val current = getCurrentInputSourceID()
-		lastInputSource = current
-		if (StringUtils.equals(current, ENGLISH_INPUT_SOURCE)) {
-			return
-		}
-		val code = switchInputSource(ENGLISH_INPUT_SOURCE)
-		if (code < 0) {
-			ENGLISH_INPUT_SOURCE = KEY_LAYOUT_US
-			switchInputSource(ENGLISH_INPUT_SOURCE)
-		}
-	}
+    override fun switchToEnglish() {
+        val current = getCurrentInputSourceID()
+        lastInputSource = current
+        if (StringUtils.equals(current, ENGLISH_INPUT_SOURCE)) {
+            return
+        }
+        val code = switchInputSource(ENGLISH_INPUT_SOURCE)
+        if (code < 0) {
+            ENGLISH_INPUT_SOURCE = KEY_LAYOUT_US
+            switchInputSource(ENGLISH_INPUT_SOURCE)
+        }
+    }
 
-	override fun restore() {
-		val current = getCurrentInputSourceID()
-		if (lastInputSource == StringUtils.EMPTY || StringUtils.equals(lastInputSource, current)) {
-			return
-		}
-		switchInputSource(lastInputSource)
-	}
+    override fun restore() {
+        val current = getCurrentInputSourceID()
+        if (lastInputSource == StringUtils.EMPTY || StringUtils.equals(lastInputSource, current)) {
+            return
+        }
+        switchInputSource(lastInputSource)
+    }
 
-	companion object {
-		const val KEY_LAYOUT_US = "com.apple.keylayout.US"
-		private const val KEY_LAYOUT_ABC = "com.apple.keylayout.ABC"
-		var ENGLISH_INPUT_SOURCE = KEY_LAYOUT_ABC
-	}
+    companion object {
+        private const val KEY_LAYOUT_US = "com.apple.keylayout.US"
+        private const val KEY_LAYOUT_ABC = "com.apple.keylayout.ABC"
+        private var ENGLISH_INPUT_SOURCE = KEY_LAYOUT_ABC
+    }
 }

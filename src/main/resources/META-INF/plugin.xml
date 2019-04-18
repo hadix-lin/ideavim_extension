@@ -11,7 +11,7 @@
       <p>use <code>:set keep-english-in-normal-and-restore-in-insert</code>, if you want to restore original input source after return insert mode.</p>
       <p>Or add the command to the file <code>~/.ideavimrc</code></p>
       <h3>Notice:</h3>
-      <p>The plugin support MacOS and Windows and Linux(with fictx)</p>
+      <p>The plugin support MacOS and Windows and Linux(with fcitx)</p>
       <p>
       MacOS need enable en_US OR ABC keyboard<br/>
       Windows need enable en_US keyboard<br/>
@@ -25,7 +25,7 @@
       或者直接将该命令加入到~/.ideavimrc<br/>
       如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
       </p>
-      <h3>注意:支持MacOS和Windows, <strong>不</strong>支持Linux</h3>
+      <h3>注意:支持MacOS和Windows, 通过fcitx-remote支持Linux</h3>
       <p>
       MacOS需要开启英语美国键盘或ABC键盘<br/>
       Windows需要开启英语美国键盘<br/>
