@@ -27,9 +27,11 @@ gradle buildPlugin
 如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
 
 ## 更新历史
-
+* 1.3.4
+  修复某些插入命令无法恢复输入法的问题
+  
 * 1.3.3
-  增加Linux下Fcitx输入法支持，ubuntu 18.04下测试通过，理论上支持所有`fcitx`。
+  增加Linux下Fcitx输入法支持，ubuntu 18.04下测试通过，理论上支持所有`fcitx`
 
 * 1.3.2
   修正自动切换输入法功能在旧版IDEA失效问题
