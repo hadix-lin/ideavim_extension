@@ -15,6 +15,7 @@ import com.maddyhome.idea.vim.command.CommandState.Mode.REPLACE
 import com.maddyhome.idea.vim.command.MappingMode
 import com.maddyhome.idea.vim.extension.VimExtension
 import com.maddyhome.idea.vim.extension.VimExtensionFacade
+import com.maddyhome.idea.vim.helper.RunnableHelper
 import com.maddyhome.idea.vim.helper.StringHelper.parseKeys
 import org.apache.commons.lang.StringUtils
 import java.lang.Long.MAX_VALUE
@@ -81,7 +82,7 @@ open class KeepEnglishInNormalAndRestoreInInsertExtension(
         }
 
         override fun beforeCommandFinished(commandEvent: CommandEvent) {
-            val commandName = commandEvent.commandName
+            var commandName = commandEvent.commandName
             if (StringUtils.isBlank(commandName)) {
                 return
             }
@@ -94,22 +95,29 @@ open class KeepEnglishInNormalAndRestoreInInsertExtension(
             }
             if ("Typing" == commandName) {
                 val vimCmd = readVimCmd(commandEvent)
-                if (vimCmd.type == Command.Type.INSERT) {
-                    executor.execute { switcher.restore() }
+                if (vimCmd != null) {
+                    commandName = "Vim " + vimCmd.action.templatePresentation.text;
+                } else {
+                    return
                 }
-            } else if (SWITCH_TO_LAST_INPUT_SOURCE_COMMAND_NAMES.contains(commandName)) {
+            }
+            if (SWITCH_TO_LAST_INPUT_SOURCE_COMMAND_NAMES.contains(commandName)) {
                 executor.execute { switcher.restore() }
             }
         }
 
-        private fun readVimCmd(commandEvent: CommandEvent): Command {
+        private fun readVimCmd(commandEvent: CommandEvent): Command? {
             val cmd = commandEvent.command
-            val writeActionCmd = cmd.javaClass.getDeclaredField("cmd")
-            writeActionCmd.isAccessible = true
-            val other = writeActionCmd.get(cmd)
-            val actionRunnerCmd = other.javaClass.getDeclaredField("cmd")
-            actionRunnerCmd.isAccessible = true
-            return actionRunnerCmd.get(other) as Command
+            return if (cmd.javaClass.enclosingClass == RunnableHelper::class.java) {
+                val writeActionCmd = cmd.javaClass.getDeclaredField("cmd")
+                writeActionCmd.isAccessible = true
+                val other = writeActionCmd.get(cmd)
+                val actionRunnerCmd = other.javaClass.getDeclaredField("cmd")
+                actionRunnerCmd.isAccessible = true
+                actionRunnerCmd.get(other) as Command
+            } else {
+                null
+            }
         }
     }
 

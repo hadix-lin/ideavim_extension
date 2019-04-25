@@ -27,6 +27,9 @@ gradle buildPlugin
 如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
 
 ## 更新历史
+* 1.3.5
+  避免抛出NoSuchFieldException
+  
 * 1.3.4
   修复某些插入命令无法恢复输入法的问题
   
