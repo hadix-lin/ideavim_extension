@@ -1,4 +1,6 @@
 # IdeaVim扩展
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhadix-lin%2Fideavim_extension.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhadix-lin%2Fideavim_extension?ref=badge_shield)
+
 
 本插件作为[IdeaVim](https://plugins.jetbrains.com/plugin/164)存在.暂时只有一个功能,就是在退出插入模式时可以切换回系统的英文输入法.
 
@@ -98,3 +100,6 @@ The plugin only support **macOS** and **Windows**, support **Linux** via fcitx
 ### Thanks:
 
 [trydofor](https://github.com/trydofor) contributed to support linux code
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhadix-lin%2Fideavim_extension.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhadix-lin%2Fideavim_extension?ref=badge_large)
