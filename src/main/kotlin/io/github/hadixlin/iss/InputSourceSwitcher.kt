@@ -6,7 +6,7 @@ package io.github.hadixlin.iss
  * @date 2018-12-23
  */
 interface InputSourceSwitcher {
-	fun switchToEnglish()
+    fun switchToEnglish()
 
-	fun restore()
+    fun restore()
 }

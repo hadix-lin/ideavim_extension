@@ -24,11 +24,14 @@ gradle buildPlugin
 通过idea的插件配置对话框选择 **install plugin from disk**即可安装该插件
 
 ## 使用
-
-通过在编辑器中normal模式下输入 :set keep-english-in-normal 来启用该功能.或者直接将该命令加入到~/.ideavimrc.
-如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert
+输入法自动切换功能会默认启用,也可以通过在编辑器中normal模式下输入`:set keep-english-in-normal`来启用该功能.
+如果需要回到insert模式时恢复输入法,请使用 :set keep-english-in-normal-and-restore-in-insert.
+或者直接将该命令加入到~/.ideavimrc.
 
 ## 更新历史
+* 1.3.6
+  默认启用输入法自动切换功能,无须使用`set xxx`命令
+  
 * 1.3.5
   避免抛出NoSuchFieldException
   
@@ -83,19 +86,17 @@ gradle buildPlugin
 
 ## IdeaVimExtension
 
-The plugin is an extension of 'IdeaVim' , can switch to English input source in normal mode and restore input source in insert mode.
+The plugin is an extension of 'IdeaVim' , can switch to English input method in normal mode and restore input method in insert mode.
 
 ### How To Enable:
-
-In normal mode ,in an editor input `:set keep-english-in-normal` for auto swith to English input source.
-
-use `:set keep-english-in-normal-and-restore-in-insert`, if you want to restore original input source after return insert mode.
-
+auto-switch feature is enabled by default
+You can also, In normal mode ,in an editor input <code>:set keep-english-in-normal</code> to enable the auto-switch feature.
+use`:set keep-english-in-normal-and-restore-in-insert` instead, if you want to restore original input method after return insert mode.
 Or add the command to the file `~/.ideavimrc`
 
 ### Notice:
 
-The plugin only support **macOS** and **Windows**, support **Linux** via fcitx
+The plugin supports **macOS** and **Windows**, support **Linux** via fcitx
 
 ### Thanks:
 
