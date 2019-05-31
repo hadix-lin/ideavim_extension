@@ -32,7 +32,7 @@ gradle buildPlugin
 
 或者直接将该命令加入到~/.ideavimrc.
 
-要关闭该输入法自动切换功能,请使用`:set nokeep-english-in-normal`
+要关闭该输入法自动切换功能,请使用`:set nokeep-english-in-normal[-and-restore-in-insert]`
 
 ## 更新历史
 * 1.3.6
@@ -104,7 +104,7 @@ Use`:set keep-english-in-normal-and-restore-in-insert` instead, if you want to r
 
 Or add the command to the file `~/.ideavimrc`.
 
-Use `:set nokeep-english-in-normal` to disable the auto-switch feature.
+Use `:set nokeep-english-in-normal[-and-restore-in-insert]` to disable the auto-switch feature.
 
 ### Notice:
 

@@ -22,7 +22,7 @@ import java.util.concurrent.ThreadFactory
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 
-object InputSourceAutoSwitcher {
+object InputMethodAutoSwitcher {
 
     @Volatile
     var restoreInInsert: Boolean = false
@@ -31,7 +31,7 @@ object InputSourceAutoSwitcher {
 
     private var executor: ThreadPoolExecutor? = null
 
-    private val switcher = SystemInputSourceSwitcher()
+    private val switcher = SystemInputMethodSwitcher()
 
     private val exitInsertModeListener = object : CommandAdapter() {
 
@@ -109,7 +109,6 @@ object InputSourceAutoSwitcher {
             return
         }
         CommandProcessor.getInstance().removeCommandListener(exitInsertModeListener)
-        unregisterFocusChangeListener()
         executor?.shutdown()
         enabled = false
     }
@@ -120,9 +119,12 @@ object InputSourceAutoSwitcher {
             CommandState.Mode.REPLACE
         )
 
-        override fun focusLost(editor: Editor?) {}
+        override fun focusLost(editor: Editor) {}
 
-        override fun focusGained(editor: Editor?) {
+        override fun focusGained(editor: Editor) {
+            if (!enabled) {
+                return
+            }
             val state = CommandState.getInstance(editor)
             if (state.mode !in EDITING_MODE) {
                 executor?.execute { switcher.switchToEnglish() }
@@ -147,20 +149,6 @@ object InputSourceAutoSwitcher {
             ) && it.parameterCount == 2
         } ?: throw IllegalArgumentException("找不到addFocusChangeListener或addFocusChangeListner")
         func.invoke(eventMulticaster, focusListener, Disposable {})
-    }
-
-    private fun unregisterFocusChangeListener() {
-        val eventMulticaster =
-            EditorFactory.getInstance().eventMulticaster as? EditorEventMulticasterEx ?: return
-        val methods = EditorEventMulticasterEx::class.java.methods
-        //IDEA-2018.3以前方法名称为removeFocusChangeListner,2018.3后修正为removeFocusChangeListener
-        val func = methods.find {
-            it.name in setOf(
-                "removeFocusChangeListner",
-                "removeFocusChangeListener"
-            ) && it.parameterCount == 1
-        } ?: throw IllegalArgumentException("找不到removeFocusChangeListener或removeFocusChangeListner")
-        func.invoke(eventMulticaster, focusListener)
     }
 
     private val SWITCH_TO_ENGLISH_COMMAND_NAMES = setOf("Vim Exit Insert Mode")

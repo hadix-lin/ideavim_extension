@@ -2,9 +2,9 @@ package io.github.hadixlin.iss.win
 
 import com.sun.jna.Pointer
 import com.sun.jna.platform.win32.WinDef
-import io.github.hadixlin.iss.InputSourceSwitcher
+import io.github.hadixlin.iss.InputMethodSwitcher
 
-class WinInputSourceSwitcher : InputSourceSwitcher {
+class WinInputMethodSwitcher : InputMethodSwitcher {
 
     private var lastInputSource: Long = -1
 

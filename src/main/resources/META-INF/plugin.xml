@@ -16,7 +16,7 @@
       <p>You can also, In normal mode ,in an editor input <code>:set keep-english-in-normal</code> to enable the auto-switch feature.</p>
       <p>use <code>:set keep-english-in-normal-and-restore-in-insert</code> instead, if you want to restore original input method after return insert mode.</p>
       <p>Or add the command to the file <code>~/.ideavimrc</code></p>
-      <p>use <code>:set nokeep-english-in-normal</code> to disable the auto-switch feature.</p>
+      <p>use <code>:set nokeep-english-in-normal[-and-restore-in-insert]</code> to disable the auto-switch feature.</p>
       <h3>Notice:</h3>
       <p>The plugin support MacOS and Windows and Linux(with fcitx)</p>
       <p>
@@ -33,7 +33,7 @@
       如果需要回到insert模式时恢复输入法,请使用<code>:set keep-english-in-normal-and-restore-in-insert</code>
       或者直接将命令加入到<code>~/.ideavimrc</code><br/>
 
-      要关闭输入法自动切换功能,请使用<code>:set nokeep-english-in-normal</code><br/>
+      要关闭输入法自动切换功能,请使用<code>:set nokeep-english-in-normal[-and-restore-in-insert]</code><br/>
       </p>
       <h3>注意:支持MacOS和Windows, 通过fcitx-remote支持Linux</h3>
       <p>
@@ -125,7 +125,7 @@
   <application-components>
     <component>
       <implementation-class>
-        io.github.hadixlin.iss.InputSourceAutoSwitcherComponent
+        io.github.hadixlin.iss.InputMethodAutoSwitcherComponent
       </implementation-class>
     </component>
   </application-components>

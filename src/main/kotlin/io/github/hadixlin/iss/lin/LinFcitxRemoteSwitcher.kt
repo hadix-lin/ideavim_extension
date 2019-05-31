@@ -1,9 +1,9 @@
 package io.github.hadixlin.iss.lin
 
-import io.github.hadixlin.iss.InputSourceSwitcher
+import io.github.hadixlin.iss.InputMethodSwitcher
 import java.util.concurrent.TimeUnit
 
-class LinFcitxRemoteSwitcher : InputSourceSwitcher {
+class LinFcitxRemoteSwitcher : InputMethodSwitcher {
 
     override fun switchToEnglish() {
         execFcitxRemote(FCITX_INACTIVE)

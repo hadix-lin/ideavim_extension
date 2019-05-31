@@ -1,6 +1,6 @@
 package io.github.hadixlin.iss.mac
 
-import io.github.hadixlin.iss.InputSourceSwitcher
+import io.github.hadixlin.iss.InputMethodSwitcher
 import io.github.hadixlin.iss.mac.MacNative.getCurrentInputSourceID
 import io.github.hadixlin.iss.mac.MacNative.switchInputSource
 import org.apache.commons.lang.StringUtils
@@ -9,7 +9,7 @@ import org.apache.commons.lang.StringUtils
  * @author hadix
  * @date 2018-12-23
  */
-class MacInputSourceSwitcher : InputSourceSwitcher {
+class MacInputMethodSwitcher : InputMethodSwitcher {
 
     private var lastInputSource: String = StringUtils.EMPTY
 
