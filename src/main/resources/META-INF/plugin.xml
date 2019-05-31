@@ -16,6 +16,7 @@
       <p>You can also, In normal mode ,in an editor input <code>:set keep-english-in-normal</code> to enable the auto-switch feature.</p>
       <p>use <code>:set keep-english-in-normal-and-restore-in-insert</code> instead, if you want to restore original input method after return insert mode.</p>
       <p>Or add the command to the file <code>~/.ideavimrc</code></p>
+      <p>use <code>:set nokeep-english-in-normal</code> to disable the auto-switch feature.</p>
       <h3>Notice:</h3>
       <p>The plugin support MacOS and Windows and Linux(with fcitx)</p>
       <p>

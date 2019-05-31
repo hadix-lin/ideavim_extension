@@ -26,6 +26,8 @@ object InputSourceAutoSwitcher {
 
     @Volatile
     var restoreInInsert: Boolean = false
+    @Volatile
+    private var enabled: Boolean = false
 
     private var executor: ThreadPoolExecutor? = null
 
@@ -74,6 +76,10 @@ object InputSourceAutoSwitcher {
     }
 
     fun enable() {
+        if (enabled) {
+            return
+        }
+        enabled = true
         if (executor?.isShutdown != false) {
             executor = ThreadPoolExecutor(
                 1, 1,
@@ -99,9 +105,13 @@ object InputSourceAutoSwitcher {
     }
 
     fun disable() {
+        if (!enabled) {
+            return
+        }
         CommandProcessor.getInstance().removeCommandListener(exitInsertModeListener)
         unregisterFocusChangeListener()
         executor?.shutdown()
+        enabled = false
     }
 
     private val focusListener = object : FocusChangeListener {
