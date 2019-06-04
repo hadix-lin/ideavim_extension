@@ -9,17 +9,22 @@ import com.maddyhome.idea.vim.extension.VimExtension
 class KeepEnglishInNormalAndRestoreInInsertExtension : VimExtension {
 
     override fun getName(): String {
-        return "keep-english-in-normal-and-restore-in-insert"
+        return NAME
     }
 
     override fun init() {
         InputMethodAutoSwitcher.restoreInInsert = true
-        InputMethodAutoSwitcher.enable()
+        if (!InputMethodAutoSwitcher.enabled) {
+            InputMethodAutoSwitcher.enable()
+        }
     }
 
     override fun dispose() {
-        InputMethodAutoSwitcher.disable()
+        InputMethodAutoSwitcher.restoreInInsert = false
     }
 
+    companion object {
+        const val NAME = "keep-english-in-normal-and-restore-in-insert"
+    }
 }
 

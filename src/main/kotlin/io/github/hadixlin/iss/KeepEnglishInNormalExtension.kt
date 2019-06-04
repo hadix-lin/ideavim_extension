@@ -13,7 +13,6 @@ class KeepEnglishInNormalExtension : VimExtension {
     }
 
     override fun init() {
-        InputMethodAutoSwitcher.restoreInInsert = false
         InputMethodAutoSwitcher.enable()
     }
 

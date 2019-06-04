@@ -10,12 +10,19 @@ class InputMethodAutoSwitcherComponent : ApplicationComponent {
         Options.getInstance().getOption(KeepEnglishInNormalExtension.NAME) as ToggleOption
     }
 
+    private val keepEnglishInNormalAndRestoreInInsertOption: ToggleOption by lazy {
+        Options.getInstance().getOption(KeepEnglishInNormalAndRestoreInInsertExtension.NAME) as ToggleOption
+    }
+
     override fun getComponentName(): String {
         return "IdeaVimExtension.InputMethodAutoSwitcher"
     }
 
     override fun initComponent() {
         keepEnglishInNormalOption.set()
+        keepEnglishInNormalOption.addOptionChangeListener {
+            keepEnglishInNormalAndRestoreInInsertOption.reset()
+        }
     }
 
     override fun disposeComponent() {

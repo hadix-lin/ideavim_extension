@@ -27,7 +27,8 @@ object InputMethodAutoSwitcher {
     @Volatile
     var restoreInInsert: Boolean = false
     @Volatile
-    private var enabled: Boolean = false
+    var enabled: Boolean = false
+        private set
 
     private var executor: ThreadPoolExecutor? = null
 

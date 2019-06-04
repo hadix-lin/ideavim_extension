@@ -26,15 +26,20 @@ gradle buildPlugin
 ## 使用
 输入法自动切换功能会默认启用.
 
-也可以通过在编辑器中normal模式下输入`:set keep-english-in-normal`来启用该功能.
+支持如下指令，编辑器中normal模式下输入：
 
-如果需要回到insert模式时恢复输入法,请使用 `:set keep-english-in-normal-and-restore-in-insert`.
+* `:set keep-english-in-normal` 开启输入法自动切换功能(默认)
+* `:set keep-english-in-normal-and-restore-in-insert` 回到insert模式时恢复输入法
+* `:set nokeep-english-in-normal-and-restore-in-insert` 保留输入法自动切换功能，但是回到insert模式不恢复输入法
+* `:set nokeep-english-in-norma` 关闭输入法自动切换功能
 
-或者直接将该命令加入到~/.ideavimrc.
-
-要关闭该输入法自动切换功能,请使用`:set nokeep-english-in-normal[-and-restore-in-insert]`
+也可以通过将`set keep-english-in-normal[-and-restore-in-insert]`加入到`~/.ideavimrc`文件中并重启IDE来启用插件功能。
 
 ## 更新历史
+
+* 1.3.7
+  修正在`~/.ideavimrc`中使用`set keep-english-in-normal-and-restore-in-insert`无效的问题
+
 * 1.3.6
   默认启用输入法自动切换功能,无须使用`set xxx`命令
   
