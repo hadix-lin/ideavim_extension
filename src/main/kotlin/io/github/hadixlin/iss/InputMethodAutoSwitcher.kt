@@ -152,9 +152,10 @@ object InputMethodAutoSwitcher {
         func.invoke(eventMulticaster, focusListener, Disposable {})
     }
 
-    private val SWITCH_TO_ENGLISH_COMMAND_NAMES = setOf("Vim Exit Insert Mode")
+    private val SWITCH_TO_ENGLISH_COMMAND_NAMES = setOf("Vim Exit Insert Mode", "Exit Insert Mode")
 
     private val SWITCH_TO_LAST_INPUT_SOURCE_COMMAND_NAMES = setOf(
+        "Vim Insert After Cursor",
         "Vim Insert After Cursor",
         "Vim Insert After Line End",
         "Vim Insert Before Cursor",
@@ -174,6 +175,27 @@ object InputMethodAutoSwitcher {
         "Vim Change Line",
         "Vim Change Character",
         "Vim Change Characters",
-        "Vim Replace"
+        "Vim Replace",
+        "Insert After Cursor",
+        "Insert After Cursor",
+        "Insert After Line End",
+        "Insert Before Cursor",
+        "Insert Before First non-Blank",
+        "Insert Character Above Cursor",
+        "Insert Character Below Cursor",
+        "Delete Inserted Text",
+        "Delete Previous Word",
+        "Enter",
+        "Insert at Line Start",
+        "Insert New Line Above",
+        "Insert New Line Below",
+        "Insert Previous Text",
+        "Insert Previous Text",
+        "Insert Register",
+        "Toggle Insert/Replace",
+        "Change Line",
+        "Change Character",
+        "Change Characters",
+        "Replace"
     )
 }

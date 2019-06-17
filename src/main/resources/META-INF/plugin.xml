@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>IdeaVimExtension</id>
   <name>IdeaVimExtension</name>
-  <version>1.3.7</version>
+  <version>1.3.8</version>
 
   <vendor
       email="hadix.lin@gmail.com"
@@ -55,6 +55,8 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      <p>1.3.8<br/>
+        support customization ide keymap for "Exit Insert Mode" action.
       <p>1.3.7<br/>
         fix the problem that using <code>set keep-english-in-normal-and-restore-in-insert</code> in <code>~/.ideavimrc</code>file doesn't work
       <p>1.3.6<br/>
@@ -93,6 +95,8 @@
         switch input method to english when existing insert mode.<br/>
       <br/>
 
+      <p>1.3.8<br/>
+        支持自定义"Exit Insert Mode"动作的IDE快捷键
       <p>1.3.7<br/>
         修正在<code>~/.ideavimrc</code>中使用<code>set keep-english-in-normal-and-restore-in-insert</code>无效的问题
       <p>1.3.6<br/>

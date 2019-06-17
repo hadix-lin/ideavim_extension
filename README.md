@@ -37,6 +37,9 @@ gradle buildPlugin
 
 ## 更新历史
 
+* 1.3.8
+  支持自定义"Exit Insert Mode"动作的IDE快捷键
+   
 * 1.3.7
   修正在`~/.ideavimrc`中使用`set keep-english-in-normal-and-restore-in-insert`无效的问题
 
