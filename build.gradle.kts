@@ -8,8 +8,8 @@ plugins {
 
 intellij {
     pluginName = "IdeaVimExtension"
-    version = "IC-2017.1"
-    setPlugins("IdeaVIM:0.49")
+    version = "192-EAP-SNAPSHOT"
+    setPlugins("IdeaVIM:0.52")
     updateSinceUntilBuild = false
     downloadSources = true
 }
