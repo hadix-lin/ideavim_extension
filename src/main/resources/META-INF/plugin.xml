@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>IdeaVimExtension</id>
   <name>IdeaVimExtension</name>
-  <version>1.3.8</version>
+  <version>1.3.9</version>
 
   <vendor
       email="hadix.lin@gmail.com"
@@ -55,6 +55,8 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      <p>1.3.9<br/>
+        support IdeaVim 0.52
       <p>1.3.8<br/>
         support customization ide keymap for "Exit Insert Mode" action.
       <p>1.3.7<br/>
@@ -95,6 +97,8 @@
         switch input method to english when existing insert mode.<br/>
       <br/>
 
+      <p>1.3.9<br/>
+        支持IdeaVim 0.52
       <p>1.3.8<br/>
         支持自定义"Exit Insert Mode"动作的IDE快捷键
       <p>1.3.7<br/>

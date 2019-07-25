@@ -13,10 +13,9 @@ class LinFcitxRemoteSwitcher : InputMethodSwitcher {
         execFcitxRemote(FCITX_ACTIVE)
     }
 
-    private fun execFcitxRemote(cmd: Array<String>): Int {
+    private fun execFcitxRemote(cmd: Array<String>) {
         val proc = Runtime.getRuntime().exec(cmd)
         proc.waitFor(3, TimeUnit.SECONDS)
-        return proc.exitValue()
     }
 
     companion object {
