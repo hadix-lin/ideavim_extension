@@ -19,7 +19,7 @@
         <li><code>:set keep-english-in-normal</code> enable auto-switch feature (default)</li>
         <li><code>:set keep-english-in-normal-and-restore-in-insert</code> restore input method when return insert mode</li>
         <li><code>:set nokeep-english-in-normal-and-restore-in-insert</code> keep auto-switch feature, but doesn't restore input method when return insert mode</li>
-        <li><code>:set nokeep-english-in-norma</code> disable auto-switch feature</li>
+        <li><code>:set nokeep-english-in-normal</code> disable auto-switch feature</li>
       </ul>
       You can also add `set keep-english-in-normal[-and-restore-in-insert]` to the `~/.ideavimrc` file and restart IDE to enable the feature.
 
@@ -41,7 +41,7 @@
         <li><code>:set keep-english-in-normal</code> 开启输入法自动切换功能(默认)</li>
         <li><code>:set keep-english-in-normal-and-restore-in-insert</code> 回到insert模式时恢复输入法</li>
         <li><code>:set nokeep-english-in-normal-and-restore-in-insert</code> 保留输入法自动切换功能，但是回到insert模式不恢复输入法</li>
-        <li><code>:set nokeep-english-in-norma</code> 关闭输入法自动切换功能</li>
+        <li><code>:set nokeep-english-in-normal</code> 关闭输入法自动切换功能</li>
       </ul>
       也可以通过将`set keep-english-in-normal[-and-restore-in-insert]`加入到`~/.ideavimrc`文件中并重启IDE来启用插件功能。
       </p>
