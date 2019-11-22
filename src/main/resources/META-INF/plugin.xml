@@ -12,11 +12,11 @@
   <description><![CDATA[
       <p>The plugin is an extension of &#39;IdeaVim&#39; , can switch to English input method in normal mode and restore input method in insert mode.</p>
       <h3>How To Enable:</h3>
-      <p>auto-switch feature is enabled by default</p>
+      <p>auto-switch feature is disabled by default</p>
       <p>
-        support these command , input in normal mode:
+        enable the feature with the commands below, input in normal mode:
       <ul>
-        <li><code>:set keep-english-in-normal</code> enable auto-switch feature (default)</li>
+        <li><code>:set keep-english-in-normal</code> enable auto-switch feature</li>
         <li><code>:set keep-english-in-normal-and-restore-in-insert</code> restore input method when return insert mode</li>
         <li><code>:set nokeep-english-in-normal-and-restore-in-insert</code> keep auto-switch feature, but doesn't restore input method when return insert mode</li>
         <li><code>:set nokeep-english-in-normal</code> disable auto-switch feature</li>
@@ -34,11 +34,11 @@
       <p><a href="https://github.com/hadix-lin/ideavim_extension">GitHub Repository</a>Source and Feedback</p>
       <br/>
       <p>为IdeaVim插件增加自动切换为英文输入法的功能<br></p>
-      <p>输入法自动切换功能会默认启用</p>
+      <p>输入法自动切换功能不会默认启用</p>
       <p>
-      支持如下指令，编辑器中normal模式下输入：
+        编辑器中normal模式下输入输入下面的指令以启用自动切换输入法功能：
       <ul>
-        <li><code>:set keep-english-in-normal</code> 开启输入法自动切换功能(默认)</li>
+        <li><code>:set keep-english-in-normal</code> 开启输入法自动切换功能</li>
         <li><code>:set keep-english-in-normal-and-restore-in-insert</code> 回到insert模式时恢复输入法</li>
         <li><code>:set nokeep-english-in-normal-and-restore-in-insert</code> 保留输入法自动切换功能，但是回到insert模式不恢复输入法</li>
         <li><code>:set nokeep-english-in-normal</code> 关闭输入法自动切换功能</li>
@@ -55,89 +55,11 @@
     ]]></description>
 
   <change-notes><![CDATA[
-      <p>1.3.9<br/>
-        support IdeaVim 0.52
-      <p>1.3.8<br/>
-        support customization ide keymap for "Exit Insert Mode" action.
-      <p>1.3.7<br/>
-        fix the problem that using <code>set keep-english-in-normal-and-restore-in-insert</code> in <code>~/.ideavimrc</code>file doesn't work
-      <p>1.3.6<br/>
-        auto-switch feature is enabled by default, no need to set xxx
-      <p>1.3.5<br/>
-        avoid throws NoSuchFieldException<br/>
-      <p>1.3.4<br/>
-        fix the problem that some insert commands cannot restore input method<br/>
-      <p>1.3.3<br/>
-        support linux via fcitx-remote, tested on ubuntu 18.04<br/>
-      <p>1.3.2<br/>
-        fix a problem caused the function of auto switch input method not working in old IDEA.<br/>
-      <p>1.3.1<br/>
-        keep input method in English when refocus the editor in normal mode<br/>
-      <p>1.3.0<br/>
-        rewrite the plugin with kotlin<br/>
-      <p>1.2.3<br/>
-        avoid the IDE loss response with asynchronous operations<br/>
-      <p>1.2.2<br/>
-        fix the bug cause IDE crash.<br/>
-      <p>1.2.1<br/>
-        fix the bug cause English input method can not be restored<br/>
-      <p>1.2<br/>
-        support windows, need enable English American Keyboard<br/>
-      <p>1.1.5<br/>
-        support key layout ABC<br/>
-      <p>1.1.3<br/>
-        resolve a NPE problem which happen rarely;<br/>
-      <p>1.1.2<br/>
-        append information in English.<br/>
-      <p>1.1.1<br/>
-        automatic register <code>:nnoremap &lt;Esc&gt; a&lt;Esc&gt;&lt;Esc&gt;</code> so that press esc to switch keylayout to English in normal mode.<br/>
-      <p>1.1<br/>
-        restore original input method when return back insert mode.<br/>
-      <p>1.0<br/>
-        switch input method to english when existing insert mode.<br/>
-      <br/>
+      <p>1.4.0<br/>
+        support IdeaVim 0.54, keep consistent compatibility strategy with IdeaVim starting with this version.
 
-      <p>1.3.9<br/>
-        支持IdeaVim 0.52
-      <p>1.3.8<br/>
-        支持自定义"Exit Insert Mode"动作的IDE快捷键
-      <p>1.3.7<br/>
-        修正在<code>~/.ideavimrc</code>中使用<code>set keep-english-in-normal-and-restore-in-insert</code>无效的问题
-      <p>1.3.6<br/>
-        默认启用输入法自动切换功能,无须使用<code>set xxxx</code>
-      <p>1.3.5<br/>
-        避免抛出NoSuchFieldException<br/>
-      <p>1.3.4<br/>
-        修复某些插入命令无法恢复输入法的问题<br/>
-      <p>1.3.3<br/>
-        增加Linux下Fcitx输入法支持，ubuntu 18.04下测试通过，理论上支持所有`fcitx`。<br/>
-      <p>1.3.2<br/>
-        修正自动切换输入法功能在旧版IDEA失效问题<br/>
-      <p>1.3.1<br/>
-        编辑器重新获得焦点时,如果编辑器处于NORMAL/VISUAL模式,保持输入法为英文状态<br/>
-      <p>1.3.0<br/>
-        使用kotlin重写插件<br/>
-      <p>1.2.3<br/>
-        利用异步操作避免IDE失去响应<br/>
-      <p>1.2.2<br/>
-        修正导致IDE崩溃的bug<br/>
-      <p>1.2.1<br/>
-        修正导致不能恢复到英文输入法的问题<br/>
-      <p>1.2<br/>
-        增加对Windows的支持,需要开启英语美国键盘<br/>
-      <p>1.1.5<br/>
-        增加对macOS的ABC键盘支持<br/>
-      <p>1.1.3<br/>
-        解决一个偶尔出现的空值异常问题. resolve a NPE problem which happen rarely;<br/>
-      <p>1.1.2<br/>
-        增加英文说明.append information in English.<br/>
-      <p>1.1.1<br/>
-        更改自动注册的按键映射为<code>:nnoremap &lt;Esc&gt; a&lt;Esc&gt;&lt;Esc&gt;</code>保证在normal模式下按esc切换到英文输入法.并且执行一次默认操作<br/>
-      <p>1.1<br/>
-        自动注册按键映射<code>:nmap &lt;Esc&gt; a&lt;Esc&gt;</code>以保证normal模式下可以按esc切换到英文输入法.<br/>
-        添加回到insert模式恢复为原来的输入方式的能力<br/>
-      <p>1.0<br/>
-        首次发布,macOS下,退出插入模式可以自动切换到英文输入法
+      <p>1.4.0<br/>
+        支持IdeaVim 0.54, 从这个版本开始兼容性策略与IdeaVim保持一致
     ]]>
   </change-notes>
 
@@ -145,15 +67,6 @@
 
   <depends>com.intellij.modules.lang</depends>
   <depends>IdeaVIM</depends>
-  <!--
-    <application-components>
-      <component>
-        <implementation-class>
-          io.github.hadixlin.iss.InputMethodAutoSwitcherComponent
-        </implementation-class>
-      </component>
-    </application-components>
-  -->
 
   <extensions defaultExtensionNs="IdeaVIM">
     <vimExtension

@@ -26,9 +26,9 @@ gradle buildPlugin
 ## 使用
 输入法自动切换功能会默认启用.
 
-支持如下指令，编辑器中normal模式下输入：
+编辑器中normal模式下输入下面的指令来启用自动切换输入法功能：
 
-* `:set keep-english-in-normal` 开启输入法自动切换功能(默认)
+* `:set keep-english-in-normal` 开启输入法自动切换功能
 * `:set keep-english-in-normal-and-restore-in-insert` 回到insert模式时恢复输入法
 * `:set nokeep-english-in-normal-and-restore-in-insert` 保留输入法自动切换功能，但是回到insert模式不恢复输入法
 * `:set nokeep-english-in-normal` 关闭输入法自动切换功能

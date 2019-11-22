@@ -23,9 +23,6 @@ class KeepEnglishInNormalAndRestoreInInsertExtension : VimExtension {
 
     override fun dispose() {
         InputMethodAutoSwitcher.restoreInInsert = false
-        val option =
-            OptionsManager.getOption(KeepEnglishInNormalExtension.NAME) as ToggleOption?
-        option?.reset()
     }
 
     companion object {
