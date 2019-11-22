@@ -1,12 +1,13 @@
 package io.github.hadixlin.iss
 
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.command.CommandEvent
 import com.intellij.openapi.command.CommandListener
-import com.intellij.openapi.command.CommandProcessor
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.editor.EditorFactory
 import com.intellij.openapi.editor.ex.EditorEventMulticasterEx
 import com.intellij.openapi.editor.ex.FocusChangeListener
+import com.intellij.util.messages.MessageBusConnection
 import com.maddyhome.idea.vim.command.Command
 import com.maddyhome.idea.vim.command.CommandState
 import com.maddyhome.idea.vim.command.MappingMode
@@ -32,6 +33,8 @@ object InputMethodAutoSwitcher {
     private var executor: ThreadPoolExecutor? = null
 
     private val switcher = SystemInputMethodSwitcher()
+
+    private var messageBusConnection: MessageBusConnection? = null
 
     private val exitInsertModeListener = object : CommandListener {
 
@@ -94,7 +97,7 @@ object InputMethodAutoSwitcher {
                 ThreadPoolExecutor.DiscardPolicy()
             )
         }
-        CommandProcessor.getInstance().addCommandListener(exitInsertModeListener)
+        registerExitInsertModeListener()
         registerFocusChangeListener()
         VimExtensionFacade.putKeyMapping(
             MappingMode.N,
@@ -104,13 +107,15 @@ object InputMethodAutoSwitcher {
         )
     }
 
-    fun disable() {
-        if (!enabled) {
-            return
-        }
-        CommandProcessor.getInstance().removeCommandListener(exitInsertModeListener)
-        executor?.shutdown()
-        enabled = false
+    private fun registerExitInsertModeListener() {
+        messageBusConnection = ApplicationManager.getApplication().messageBus.connect()
+        messageBusConnection?.subscribe(CommandListener.TOPIC, exitInsertModeListener)
+    }
+
+    private fun registerFocusChangeListener() {
+        val eventMulticaster =
+            EditorFactory.getInstance().eventMulticaster as? EditorEventMulticasterEx ?: return
+        eventMulticaster.addFocusChangeListener(focusListener) {}
     }
 
     private val focusListener = object : FocusChangeListener {
@@ -132,17 +137,7 @@ object InputMethodAutoSwitcher {
         }
     }
 
-    /**
-     * 由于EditorEventMulticasterEx中添加焦点变化监听器的方法在IDEA-2018.3以前有个拼写错误.
-     * 所以在此使用反射方法进行调用以向前兼容
-     */
-    private fun registerFocusChangeListener() {
-        val eventMulticaster =
-            EditorFactory.getInstance().eventMulticaster as? EditorEventMulticasterEx ?: return
-        eventMulticaster.addFocusChangeListener(focusListener) {}
-    }
-
-    private val SWITCH_TO_ENGLISH_COMMAND_NAMES = setOf("VimExitInsertMode", "ExitInsertMode")
+    private val SWITCH_TO_ENGLISH_COMMAND_NAMES = setOf("VimExitInsertMode")
 
     private val SWITCH_TO_LAST_INPUT_SOURCE_COMMAND_NAMES = setOf(
         "VimInsertAfterCursor",
@@ -165,27 +160,15 @@ object InputMethodAutoSwitcher {
         "VimChangeLine",
         "VimChangeCharacter",
         "VimChangeCharacters",
-        "VimReplace",
-        "InsertAfterCursor",
-        "InsertAfterCursor",
-        "InsertAfterLineEnd",
-        "InsertBeforeCursor",
-        "InsertBeforeFirstNonBlank",
-        "InsertCharacterAboveCursor",
-        "InsertCharacterBelowCursor",
-        "DeleteInsertedText",
-        "DeletePreviousWord",
-        "Enter",
-        "InsertLineStart",
-        "InsertNewLineAbove",
-        "InsertNewLineBelow",
-        "InsertPreviousText",
-        "InsertPreviousText",
-        "InsertRegister",
-        "ToggleInsert/Replace",
-        "ChangeLine",
-        "ChangeCharacter",
-        "ChangeCharacters",
-        "Replace"
+        "VimReplace"
     )
+
+    fun disable() {
+        if (!enabled) {
+            return
+        }
+        messageBusConnection?.disconnect()
+        executor?.shutdown()
+        enabled = false
+    }
 }
