@@ -1,8 +1,7 @@
 package io.github.hadixlin.iss
 
-import com.intellij.openapi.Disposable
-import com.intellij.openapi.command.CommandAdapter
 import com.intellij.openapi.command.CommandEvent
+import com.intellij.openapi.command.CommandListener
 import com.intellij.openapi.command.CommandProcessor
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.editor.EditorFactory
@@ -34,7 +33,7 @@ object InputMethodAutoSwitcher {
 
     private val switcher = SystemInputMethodSwitcher()
 
-    private val exitInsertModeListener = object : CommandAdapter() {
+    private val exitInsertModeListener = object : CommandListener {
 
         override fun beforeCommandFinished(commandEvent: CommandEvent) {
             var commandName = commandEvent.commandName
@@ -51,7 +50,7 @@ object InputMethodAutoSwitcher {
             if ("Typing" == commandName) {
                 val vimCmd = readVimCmd(commandEvent)
                 if (vimCmd != null) {
-                    commandName = "Vim " + vimCmd.action?.templatePresentation?.text
+                    commandName = "Vim " + vimCmd.action.id
                 } else {
                     return
                 }
@@ -140,62 +139,53 @@ object InputMethodAutoSwitcher {
     private fun registerFocusChangeListener() {
         val eventMulticaster =
             EditorFactory.getInstance().eventMulticaster as? EditorEventMulticasterEx ?: return
-
-        val methods = EditorEventMulticasterEx::class.java.methods
-        //IDEA-2018.3以前方法名称为addFocusChangeListner,2018.3后修正为addFocusChangeListener
-        val func = methods.find {
-            it.name in setOf(
-                "addFocusChangeListner",
-                "addFocusChangeListener"
-            ) && it.parameterCount == 2
-        } ?: throw IllegalArgumentException("找不到addFocusChangeListener或addFocusChangeListner")
-        func.invoke(eventMulticaster, focusListener, Disposable {})
+        eventMulticaster.addFocusChangeListener(focusListener) {}
     }
 
-    private val SWITCH_TO_ENGLISH_COMMAND_NAMES = setOf("Vim Exit Insert Mode", "Exit Insert Mode")
+    private val SWITCH_TO_ENGLISH_COMMAND_NAMES = setOf("VimExitInsertMode", "ExitInsertMode")
 
     private val SWITCH_TO_LAST_INPUT_SOURCE_COMMAND_NAMES = setOf(
-        "Vim Insert After Cursor",
-        "Vim Insert After Cursor",
-        "Vim Insert After Line End",
-        "Vim Insert Before Cursor",
-        "Vim Insert Before First non-Blank",
-        "Vim Insert Character Above Cursor",
-        "Vim Insert Character Below Cursor",
-        "Vim Delete Inserted Text",
-        "Vim Delete Previous Word",
-        "Vim Enter",
-        "Vim Insert at Line Start",
-        "Vim Insert New Line Above",
-        "Vim Insert New Line Below",
-        "Vim Insert Previous Text",
-        "Vim Insert Previous Text",
-        "Vim Insert Register",
-        "Vim Toggle Insert/Replace",
-        "Vim Change Line",
-        "Vim Change Character",
-        "Vim Change Characters",
-        "Vim Replace",
-        "Insert After Cursor",
-        "Insert After Cursor",
-        "Insert After Line End",
-        "Insert Before Cursor",
-        "Insert Before First non-Blank",
-        "Insert Character Above Cursor",
-        "Insert Character Below Cursor",
-        "Delete Inserted Text",
-        "Delete Previous Word",
+        "VimInsertAfterCursor",
+        "VimInsertAfterCursor",
+        "VimInsertAfterLineEnd",
+        "VimInsertBeforeCursor",
+        "VimInsertBeforeFirstNon-Blank",
+        "VimInsertCharacterAboveCursor",
+        "VimInsertCharacterBelowCursor",
+        "VimDeleteInsertedText",
+        "VimDeletePreviousWord",
+        "VimEnter",
+        "VimInsertLineStart",
+        "VimInsertNewLineAbove",
+        "VimInsertNewLineBelow",
+        "VimInsertPreviousText",
+        "VimInsertPreviousText",
+        "VimInsertRegister",
+        "VimToggleInsert/Replace",
+        "VimChangeLine",
+        "VimChangeCharacter",
+        "VimChangeCharacters",
+        "VimReplace",
+        "InsertAfterCursor",
+        "InsertAfterCursor",
+        "InsertAfterLineEnd",
+        "InsertBeforeCursor",
+        "InsertBeforeFirstNonBlank",
+        "InsertCharacterAboveCursor",
+        "InsertCharacterBelowCursor",
+        "DeleteInsertedText",
+        "DeletePreviousWord",
         "Enter",
-        "Insert at Line Start",
-        "Insert New Line Above",
-        "Insert New Line Below",
-        "Insert Previous Text",
-        "Insert Previous Text",
-        "Insert Register",
-        "Toggle Insert/Replace",
-        "Change Line",
-        "Change Character",
-        "Change Characters",
+        "InsertLineStart",
+        "InsertNewLineAbove",
+        "InsertNewLineBelow",
+        "InsertPreviousText",
+        "InsertPreviousText",
+        "InsertRegister",
+        "ToggleInsert/Replace",
+        "ChangeLine",
+        "ChangeCharacter",
+        "ChangeCharacters",
         "Replace"
     )
 }

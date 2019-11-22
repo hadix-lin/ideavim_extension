@@ -1,6 +1,8 @@
 package io.github.hadixlin.iss
 
 import com.maddyhome.idea.vim.extension.VimExtension
+import com.maddyhome.idea.vim.option.OptionsManager
+import com.maddyhome.idea.vim.option.ToggleOption
 
 /**
  * @author hadix
@@ -14,13 +16,16 @@ class KeepEnglishInNormalAndRestoreInInsertExtension : VimExtension {
 
     override fun init() {
         InputMethodAutoSwitcher.restoreInInsert = true
-        if (!InputMethodAutoSwitcher.enabled) {
-            InputMethodAutoSwitcher.enable()
-        }
+        val option =
+            OptionsManager.getOption(KeepEnglishInNormalExtension.NAME) as ToggleOption?
+        option?.set()
     }
 
     override fun dispose() {
         InputMethodAutoSwitcher.restoreInInsert = false
+        val option =
+            OptionsManager.getOption(KeepEnglishInNormalExtension.NAME) as ToggleOption?
+        option?.reset()
     }
 
     companion object {

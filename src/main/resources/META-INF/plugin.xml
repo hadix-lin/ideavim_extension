@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>IdeaVimExtension</id>
   <name>IdeaVimExtension</name>
-  <version>1.3.9</version>
+  <version>1.4.0</version>
 
   <vendor
       email="hadix.lin@gmail.com"
@@ -141,16 +141,19 @@
     ]]>
   </change-notes>
 
-  <idea-version since-build="171"/>
+  <idea-version since-build="183.4284.148"/>
 
   <depends>com.intellij.modules.lang</depends>
-  <application-components>
-    <component>
-      <implementation-class>
-        io.github.hadixlin.iss.InputMethodAutoSwitcherComponent
-      </implementation-class>
-    </component>
-  </application-components>
+  <depends>IdeaVIM</depends>
+  <!--
+    <application-components>
+      <component>
+        <implementation-class>
+          io.github.hadixlin.iss.InputMethodAutoSwitcherComponent
+        </implementation-class>
+      </component>
+    </application-components>
+  -->
 
   <extensions defaultExtensionNs="IdeaVIM">
     <vimExtension
@@ -158,5 +161,4 @@
     <vimExtension
         implementation="io.github.hadixlin.iss.KeepEnglishInNormalAndRestoreInInsertExtension"/>
   </extensions>
-  <depends>IdeaVIM</depends>
 </idea-plugin>
