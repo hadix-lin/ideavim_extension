@@ -137,30 +137,29 @@ object InputMethodAutoSwitcher {
         }
     }
 
-    private val SWITCH_TO_ENGLISH_COMMAND_NAMES = setOf("VimExitInsertMode")
+    private val SWITCH_TO_ENGLISH_COMMAND_NAMES = setOf("VimInsertExitModeAction")
 
     private val SWITCH_TO_LAST_INPUT_SOURCE_COMMAND_NAMES = setOf(
-        "VimInsertAfterCursor",
-        "VimInsertAfterCursor",
-        "VimInsertAfterLineEnd",
-        "VimInsertBeforeCursor",
-        "VimInsertBeforeFirstNon-Blank",
-        "VimInsertCharacterAboveCursor",
-        "VimInsertCharacterBelowCursor",
-        "VimDeleteInsertedText",
-        "VimDeletePreviousWord",
-        "VimEnter",
-        "VimInsertLineStart",
-        "VimInsertNewLineAbove",
-        "VimInsertNewLineBelow",
-        "VimInsertPreviousText",
-        "VimInsertPreviousText",
-        "VimInsertRegister",
-        "VimToggleInsert/Replace",
-        "VimChangeLine",
-        "VimChangeCharacter",
-        "VimChangeCharacters",
-        "VimReplace"
+        "VimInsertAfterCursorAction",
+        "VimInsertAfterCursorAction",
+        "VimInsertAfterLineEndAction",
+        "VimInsertBeforeCursorAction",
+        "VimInsertBeforeFirstNonBlankAction",
+        "VimInsertCharacterAboveCursorAction",
+        "VimInsertCharacterBelowCursorAction",
+        "VimInsertDeleteInsertedTextAction",
+        "VimInsertDeletePreviousWordAction",
+        "VimInsertEnterAction",
+        "VimInsertLineStartAction",
+        "VimInsertNewLineAboveAction",
+        "VimInsertNewLineBelowAction",
+        "VimInsertPreviousTextAction",
+        "VimInsertPreviousTextAction",
+        "VimInsertRegisterAction",
+        "VimChangeLineAction",
+        "VimChangeCharacterAction",
+        "VimChangeCharactersAction",
+        "VimChangeReplaceAction"
     )
 
     fun disable() {
