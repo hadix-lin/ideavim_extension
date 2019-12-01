@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>IdeaVimExtension</id>
   <name>IdeaVimExtension</name>
-  <version>1.4.0</version>
+  <version>1.4.1</version>
 
   <vendor
       email="hadix.lin@gmail.com"
@@ -55,9 +55,13 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      <p>1.4.1<br/>
+        fix the problem that some insert commands cannot restore input method<br/>
       <p>1.4.0<br/>
         support IdeaVim 0.54, keep consistent compatibility strategy with IdeaVim starting with this version.
 
+      <p>1.4.1<br/>
+        修复某些插入命令无法恢复输入法的问题
       <p>1.4.0<br/>
         支持IdeaVim 0.54, 从这个版本开始兼容性策略与IdeaVim保持一致
     ]]>

@@ -53,7 +53,7 @@ object InputMethodAutoSwitcher {
             if ("Typing" == commandName) {
                 val vimCmd = readVimCmd(commandEvent)
                 if (vimCmd != null) {
-                    commandName = "Vim " + vimCmd.action.id
+                    commandName = vimCmd.action.id
                 } else {
                     return
                 }
