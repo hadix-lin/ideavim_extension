@@ -24,7 +24,7 @@ gradle buildPlugin
 通过idea的插件配置对话框选择 **install plugin from disk**即可安装该插件
 
 ## 使用
-输入法自动切换功能会默认启用.
+输入法自动切换功能**不会**默认启用.
 
 编辑器中normal模式下输入下面的指令来启用自动切换输入法功能：
 
