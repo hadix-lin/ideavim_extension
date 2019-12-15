@@ -11,7 +11,7 @@ class SystemInputMethodSwitcher : InputMethodSwitcher {
         SystemUtils.IS_OS_WINDOWS -> WinInputMethodSwitcher()
         SystemUtils.IS_OS_MAC -> MacInputMethodSwitcher()
         SystemUtils.IS_OS_LINUX -> LinFcitxRemoteSwitcher()
-        else -> throw IllegalArgumentException("Not Support Current System OS, Only Support Windows And MacOS")
+        else -> throw IllegalArgumentException("Not Support Current System OS, Only Support Windows, MacOS and Linux(with fcitx)")
     }
 
     override fun switchToEnglish() {

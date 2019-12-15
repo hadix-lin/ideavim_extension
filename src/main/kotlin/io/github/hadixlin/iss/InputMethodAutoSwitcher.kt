@@ -8,7 +8,6 @@ import com.intellij.openapi.editor.EditorFactory
 import com.intellij.openapi.editor.ex.EditorEventMulticasterEx
 import com.intellij.openapi.editor.ex.FocusChangeListener
 import com.intellij.util.messages.MessageBusConnection
-import com.maddyhome.idea.vim.command.Command
 import com.maddyhome.idea.vim.command.CommandState
 import com.maddyhome.idea.vim.command.MappingMode
 import com.maddyhome.idea.vim.extension.VimExtensionFacade
@@ -23,6 +22,12 @@ import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 
 object InputMethodAutoSwitcher {
+    private const val VIM_INSERT_EXIT_MODE_ACTION = "VimInsertExitModeAction"
+
+    private val EDITING_MODE = EnumSet.of(
+        CommandState.Mode.INSERT,
+        CommandState.Mode.REPLACE
+    )
 
     @Volatile
     var restoreInInsert: Boolean = false
@@ -39,39 +44,36 @@ object InputMethodAutoSwitcher {
     private val exitInsertModeListener = object : CommandListener {
 
         override fun beforeCommandFinished(commandEvent: CommandEvent) {
-            var commandName = commandEvent.commandName
+            val commandName = commandEvent.commandName
             if (StringUtils.isBlank(commandName)) {
                 return
             }
-            if (SWITCH_TO_ENGLISH_COMMAND_NAMES.contains(commandName)) {
+            if (commandName == VIM_INSERT_EXIT_MODE_ACTION) {
                 executor?.execute { switcher.switchToEnglish() }
                 return
             }
+        }
+
+        override fun commandFinished(event: CommandEvent) {
             if (!restoreInInsert) {
                 return
             }
-            if ("Typing" == commandName) {
-                val vimCmd = readVimCmd(commandEvent)
-                if (vimCmd != null) {
-                    commandName = vimCmd.action.id
-                } else {
-                    return
-                }
-            }
-            if (SWITCH_TO_LAST_INPUT_SOURCE_COMMAND_NAMES.contains(commandName)) {
+            val currentEditor = currentEditor(event) ?: return
+            val state = CommandState.getInstance(currentEditor)
+            if (state.mode in EDITING_MODE) {
                 executor?.execute { switcher.restore() }
             }
         }
 
-        private fun readVimCmd(commandEvent: CommandEvent): Command? {
+        private fun currentEditor(commandEvent: CommandEvent): Editor? {
             val cmd = commandEvent.command
             return if (cmd.javaClass.enclosingClass == RunnableHelper::class.java) {
                 val writeActionCmd = cmd.javaClass.getDeclaredField("cmd")
                 writeActionCmd.isAccessible = true
                 val other = writeActionCmd.get(cmd)
-                val actionRunnerCmd = other.javaClass.getDeclaredField("cmd")
-                actionRunnerCmd.isAccessible = true
-                actionRunnerCmd.get(other) as Command
+                val editor = other.javaClass.getDeclaredField("editor")
+                editor.isAccessible = true
+                editor.get(other) as Editor
             } else {
                 null
             }
@@ -119,10 +121,6 @@ object InputMethodAutoSwitcher {
     }
 
     private val focusListener = object : FocusChangeListener {
-        private val EDITING_MODE = EnumSet.of(
-            CommandState.Mode.INSERT,
-            CommandState.Mode.REPLACE
-        )
 
         override fun focusLost(editor: Editor) {}
 
@@ -137,30 +135,6 @@ object InputMethodAutoSwitcher {
         }
     }
 
-    private val SWITCH_TO_ENGLISH_COMMAND_NAMES = setOf("VimInsertExitModeAction")
-
-    private val SWITCH_TO_LAST_INPUT_SOURCE_COMMAND_NAMES = setOf(
-        "VimInsertAfterCursorAction",
-        "VimInsertAfterCursorAction",
-        "VimInsertAfterLineEndAction",
-        "VimInsertBeforeCursorAction",
-        "VimInsertBeforeFirstNonBlankAction",
-        "VimInsertCharacterAboveCursorAction",
-        "VimInsertCharacterBelowCursorAction",
-        "VimInsertDeleteInsertedTextAction",
-        "VimInsertDeletePreviousWordAction",
-        "VimInsertEnterAction",
-        "VimInsertLineStartAction",
-        "VimInsertNewLineAboveAction",
-        "VimInsertNewLineBelowAction",
-        "VimInsertPreviousTextAction",
-        "VimInsertPreviousTextAction",
-        "VimInsertRegisterAction",
-        "VimChangeLineAction",
-        "VimChangeCharacterAction",
-        "VimChangeCharactersAction",
-        "VimChangeReplaceAction"
-    )
 
     fun disable() {
         if (!enabled) {
