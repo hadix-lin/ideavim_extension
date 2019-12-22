@@ -28,12 +28,12 @@ class WinInputMethodSwitcher : InputMethodSwitcher {
     }
 
     override fun restore() {
-        val hwnd = WinNative.INSTANCE.GetForegroundWindow()
-        val current = getCurrentInputSource(hwnd)
-        if (lastInputSource < 0 || lastInputSource == current) {
+        if (lastInputSource < 0) {
             return
         }
+        val hwnd = WinNative.INSTANCE.GetForegroundWindow()
         switchToInputSource(hwnd, lastInputSource)
+        lastInputSource = -1
     }
 
     companion object {

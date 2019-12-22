@@ -4,6 +4,7 @@ import io.github.hadixlin.iss.InputMethodSwitcher
 import io.github.hadixlin.iss.mac.MacNative.getCurrentInputSourceID
 import io.github.hadixlin.iss.mac.MacNative.switchInputSource
 import org.apache.commons.lang.StringUtils
+import org.apache.commons.lang.StringUtils.EMPTY
 
 /**
  * @author hadix
@@ -11,7 +12,8 @@ import org.apache.commons.lang.StringUtils
  */
 class MacInputMethodSwitcher : InputMethodSwitcher {
 
-    private var lastInputSource: String = StringUtils.EMPTY
+    @Volatile
+    private var lastInputSource: String = EMPTY
 
     override fun switchToEnglish() {
         val current = getCurrentInputSourceID()
@@ -27,11 +29,11 @@ class MacInputMethodSwitcher : InputMethodSwitcher {
     }
 
     override fun restore() {
-        val current = getCurrentInputSourceID()
-        if (lastInputSource == StringUtils.EMPTY || StringUtils.equals(lastInputSource, current)) {
+        if (lastInputSource == EMPTY) {
             return
         }
         switchInputSource(lastInputSource)
+        lastInputSource = EMPTY
     }
 
     companion object {

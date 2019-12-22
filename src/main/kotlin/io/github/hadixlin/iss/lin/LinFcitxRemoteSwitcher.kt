@@ -5,7 +5,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 class LinFcitxRemoteSwitcher : InputMethodSwitcher {
-    private var lastStatus: Int = 0
+    private var lastStatus: Int = STATUS_UNKNOWN
 
     override fun switchToEnglish() {
         val current = getFcitxStatus()
@@ -21,6 +21,7 @@ class LinFcitxRemoteSwitcher : InputMethodSwitcher {
     override fun restore() {
         if (lastStatus == STATUS_ACTIVE) {
             execFcitxRemote(FCITX_ACTIVE)
+            lastStatus = STATUS_UNKNOWN
         }
     }
 
