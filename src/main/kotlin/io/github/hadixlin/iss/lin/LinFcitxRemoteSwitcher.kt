@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit
 class LinFcitxRemoteSwitcher : InputMethodSwitcher {
     private var lastStatus: Int = STATUS_UNKNOWN
 
-    override fun switchToEnglish() {
+    override fun storeCurrentThenSwitchToEnglish() {
         val current = getFcitxStatus()
         if (current != STATUS_UNKNOWN) {
             lastStatus = current
@@ -15,14 +15,7 @@ class LinFcitxRemoteSwitcher : InputMethodSwitcher {
         if (current == STATUS_INACTIVE) {
             return
         }
-        execFcitxRemote(FCITX_INACTIVE)
-    }
-
-    override fun restore() {
-        if (lastStatus == STATUS_ACTIVE) {
-            execFcitxRemote(FCITX_ACTIVE)
-            lastStatus = STATUS_UNKNOWN
-        }
+        switchToEnglish()
     }
 
     private fun execFcitxRemote(cmd: Array<String>): Process {
@@ -42,10 +35,21 @@ class LinFcitxRemoteSwitcher : InputMethodSwitcher {
         }
     }
 
+    override fun restore() {
+        if (lastStatus == STATUS_ACTIVE) {
+            execFcitxRemote(FCITX_ACTIVE)
+            lastStatus = STATUS_UNKNOWN
+        }
+    }
+
+    override fun switchToEnglish() {
+        execFcitxRemote(FCITX_INACTIVE)
+    }
+
     companion object {
         private const val FCITX_REMOTE = "fcitx-remote"
         private const val STATUS_UNKNOWN = -1
-        private const val STATUS_INACTIVE = 1;
+        private const val STATUS_INACTIVE = 1
         private const val STATUS_ACTIVE = 2 // 0 OFF,1 INACTIVE,2 ACTIVE
 
         private val FCITX_ACTIVE = arrayOf(FCITX_REMOTE, "-o") //activate input method

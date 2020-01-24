@@ -3,7 +3,6 @@ package io.github.hadixlin.iss.mac
 import io.github.hadixlin.iss.InputMethodSwitcher
 import io.github.hadixlin.iss.mac.MacNative.getCurrentInputSourceID
 import io.github.hadixlin.iss.mac.MacNative.switchInputSource
-import org.apache.commons.lang.StringUtils
 import org.apache.commons.lang.StringUtils.EMPTY
 
 /**
@@ -15,12 +14,16 @@ class MacInputMethodSwitcher : InputMethodSwitcher {
     @Volatile
     private var lastInputSource: String = EMPTY
 
-    override fun switchToEnglish() {
+    override fun storeCurrentThenSwitchToEnglish() {
         val current = getCurrentInputSourceID()
         lastInputSource = current
-        if (StringUtils.equals(current, ENGLISH_INPUT_SOURCE)) {
+        if (ENGLISH_INPUT_SOURCE == current) {
             return
         }
+        switchToEnglish()
+    }
+
+    override fun switchToEnglish() {
         val code = switchInputSource(ENGLISH_INPUT_SOURCE)
         if (code < 0) {
             ENGLISH_INPUT_SOURCE = KEY_LAYOUT_US

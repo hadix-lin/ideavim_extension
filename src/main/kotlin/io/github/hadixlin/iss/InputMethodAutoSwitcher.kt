@@ -49,7 +49,7 @@ object InputMethodAutoSwitcher {
                 return
             }
             if (commandName == VIM_INSERT_EXIT_MODE_ACTION) {
-                executor?.execute { switcher.switchToEnglish() }
+                executor?.execute { switcher.storeCurrentThenSwitchToEnglish() }
                 return
             }
         }

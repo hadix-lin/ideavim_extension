@@ -8,7 +8,7 @@ class WinInputMethodSwitcher : InputMethodSwitcher {
 
     private var lastInputSource: Long = -1
 
-    override fun switchToEnglish() {
+    override fun storeCurrentThenSwitchToEnglish() {
         val hwnd = WinNative.INSTANCE.GetForegroundWindow()
         val current = getCurrentInputSource(hwnd)
         lastInputSource = current
@@ -34,6 +34,11 @@ class WinInputMethodSwitcher : InputMethodSwitcher {
         val hwnd = WinNative.INSTANCE.GetForegroundWindow()
         switchToInputSource(hwnd, lastInputSource)
         lastInputSource = -1
+    }
+
+    override fun switchToEnglish() {
+        val hwnd = WinNative.INSTANCE.GetForegroundWindow()
+        switchToInputSource(hwnd, KEY_LAYOUT_US)
     }
 
     companion object {

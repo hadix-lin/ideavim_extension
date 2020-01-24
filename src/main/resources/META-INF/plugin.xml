@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>IdeaVimExtension</id>
   <name>IdeaVimExtension</name>
-  <version>1.4.3</version>
+  <version>1.4.4</version>
 
   <vendor
       email="hadix.lin@gmail.com"
@@ -55,6 +55,8 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      <p>1.4.4<br/>
+        Fix the [issue](https://github.com/hadix-lin/ideavim_extension/issues/48)  caused by incorrect input method state saved when the editor regains focus
       <p>1.4.3<br/>
         Fixed the unexpected input method restoration <a href=https://github.com/hadix-lin/ideavim_extension/issues/44>issue</a>
       <p>1.4.2<br/>
@@ -65,8 +67,10 @@
       <p>1.4.0<br/>
         support IdeaVim 0.54, keep consistent compatibility strategy with IdeaVim starting with this version.
 
+      <p>1.4.4<br/>
+        修正编辑器重新获取焦点时保存的输入法状态不正确的[问题](https://github.com/hadix-lin/ideavim_extension/issues/48)
       <p>1.4.3<br/>
-        修正非预期的输入法回复<a href=https://github.com/hadix-lin/ideavim_extension/issues/44>问题</a>
+        修正非预期的输入法恢复<a href=https://github.com/hadix-lin/ideavim_extension/issues/44>问题</a>
       <p>1.4.2<br/>
         1.根据vim指令执行后编辑器状态来判断是否需要恢复输入法
         2.修正某些情况下恢复输入法出错的问题

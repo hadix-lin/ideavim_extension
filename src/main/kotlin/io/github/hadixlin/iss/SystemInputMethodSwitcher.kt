@@ -18,6 +18,10 @@ class SystemInputMethodSwitcher : InputMethodSwitcher {
         delegate.switchToEnglish()
     }
 
+    override fun storeCurrentThenSwitchToEnglish() {
+        delegate.storeCurrentThenSwitchToEnglish()
+    }
+
     override fun restore() {
         delegate.restore()
     }
