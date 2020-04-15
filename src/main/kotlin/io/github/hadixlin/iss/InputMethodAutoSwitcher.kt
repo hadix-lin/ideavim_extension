@@ -1,5 +1,6 @@
 package io.github.hadixlin.iss
 
+import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.command.CommandEvent
 import com.intellij.openapi.command.CommandListener
@@ -31,6 +32,7 @@ object InputMethodAutoSwitcher {
 
     @Volatile
     var restoreInInsert: Boolean = false
+
     @Volatile
     var enabled: Boolean = false
         private set
@@ -68,7 +70,7 @@ object InputMethodAutoSwitcher {
         private fun currentEditor(commandEvent: CommandEvent): Editor? {
             val cmd = commandEvent.command
             return if (cmd.javaClass.enclosingClass == RunnableHelper::class.java) {
-                val writeActionCmd = cmd.javaClass.getDeclaredField("cmd")
+                val writeActionCmd = cmd.javaClass.getDeclaredField("${'$'}cmd")
                 writeActionCmd.isAccessible = true
                 val other = writeActionCmd.get(cmd)
                 val editor = other.javaClass.getDeclaredField("editor")
@@ -117,7 +119,7 @@ object InputMethodAutoSwitcher {
     private fun registerFocusChangeListener() {
         val eventMulticaster =
             EditorFactory.getInstance().eventMulticaster as? EditorEventMulticasterEx ?: return
-        eventMulticaster.addFocusChangeListener(focusListener) {}
+        eventMulticaster.addFocusChangeListener(focusListener, Disposable {})
     }
 
     private val focusListener = object : FocusChangeListener {

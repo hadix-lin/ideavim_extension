@@ -36,8 +36,11 @@ gradle buildPlugin
 也可以通过将`set keep-english-in-normal[-and-restore-in-insert]`加入到`~/.ideavimrc`文件中并重启IDE来启用插件功能。
 
 ## 更新历史
+* 1.4.5
+  兼容IdeaVim 0.56, Intellij IDEA 2020.1
+  
 * 1.4.4
-  修正编辑器重新获取焦点时保存的输入法状态不正确的问题[#48](https://github.com/hadix-lin/ideavim_extension/issues/48)题
+  修正编辑器重新获取焦点时保存的输入法状态不正确的问题[#48](https://github.com/hadix-lin/ideavim_extension/issues/48)
   
 * 1.4.3
   修正非预期的输入法回复问题 [#44](https://github.com/hadix-lin/ideavim_extension/issues/44)
