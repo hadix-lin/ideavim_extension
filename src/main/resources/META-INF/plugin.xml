@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>IdeaVimExtension</id>
   <name>IdeaVimExtension</name>
-  <version>1.4.5</version>
+  <version>1.4.6</version>
 
   <vendor
       email="hadix.lin@gmail.com"
@@ -55,6 +55,8 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      <p>1.4.6<br/>
+        Support fcitx5.
       <p>1.4.5<br/>
         Compatible with "IdeaVIM 0.56" and "Intellij IDEA 2020.1"
       <p>1.4.4<br/>
@@ -69,6 +71,9 @@
       <p>1.4.0<br/>
         support IdeaVim 0.54, keep consistent compatibility strategy with IdeaVim starting with this version.
       <br/>
+
+      <p>1.4.6<br/>
+        支持fcitx5
       <p>1.4.5<br/>
         兼容"IdeaVim 0.56"和"Intellij IDEA 2020.1"
       <p>1.4.4<br/>

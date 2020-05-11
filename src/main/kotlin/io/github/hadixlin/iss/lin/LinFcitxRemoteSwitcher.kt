@@ -18,23 +18,6 @@ class LinFcitxRemoteSwitcher : InputMethodSwitcher {
         switchToEnglish()
     }
 
-    private fun execFcitxRemote(cmd: Array<String>): Process {
-        val proc = Runtime.getRuntime().exec(cmd)
-        proc.waitFor(3, TimeUnit.SECONDS)
-        return proc
-    }
-
-    private fun getFcitxStatus(): Int {
-        val proc = execFcitxRemote(FCITX_STATUS)
-        return Scanner(proc.inputStream).use {
-            if (it.hasNextInt()) {
-                it.nextInt()
-            } else {
-                STATUS_UNKNOWN
-            }
-        }
-    }
-
     override fun restore() {
         if (lastStatus == STATUS_ACTIVE) {
             execFcitxRemote(FCITX_ACTIVE)
@@ -47,13 +30,44 @@ class LinFcitxRemoteSwitcher : InputMethodSwitcher {
     }
 
     companion object {
-        private const val FCITX_REMOTE = "fcitx-remote"
         private const val STATUS_UNKNOWN = -1
         private const val STATUS_INACTIVE = 1
         private const val STATUS_ACTIVE = 2 // 0 OFF,1 INACTIVE,2 ACTIVE
 
-        private val FCITX_ACTIVE = arrayOf(FCITX_REMOTE, "-o") //activate input method
-        private val FCITX_INACTIVE = arrayOf(FCITX_REMOTE, "-c") //inactivate input method
-        private val FCITX_STATUS = arrayOf(FCITX_REMOTE) //get fcitx status
+        private val FCITX_ACTIVE: Array<String>
+        private val FCITX_INACTIVE: Array<String>
+        private val FCITX_STATUS: Array<String>
+
+        init {
+            var fcitxRemote: String
+            try {
+                fcitxRemote = "fcitx-remote"
+                execFcitxRemote(arrayOf(fcitxRemote))
+            } catch (e: Exception) {
+                fcitxRemote = "fcitx5-remote"
+                execFcitxRemote(arrayOf(fcitxRemote))
+            }
+
+            FCITX_ACTIVE = arrayOf(fcitxRemote, "-o") // active input method
+            FCITX_INACTIVE = arrayOf(fcitxRemote, "-c") //inactivate input method
+            FCITX_STATUS = arrayOf(fcitxRemote) //get fcitx status
+        }
+
+        private fun execFcitxRemote(cmd: Array<String>): Process {
+            val proc = Runtime.getRuntime().exec(cmd)
+            proc.waitFor(3, TimeUnit.SECONDS)
+            return proc
+        }
+
+        private fun getFcitxStatus(): Int {
+            val proc = execFcitxRemote(FCITX_STATUS)
+            return Scanner(proc.inputStream).use {
+                if (it.hasNextInt()) {
+                    it.nextInt()
+                } else {
+                    STATUS_UNKNOWN
+                }
+            }
+        }
     }
 }

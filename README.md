@@ -36,6 +36,9 @@ gradle buildPlugin
 也可以通过将`set keep-english-in-normal[-and-restore-in-insert]`加入到`~/.ideavimrc`文件中并重启IDE来启用插件功能。
 
 ## 更新历史
+* 1.4.6
+  支持fcitx5
+  
 * 1.4.5
   兼容IdeaVim 0.56, Intellij IDEA 2020.1
   
@@ -118,6 +121,7 @@ gradle buildPlugin
 
 ### 感谢
 [史荣久](https://github.com/trydofor) 贡献了支持linux的代码
+[yangxuanx](https://github.com/yangxuanx) 帮助进行linux环境下的测试
 
 ## IdeaVimExtension
 
@@ -142,6 +146,7 @@ The plugin supports **macOS** and **Windows**, support **Linux** via fcitx
 ### Thanks:
 
 [trydofor](https://github.com/trydofor) contributed to support linux code
+[yangxuanx](https://github.com/yangxuanx) helps to test in linux environment 
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhadix-lin%2Fideavim_extension.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhadix-lin%2Fideavim_extension?ref=badge_large)
