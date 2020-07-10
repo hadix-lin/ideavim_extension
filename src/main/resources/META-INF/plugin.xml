@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>IdeaVimExtension</id>
   <name>IdeaVimExtension</name>
-  <version>1.4.6</version>
+  <version>1.4.7</version>
 
   <vendor
       email="hadix.lin@gmail.com"
@@ -55,6 +55,8 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      <p>1.4.7<br/>
+        Support Unicode Hex Input Method in MacOS.
       <p>1.4.6<br/>
         Support fcitx5.
       <p>1.4.5<br/>
@@ -72,6 +74,8 @@
         support IdeaVim 0.54, keep consistent compatibility strategy with IdeaVim starting with this version.
       <br/>
 
+      <p>1.4.7<br/>
+        在MacOS下支持,Unicode16进制输入法
       <p>1.4.6<br/>
         支持fcitx5
       <p>1.4.5<br/>

@@ -36,6 +36,9 @@ gradle buildPlugin
 也可以通过将`set keep-english-in-normal[-and-restore-in-insert]`加入到`~/.ideavimrc`文件中并重启IDE来启用插件功能。
 
 ## 更新历史
+* 1.4.7
+  在MacOS下支持,Unicode16进制输入法
+  
 * 1.4.6
   支持fcitx5
   

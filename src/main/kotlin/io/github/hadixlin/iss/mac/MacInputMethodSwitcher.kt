@@ -24,14 +24,16 @@ class MacInputMethodSwitcher : InputMethodSwitcher {
     }
 
     override fun switchToEnglish() {
-        val code = switchInputSource(ENGLISH_INPUT_SOURCE)
-        if (code < 0) {
-            ENGLISH_INPUT_SOURCE = KEY_LAYOUT_ABC
-            code = switchInputSource(ENGLISH_INPUT_SOURCE)
-        }
-        if (code < 0) {
-            ENGLISH_INPUT_SOURCE = KEY_LAYOUT_US
+        if (ENGLISH_INPUT_SOURCE.isNotBlank()) {
             switchInputSource(ENGLISH_INPUT_SOURCE)
+        } else {
+            for (englishInputSource in ENGLISH_INPUT_SOURCE_CANDIDATE) {
+                if (switchInputSource(englishInputSource) < 0) {
+                    continue
+                }
+                ENGLISH_INPUT_SOURCE = englishInputSource
+                break
+            }
         }
     }
 
@@ -47,6 +49,7 @@ class MacInputMethodSwitcher : InputMethodSwitcher {
         private const val KEY_LAYOUT_US = "com.apple.keylayout.US"
         private const val KEY_LAYOUT_ABC = "com.apple.keylayout.ABC"
         private const val KEY_LAYOUT_UNICODEHEX = "com.apple.keylayout.UnicodeHexInput"
-        private var ENGLISH_INPUT_SOURCE = KEY_LAYOUT_UNICODEHEX
+        private val ENGLISH_INPUT_SOURCE_CANDIDATE = arrayOf(KEY_LAYOUT_UNICODEHEX, KEY_LAYOUT_ABC, KEY_LAYOUT_US)
+        private var ENGLISH_INPUT_SOURCE: String = ""
     }
 }
