@@ -14,6 +14,7 @@ import com.maddyhome.idea.vim.command.MappingMode
 import com.maddyhome.idea.vim.extension.VimExtensionFacade
 import com.maddyhome.idea.vim.helper.RunnableHelper
 import com.maddyhome.idea.vim.helper.StringHelper
+import com.maddyhome.idea.vim.key.MappingOwner
 import org.apache.commons.lang.StringUtils
 import java.lang.Long.MAX_VALUE
 import java.util.*
@@ -106,6 +107,7 @@ object InputMethodAutoSwitcher {
         VimExtensionFacade.putKeyMapping(
             MappingMode.N,
             StringHelper.parseKeys("<Esc>"),
+            MappingOwner.Plugin.get("IdeaVimExtension"),
             StringHelper.parseKeys("a<Esc><Esc>"),
             false
         )
