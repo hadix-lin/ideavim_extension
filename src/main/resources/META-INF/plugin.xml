@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>IdeaVimExtension</id>
   <name>IdeaVimExtension</name>
-  <version>1.4.9</version>
+  <version>1.4.10</version>
 
   <vendor
       email="hadix.lin@gmail.com"
@@ -55,6 +55,8 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      <p>1.4.10<br/>
+        Compatible with "IdeaVIM 0.67"
       <p>1.4.9<br/>
         support apple silicon
       <p>1.4.8<br/>
@@ -78,6 +80,8 @@
         support IdeaVim 0.54, keep consistent compatibility strategy with IdeaVim starting with this version.
       <br/>
 
+      <p>1.4.10<br/>
+        兼容"IdeaVIM 0.67"
       <p>1.4.9<br/>
         支持apple silicon
       <p>1.4.8<br/>

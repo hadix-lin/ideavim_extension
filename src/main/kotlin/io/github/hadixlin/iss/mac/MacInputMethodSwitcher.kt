@@ -25,7 +25,10 @@ class MacInputMethodSwitcher : InputMethodSwitcher {
 
     override fun switchToEnglish() {
         if (ENGLISH_INPUT_SOURCE.isNotBlank()) {
-            switchInputSource(ENGLISH_INPUT_SOURCE)
+            if (switchInputSource(ENGLISH_INPUT_SOURCE) < 0) {
+                // 系统英文输入法可能发生变更，导致无法切换到记录到英文输入法
+                ENGLISH_INPUT_SOURCE = EMPTY
+            }
         } else {
             for (englishInputSource in ENGLISH_INPUT_SOURCE_CANDIDATE) {
                 if (switchInputSource(englishInputSource) < 0) {

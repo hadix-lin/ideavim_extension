@@ -12,7 +12,6 @@ import com.intellij.util.messages.MessageBusConnection
 import com.maddyhome.idea.vim.command.CommandState
 import com.maddyhome.idea.vim.command.MappingMode
 import com.maddyhome.idea.vim.extension.VimExtensionFacade
-import com.maddyhome.idea.vim.helper.RunnableHelper
 import com.maddyhome.idea.vim.helper.StringHelper
 import com.maddyhome.idea.vim.key.MappingOwner
 import org.apache.commons.lang.StringUtils
@@ -69,15 +68,12 @@ object InputMethodAutoSwitcher {
         }
 
         private fun currentEditor(commandEvent: CommandEvent): Editor? {
-            val cmd = commandEvent.command
-            return if (cmd.javaClass.enclosingClass == RunnableHelper::class.java) {
-                val writeActionCmd = cmd.javaClass.getDeclaredField("${'$'}cmd")
-                writeActionCmd.isAccessible = true
-                val other = writeActionCmd.get(cmd)
-                val editor = other.javaClass.getDeclaredField("editor")
-                editor.isAccessible = true
-                editor.get(other) as Editor
-            } else {
+            val cmdGroupId = commandEvent.commandGroupId
+            return try {
+                val editorField = cmdGroupId?.javaClass?.getDeclaredField("editor")
+                editorField?.isAccessible = true
+                editorField?.get(cmdGroupId) as Editor?
+            } catch (e: NoSuchFieldException) {
                 null
             }
         }

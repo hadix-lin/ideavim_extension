@@ -39,6 +39,8 @@ gradle buildPlugin
 
 ## 更新历史
 
+* 1.4.10 兼容"IdeaVIM 0.67"
+
 * 1.4.9 支持apple silicon
 
 * 1.4.8 兼容"IdeaVIM 0.61"
