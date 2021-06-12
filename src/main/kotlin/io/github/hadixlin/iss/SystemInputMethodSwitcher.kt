@@ -14,9 +14,10 @@ class SystemInputMethodSwitcher : InputMethodSwitcher {
         else -> throw IllegalArgumentException("Not Support Current System OS, Only Support Windows, MacOS and Linux(with fcitx)")
     }
 
-    override fun switchToEnglish() {
-        delegate.switchToEnglish()
+    override fun switchToEnglish(packageName: String) {
+        delegate.switchToEnglish(packageName)
     }
+
 
     override fun storeCurrentThenSwitchToEnglish() {
         delegate.storeCurrentThenSwitchToEnglish()

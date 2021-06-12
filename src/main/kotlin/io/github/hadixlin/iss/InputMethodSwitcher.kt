@@ -14,5 +14,5 @@ interface InputMethodSwitcher {
     fun restore()
 
     /** 切换输入法到英文 */
-    fun switchToEnglish()
+    fun switchToEnglish(packageName: String)
 }

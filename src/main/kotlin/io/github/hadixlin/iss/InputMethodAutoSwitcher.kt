@@ -37,6 +37,9 @@ object InputMethodAutoSwitcher {
     var enabled: Boolean = false
         private set
 
+    @Volatile
+    var normalModePackageName: String = "";
+
     private var executor: ThreadPoolExecutor? = null
 
     private val switcher = SystemInputMethodSwitcher()
@@ -44,7 +47,6 @@ object InputMethodAutoSwitcher {
     private var messageBusConnection: MessageBusConnection? = null
 
     private val exitInsertModeListener = object : CommandListener {
-
         override fun beforeCommandFinished(commandEvent: CommandEvent) {
             val commandName = commandEvent.commandName
             if (StringUtils.isBlank(commandName)) {
@@ -130,7 +132,7 @@ object InputMethodAutoSwitcher {
             }
             val state = CommandState.getInstance(editor)
             if (state.mode !in EDITING_MODE) {
-                executor?.execute { switcher.switchToEnglish() }
+                executor?.execute { switcher.switchToEnglish(normalModePackageName) }
             }
         }
     }
