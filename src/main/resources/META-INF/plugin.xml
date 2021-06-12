@@ -17,11 +17,14 @@
         enable the feature with the commands below, input in normal mode:
       <ul>
         <li><code>:set keep-english-in-normal</code> enable auto-switch feature</li>
-        <li><code>:set keep-english-in-normal-and-restore-in-insert</code> restore input method when return insert mode</li>
+        <li><code>:set keep-english-in-normal-and-restore-in-insert</code> restore input method when return insert mode.</li>
         <li><code>:set nokeep-english-in-normal-and-restore-in-insert</code> keep auto-switch feature, but doesn't restore input method when return insert mode</li>
         <li><code>:set nokeep-english-in-normal</code> disable auto-switch feature</li>
       </ul>
       You can also add `set keep-english-in-normal[-and-restore-in-insert]` to the `~/.ideavimrc` file and restart IDE to enable the feature.
+
+      On OSX if you are using custom keyboard layout you can set the following flag before calling `keep-english-in-normal-and-restore-in-insert`:
+      <code>let g:KeepEnglishName_package_name_package_name = "org.sil.ukelele.keyboardlayout.abcnl.abcnl"</code>
 
       </p>
       <h3>Notice:</h3>

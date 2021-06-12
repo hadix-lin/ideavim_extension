@@ -10,7 +10,6 @@ import org.apache.commons.lang.StringUtils.EMPTY
  * @date 2018-12-23
  */
 class MacInputMethodSwitcher : InputMethodSwitcher {
-
     @Volatile
     private var lastInputSource: String = EMPTY
 
@@ -20,10 +19,11 @@ class MacInputMethodSwitcher : InputMethodSwitcher {
         if (ENGLISH_INPUT_SOURCE == current) {
             return
         }
-        switchToEnglish()
+        switchToEnglish(ENGLISH_INPUT_SOURCE)
     }
 
-    override fun switchToEnglish() {
+    override fun switchToEnglish(packageName: String) {
+        ENGLISH_INPUT_SOURCE = packageName;
         if (ENGLISH_INPUT_SOURCE.isNotBlank()) {
             if (switchInputSource(ENGLISH_INPUT_SOURCE) < 0) {
                 // 系统英文输入法可能发生变更，导致无法切换到记录到英文输入法

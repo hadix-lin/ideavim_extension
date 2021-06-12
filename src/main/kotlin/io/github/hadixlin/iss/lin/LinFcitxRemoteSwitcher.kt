@@ -15,7 +15,7 @@ class LinFcitxRemoteSwitcher : InputMethodSwitcher {
         if (current == STATUS_INACTIVE) {
             return
         }
-        switchToEnglish()
+        switchToEnglish("")
     }
 
     override fun restore() {
@@ -25,7 +25,7 @@ class LinFcitxRemoteSwitcher : InputMethodSwitcher {
         }
     }
 
-    override fun switchToEnglish() {
+    override fun switchToEnglish(packageName: String) {
         execFcitxRemote(FCITX_INACTIVE)
     }
 
