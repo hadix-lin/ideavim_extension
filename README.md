@@ -35,9 +35,13 @@ gradle buildPlugin
 * `:set nokeep-english-in-normal-and-restore-in-insert` 保留输入法自动切换功能，但是回到insert模式不恢复输入法
 * `:set nokeep-english-in-normal` 关闭输入法自动切换功能
 
-也可以通过将`set keep-english-in-normal[-and-restore-in-insert]`加入到`~/.ideavimrc`文件中并重启IDE来启用插件功能。
+也可以通过将`set keep-english-in-normal[-and-restore-in-insert]`加入到`~/.ideavimrc`文件中并重启IDE来启用插件功能
+
+在macOS中,normal模式的输入法可以通过变量`keep_input_source_in_normal`来设置,仅支持在`~/.ideavimrc`中使用.例如`let keep_input_source_in_normal="com.apple.keylayout.ABC"`
 
 ## 更新历史
+
+* 1.4.11 在macOS中,normal模式的输入法可以通过`keep_input_source_in_normal`来设置
 
 * 1.4.10 兼容"IdeaVIM 0.67"
 
@@ -56,8 +60,8 @@ gradle buildPlugin
 * 1.4.3 修正非预期的输入法回复问题 [#44](https://github.com/hadix-lin/ideavim_extension/issues/44)
 
 * 1.4.2
-  1. 根据vim指令执行后编辑器状态来判断是否需要恢复输入法
-  2. 修正某些情况下恢复输入法出错的问题
+    1. 根据vim指令执行后编辑器状态来判断是否需要恢复输入法
+    2. 修正某些情况下恢复输入法出错的问题
 
 * 1.4.1 修复某些插入命令无法恢复输入法的问题
 

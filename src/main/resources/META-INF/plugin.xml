@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>IdeaVimExtension</id>
   <name>IdeaVimExtension</name>
-  <version>1.4.10</version>
+  <version>1.4.11</version>
 
   <vendor
       email="hadix.lin@gmail.com"
@@ -34,6 +34,9 @@
       Windows need enable en_US keyboard<br/>
       Linux need fcitx-remote<br/>
       </p>
+      <p>
+      In macOS, the input method of normal mode can be set by <b>keep_input_source_in_normal</b> variable, but only supported in <code>~/.ideavimrc</code>,for example <code>set g:keep_input_source_in_normal=com.apple.keylayout.ABC</code>
+      </p>
       <p><a href="https://github.com/hadix-lin/ideavim_extension">GitHub Repository</a>Source and Feedback</p>
       <br/>
       <p>为IdeaVim插件增加自动切换为英文输入法的功能<br></p>
@@ -53,6 +56,9 @@
       MacOS需要开启英语美国键盘或ABC键盘<br/>
       Windows需要开启英语美国键盘<br/>
       Linux需要使用fcitx输入法，通过fcitx-remote切换<br/>
+      </p>
+      <p>
+      在macOS中,normal模式的输入法可以通过<b>keep_input_source_in_normal<br/>来设置,例如<code>let keep_input_source_in_normal="com.apple.keylayout.ABC"</code>
       </p>
       <p><a href="https://github.com/hadix-lin/ideavim_extension">GitHub Repository</a>: 源码和问题反馈 </p>
     ]]></description>
@@ -83,6 +89,8 @@
         support IdeaVim 0.54, keep consistent compatibility strategy with IdeaVim starting with this version.
       <br/>
 
+      <p>1.4.11<br/>
+        在macOS中,normal模式的输入法可以通过<b>keep_input_source_in_normal<br/>来设置,但仅支持在<code>~/.ideavimrc`</code>中使用.例如<code>let keep_input_source_in_normal="com.apple.keylayout.ABC"</code>
       <p>1.4.10<br/>
         兼容"IdeaVIM 0.67"
       <p>1.4.9<br/>

@@ -1,6 +1,5 @@
 package io.github.hadixlin.iss
 
-import com.maddyhome.idea.vim.ex.vimscript.VimScriptGlobalEnvironment
 import com.maddyhome.idea.vim.extension.VimExtension
 import com.maddyhome.idea.vim.option.OptionsManager
 import com.maddyhome.idea.vim.option.ToggleOption
@@ -20,12 +19,6 @@ class KeepEnglishInNormalAndRestoreInInsertExtension : VimExtension {
         val option =
             OptionsManager.getOption(KeepEnglishInNormalExtension.NAME) as ToggleOption?
         option?.set()
-
-        VimScriptGlobalEnvironment.getInstance().variables.let { vars ->
-            if (languagePackageName !in vars) vars[languagePackageName] = ""
-        }
-        InputMethodAutoSwitcher.normalModePackageName =
-            VimScriptGlobalEnvironment.getInstance().variables[languagePackageName].toString()
     }
 
     override fun dispose() {
@@ -33,8 +26,7 @@ class KeepEnglishInNormalAndRestoreInInsertExtension : VimExtension {
     }
 
     companion object {
-        const val NAME = "keep-english-in-normal-and-restore-in-insert"
-        private const val languagePackageName = "g:KeepEnglishInNormalAndRestore_package_name"
+        private const val NAME = "keep-english-in-normal-and-restore-in-insert"
     }
 }
 

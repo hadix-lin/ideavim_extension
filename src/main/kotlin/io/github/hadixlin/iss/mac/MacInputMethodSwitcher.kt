@@ -9,7 +9,9 @@ import org.apache.commons.lang.StringUtils.EMPTY
  * @author hadix
  * @date 2018-12-23
  */
-class MacInputMethodSwitcher : InputMethodSwitcher {
+class MacInputMethodSwitcher(
+    private vararg val englishInputSourceCandidate: String = ENGLISH_INPUT_SOURCE_CANDIDATE
+) : InputMethodSwitcher {
     @Volatile
     private var lastInputSource: String = EMPTY
 
@@ -19,23 +21,23 @@ class MacInputMethodSwitcher : InputMethodSwitcher {
         if (ENGLISH_INPUT_SOURCE == current) {
             return
         }
-        switchToEnglish(ENGLISH_INPUT_SOURCE)
+        switchToEnglish()
     }
 
-    override fun switchToEnglish(packageName: String) {
-        ENGLISH_INPUT_SOURCE = packageName;
+    override fun switchToEnglish() {
         if (ENGLISH_INPUT_SOURCE.isNotBlank()) {
             if (switchInputSource(ENGLISH_INPUT_SOURCE) < 0) {
                 // 系统英文输入法可能发生变更，导致无法切换到记录到英文输入法
                 ENGLISH_INPUT_SOURCE = EMPTY
             }
         } else {
-            for (englishInputSource in ENGLISH_INPUT_SOURCE_CANDIDATE) {
+            for (englishInputSource in englishInputSourceCandidate) {
                 if (switchInputSource(englishInputSource) < 0) {
                     continue
+                }else {
+                    ENGLISH_INPUT_SOURCE = englishInputSource
+                    break
                 }
-                ENGLISH_INPUT_SOURCE = englishInputSource
-                break
             }
         }
     }
