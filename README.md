@@ -37,9 +37,12 @@ gradle buildPlugin
 
 也可以通过将`set keep-english-in-normal[-and-restore-in-insert]`加入到`~/.ideavimrc`文件中并重启IDE来启用插件功能
 
-在macOS中,normal模式的输入法可以通过变量`keep_input_source_in_normal`来设置,仅支持在`~/.ideavimrc`中使用.例如`let keep_input_source_in_normal="com.apple.keylayout.ABC"`
+在macOS中,normal模式的输入法可以通过变量`keep_input_source_in_normal`来设置,仅支持在`~/.ideavimrc`
+中使用.例如`let keep_input_source_in_normal="com.apple.keylayout.ABC"`
 
 ## 更新历史
+
+* 1.4.12 修正windows中的npe[问题](https://github.com/hadix-lin/ideavim_extension/issues/72)
 
 * 1.4.11 在macOS中,normal模式的输入法可以通过`keep_input_source_in_normal`来设置
 
