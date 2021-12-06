@@ -42,6 +42,8 @@ gradle buildPlugin
 
 ## 更新历史
 
+* 1.5.0 支持Linux下的IBUS输入引擎，解决[#76](https://github.com/hadix-lin/ideavim_extension/issues/76)
+
 * 1.4.12 修正windows中的npe[问题](https://github.com/hadix-lin/ideavim_extension/issues/72)
 
 * 1.4.11 在macOS中,normal模式的输入法可以通过`keep_input_source_in_normal`来设置
@@ -112,8 +114,9 @@ gradle buildPlugin
 
 ### 感谢
 
-[史荣久](https://github.com/trydofor) 贡献了支持linux的代码
+[史荣久](https://github.com/trydofor) 贡献了支持linux下的fcitx输入请求的代码
 [yangxuanx](https://github.com/yangxuanx) 帮助进行linux环境下的测试
+[邓志宇](https://github.com/yuzhou721) 贡献了支持linux下ibus输入引擎的代码
 
 ## IdeaVimExtension
 
@@ -140,9 +143,9 @@ The plugin supports **macOS** and **Windows**, support **Linux** via fcitx
 
 ### Thanks:
 
-[trydofor](https://github.com/trydofor) contributed to support linux code
+[trydofor](https://github.com/trydofor) contributed code to support fcitx under linux
 [yangxuanx](https://github.com/yangxuanx) helps to test in linux environment
-
+[yuzhou721](https://github.com/yuzhou721) contributed code to support ibus under linux
 ## License
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhadix-lin%2Fideavim_extension.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhadix-lin%2Fideavim_extension?ref=badge_large)
