@@ -29,18 +29,18 @@ class LinuxIbusSwitcher : InputMethodSwitcher {
     companion object{
         private const val STATUS_ENGLISH="xkb:us::eng"
         private fun execSet(im:String):Process{
-            val cmd = arrayOf("ibus engine",im)
+            val cmd = arrayOf("ibus","engine",im)
             val proc = Runtime.getRuntime().exec(cmd)
             proc.waitFor(3, TimeUnit.SECONDS)
             return proc
         }
 
         private fun getStatus():String{
-            val cmd = "ibus engine"
+            val cmd = arrayOf("ibus","engine")
             val proc = Runtime.getRuntime().exec(cmd)
             proc.waitFor(3, TimeUnit.SECONDS)
             return Scanner(proc.inputStream).use {
-                if (it.hasNextInt()) {
+                if (it.hasNextLine()) {
                     it.nextLine()
                 } else{
                     ""
