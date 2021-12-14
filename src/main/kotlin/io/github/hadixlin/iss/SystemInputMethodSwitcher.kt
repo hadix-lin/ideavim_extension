@@ -25,9 +25,9 @@ class SystemInputMethodSwitcher : InputMethodSwitcher {
             val qtInputMethod = System.getenv(QT_INPUT_METHOD)
             val gtkInputMethod = System.getenv(GTK_INPUT_METHOD)
 //            当前系统环境变量判断
-            if (qtInputMethod.equals(INPUT_METHOD_FCITX)||gtkInputMethod.equals(INPUT_METHOD_FCITX) ) {
+            if (isFcitx(qtInputMethod, gtkInputMethod)) {
                 LinFcitxRemoteSwitcher()
-            } else if(qtInputMethod.equals(INPUT_METHOD_IBUS)||gtkInputMethod.equals(INPUT_METHOD_IBUS)) {
+            } else if (qtInputMethod == INPUT_METHOD_IBUS || gtkInputMethod == INPUT_METHOD_IBUS) {
                 LinuxIbusSwitcher()
             }else{
                 throw IllegalArgumentException("Not Support Current Input Method, Only Support Windows, MacOS and Linux(with fcitx and ibus)")
@@ -51,8 +51,13 @@ class SystemInputMethodSwitcher : InputMethodSwitcher {
     companion object {
         private const val ENGLISH_INPUT_SOURCE_FOR_MAC = "keep_input_source_in_normal"
         private const val INPUT_METHOD_FCITX="fcitx"
+        private const val INPUT_METHOD_FCITX5="fcitx5"
         private const val INPUT_METHOD_IBUS="ibus"
         private const val QT_INPUT_METHOD="QT_IM_MODULE"
         private const val GTK_INPUT_METHOD="GTK_IM_MODULE"
+
+        fun isFcitx(qtInputMethod :String,gtkInputMethod :String) :Boolean {
+            return qtInputMethod == INPUT_METHOD_FCITX || gtkInputMethod == INPUT_METHOD_FCITX||qtInputMethod== INPUT_METHOD_FCITX5||gtkInputMethod== INPUT_METHOD_FCITX5
+        }
     }
 }
