@@ -8,7 +8,7 @@
 
 - Windows 需要开启英语美国键盘
 - MacOS 需要开启英语美国键盘或ABC键盘
-- Linux 需要使用fcitx输入法，通过fcitx-remote切换
+- Linux 需要使用fcitx输入法，通过fcitx-remote切换，或使用ibus输入引擎
 
 ## 构建/安装方法
 
