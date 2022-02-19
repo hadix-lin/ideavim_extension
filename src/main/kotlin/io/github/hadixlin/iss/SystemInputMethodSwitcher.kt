@@ -1,6 +1,6 @@
 package io.github.hadixlin.iss
 
-import com.maddyhome.idea.vim.ex.vimscript.VimScriptGlobalEnvironment
+import com.maddyhome.idea.vim.VimPlugin
 import io.github.hadixlin.iss.lin.LinFcitxRemoteSwitcher
 import io.github.hadixlin.iss.lin.LinuxIbusSwitcher
 import io.github.hadixlin.iss.mac.MacInputMethodSwitcher
@@ -12,8 +12,8 @@ class SystemInputMethodSwitcher : InputMethodSwitcher {
     private var delegate: InputMethodSwitcher = when {
         SystemUtils.IS_OS_WINDOWS -> WinInputMethodSwitcher()
         SystemUtils.IS_OS_MAC -> {
-            val env = VimScriptGlobalEnvironment.getInstance()
-            val englishInputSource = env.variables[ENGLISH_INPUT_SOURCE_FOR_MAC]?.toString()
+            val variableService = VimPlugin.getVariableService()
+            val englishInputSource = variableService.getGlobalVariableValue(ENGLISH_INPUT_SOURCE_FOR_MAC)?.asString()
             if (englishInputSource != null) {
                 MacInputMethodSwitcher(englishInputSource)
             } else {
@@ -27,7 +27,7 @@ class SystemInputMethodSwitcher : InputMethodSwitcher {
             //当前系统环境变量判断
             if (isFcitx(qtInputMethod, gtkInputMethod)) {
                 LinFcitxRemoteSwitcher()
-            } else if (qtInputMethod == INPUT_METHOD_IBUS || gtkInputMethod == INPUT_METHOD_IBUS) {
+            } else if (isIbus(qtInputMethod, gtkInputMethod)) {
                 LinuxIbusSwitcher()
             } else {
                 throw IllegalArgumentException("Not Support Current Input Method [${qtInputMethod ?: gtkInputMethod}], Only Support Linux(with fcitx and ibus)")
@@ -56,11 +56,14 @@ class SystemInputMethodSwitcher : InputMethodSwitcher {
         private const val QT_INPUT_METHOD = "QT_IM_MODULE"
         private const val GTK_INPUT_METHOD = "GTK_IM_MODULE"
 
-        fun isFcitx(qtInputMethod: String, gtkInputMethod: String): Boolean {
+        fun isFcitx(qtInputMethod: String?, gtkInputMethod: String?): Boolean {
             return qtInputMethod == INPUT_METHOD_FCITX
                 || gtkInputMethod == INPUT_METHOD_FCITX
                 || qtInputMethod == INPUT_METHOD_FCITX5
                 || gtkInputMethod == INPUT_METHOD_FCITX5
         }
+
+        fun isIbus(qtInputMethod: String?, gtkInputMethod: String?): Boolean =
+            qtInputMethod == INPUT_METHOD_IBUS || gtkInputMethod == INPUT_METHOD_IBUS
     }
 }

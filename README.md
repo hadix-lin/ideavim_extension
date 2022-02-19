@@ -42,6 +42,8 @@ gradle buildPlugin
 
 ## 更新历史
 
+* 1.5.1 兼容"IdeaVIM 1.10.0"
+
 * 1.5.0 支持Linux下的IBUS输入引擎，解决[#76](https://github.com/hadix-lin/ideavim_extension/issues/76)
 
 * 1.4.12 修正windows中的npe[问题](https://github.com/hadix-lin/ideavim_extension/issues/72)

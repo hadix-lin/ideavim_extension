@@ -2,22 +2,21 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("java")
-    id("org.jetbrains.intellij") version "0.7.3"
-    id("org.jetbrains.kotlin.jvm") version "1.5.0"
+    id("org.jetbrains.intellij") version "1.4.0"
+    id("org.jetbrains.kotlin.jvm") version "1.6.0"
 }
 
 intellij {
-    pluginName = "IdeaVimExtension"
-    version = "IC-2020.2"
-    setPlugins("IdeaVIM:0.67")
-    updateSinceUntilBuild = false
-    downloadSources = true
-    intellijRepo = "https://www.jetbrains.com/intellij-repository"
+    pluginName.set("IdeaVimExtension")
+    version.set("IC-2021.3")
+    plugins.add("IdeaVIM:1.10.0")
+    updateSinceUntilBuild.set(false)
+    downloadSources.set(true)
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.apiVersion = "1.3"
-    kotlinOptions.languageVersion = "1.3"
+    kotlinOptions.apiVersion = "1.5"
+    kotlinOptions.languageVersion = "1.5"
     kotlinOptions.jvmTarget = "1.8"
 }
 

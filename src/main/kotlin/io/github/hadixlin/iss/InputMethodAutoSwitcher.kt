@@ -1,6 +1,5 @@
 package io.github.hadixlin.iss
 
-import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.command.CommandEvent
 import com.intellij.openapi.command.CommandListener
@@ -14,11 +13,11 @@ import com.maddyhome.idea.vim.command.MappingMode
 import com.maddyhome.idea.vim.extension.VimExtensionFacade
 import com.maddyhome.idea.vim.helper.StringHelper
 import com.maddyhome.idea.vim.key.MappingOwner
+import com.maddyhome.idea.vim.newapi.IjVimEditor
 import org.apache.commons.lang.StringUtils
 import java.lang.Long.MAX_VALUE
 import java.util.*
 import java.util.concurrent.ArrayBlockingQueue
-import java.util.concurrent.ThreadFactory
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 
@@ -71,7 +70,7 @@ object InputMethodAutoSwitcher {
             return try {
                 val editorField = cmdGroupId?.javaClass?.getDeclaredField("editor")
                 editorField?.isAccessible = true
-                editorField?.get(cmdGroupId) as Editor?
+                (editorField?.get(cmdGroupId) as IjVimEditor?)?.originalEditor
             } catch (e: NoSuchFieldException) {
                 null
             }
@@ -88,7 +87,7 @@ object InputMethodAutoSwitcher {
                 1, 1,
                 MAX_VALUE, TimeUnit.DAYS,
                 ArrayBlockingQueue(10),
-                ThreadFactory { r ->
+                { r ->
                     val thread = Thread(r, "ideavim_extension")
                     thread.isDaemon = true
                     thread.priority = Thread.MAX_PRIORITY
@@ -116,7 +115,7 @@ object InputMethodAutoSwitcher {
     private fun registerFocusChangeListener() {
         val eventMulticaster =
             EditorFactory.getInstance().eventMulticaster as? EditorEventMulticasterEx ?: return
-        eventMulticaster.addFocusChangeListener(focusListener, Disposable {})
+        eventMulticaster.addFocusChangeListener(focusListener) {}
     }
 
     private val focusListener = object : FocusChangeListener {

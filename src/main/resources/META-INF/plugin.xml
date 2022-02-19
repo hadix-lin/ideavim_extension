@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>IdeaVimExtension</id>
   <name>IdeaVimExtension</name>
-  <version>1.5.0</version>
+  <version>1.5.1</version>
 
   <vendor
       email="hadix.lin@gmail.com"
@@ -64,6 +64,8 @@
     ]]></description>
 
   <change-notes><![CDATA[
+      <p>1.5.1<br/>
+        Compatible with "IdeaVIM 1.10.0"
       <p>1.5.0<br/>
         Support IBUS input engine under Linux, fix[#76](https://github.com/hadix-lin/ideavim_extension/issues/76)
       <p>1.4.12<br/>
@@ -96,6 +98,8 @@
         support IdeaVim 0.54, keep consistent compatibility strategy with IdeaVim starting with this version.
       <br/>
 
+      <p>1.5.1<br/>
+        兼容"IdeaVIM 1.10.0"
       <p>1.5.0<br/>
         支持Linux下的IBUS输入引擎，解决[#76](https://github.com/hadix-lin/ideavim_extension/issues/76)
       <p>1.4.12<br/>
