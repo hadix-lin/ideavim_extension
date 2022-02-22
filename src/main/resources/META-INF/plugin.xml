@@ -133,7 +133,7 @@
     ]]>
   </change-notes>
 
-  <idea-version since-build="202.5103.13"/>
+  <idea-version since-build="213"/>
 
   <depends>com.intellij.modules.lang</depends>
   <depends>IdeaVIM</depends>
