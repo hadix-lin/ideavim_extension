@@ -8,10 +8,10 @@ class LinuxIbusSwitcher : InputMethodSwitcher {
     private var lastStatus: String = STATUS_ENGLISH
     override fun storeCurrentThenSwitchToEnglish() {
         val current = getStatus()
-        lastStatus = current
         if (current == STATUS_ENGLISH) {
             return
         }
+        lastStatus = current
         switchToEnglish()
     }
 

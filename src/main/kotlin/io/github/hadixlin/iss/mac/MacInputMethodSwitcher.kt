@@ -17,10 +17,10 @@ class MacInputMethodSwitcher(
 
     override fun storeCurrentThenSwitchToEnglish() {
         val current = getCurrentInputSourceID()
-        lastInputSource = current
         if (ENGLISH_INPUT_SOURCE == current) {
             return
         }
+        lastInputSource = current
         switchToEnglish()
     }
 
@@ -34,7 +34,7 @@ class MacInputMethodSwitcher(
             for (englishInputSource in englishInputSourceCandidate) {
                 if (switchInputSource(englishInputSource) < 0) {
                     continue
-                }else {
+                } else {
                     ENGLISH_INPUT_SOURCE = englishInputSource
                     break
                 }

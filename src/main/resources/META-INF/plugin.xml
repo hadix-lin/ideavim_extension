@@ -1,15 +1,15 @@
 <idea-plugin>
-  <id>IdeaVimExtension</id>
-  <name>IdeaVimExtension</name>
-  <version>1.5.2</version>
+    <id>IdeaVimExtension</id>
+    <name>IdeaVimExtension</name>
+    <version>1.6.0</version>
 
-  <vendor
-      email="hadix.lin@gmail.com"
-      url="https://github.com/hadix-lin/ideavim_extension">
-    hadix
-  </vendor>
+    <vendor
+            email="hadix.lin@gmail.com"
+            url="https://github.com/hadix-lin/ideavim_extension">
+        hadix
+    </vendor>
 
-  <description><![CDATA[
+    <description><![CDATA[
       <p>The plugin is an extension of &#39;IdeaVim&#39; , can switch to English input method in normal mode and restore input method in insert mode.</p>
       <h3>How To Enable:</h3>
       <p>auto-switch feature is disabled by default</p>
@@ -23,8 +23,6 @@
       </ul>
       You can also add `set keep-english-in-normal[-and-restore-in-insert]` to the `~/.ideavimrc` file and restart IDE to enable the feature.
       <br/>
-      On OSX if you are using custom keyboard layout you can set the following flag before calling `keep-english-in-normal-and-restore-in-insert`:
-      <code>let g:KeepEnglishName_package_name_package_name = "org.sil.ukelele.keyboardlayout.abcnl.abcnl"</code>
 
       </p>
       <h3>Notice:</h3>
@@ -63,7 +61,9 @@
       <p><a href="https://github.com/hadix-lin/ideavim_extension">GitHub Repository</a>: 源码和问题反馈 </p>
     ]]></description>
 
-  <change-notes><![CDATA[
+    <change-notes><![CDATA[
+      <p>1.6.0<br/>
+        When returning to insert mode, decide whether to restore the input method according to whether the character at the current input position is ASCII or not
       <p>1.5.2<br/>
         Compatible with "IdeaVIM 1.10.0"
       <p>1.5.0<br/>
@@ -98,6 +98,8 @@
         support IdeaVim 0.54, keep consistent compatibility strategy with IdeaVim starting with this version.
       <br/>
 
+      <p>1.6.0<br/>
+        返回insert模式时，根据当前输入位置的字符是否为ASCII来决策是否恢复输入法
       <p>1.5.2<br/>
         兼容"IdeaVIM 1.10.0"
       <p>1.5.0<br/>
@@ -131,17 +133,17 @@
       <p>1.4.0<br/>
         支持IdeaVim 0.54, 从这个版本开始兼容性策略与IdeaVim保持一致
     ]]>
-  </change-notes>
+    </change-notes>
 
-  <idea-version since-build="213"/>
+    <idea-version since-build="213"/>
 
-  <depends>com.intellij.modules.lang</depends>
-  <depends>IdeaVIM</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>IdeaVIM</depends>
 
-  <extensions defaultExtensionNs="IdeaVIM">
-    <vimExtension
-        implementation="io.github.hadixlin.iss.KeepEnglishInNormalExtension"/>
-    <vimExtension
-        implementation="io.github.hadixlin.iss.KeepEnglishInNormalAndRestoreInInsertExtension"/>
-  </extensions>
+    <extensions defaultExtensionNs="IdeaVIM">
+        <vimExtension
+                implementation="io.github.hadixlin.iss.KeepEnglishInNormalExtension"/>
+        <vimExtension
+                implementation="io.github.hadixlin.iss.KeepEnglishInNormalAndRestoreInInsertExtension"/>
+    </extensions>
 </idea-plugin>

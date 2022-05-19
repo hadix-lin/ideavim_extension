@@ -9,11 +9,11 @@ class LinFcitxRemoteSwitcher : InputMethodSwitcher {
 
     override fun storeCurrentThenSwitchToEnglish() {
         val current = getFcitxStatus()
-        if (current != STATUS_UNKNOWN) {
-            lastStatus = current
-        }
         if (current == STATUS_INACTIVE) {
             return
+        }
+        if (current != STATUS_UNKNOWN) {
+            lastStatus = current
         }
         switchToEnglish()
     }
