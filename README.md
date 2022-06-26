@@ -40,8 +40,33 @@ gradle buildPlugin
 在macOS中,normal模式的输入法可以通过变量`keep_input_source_in_normal`来设置,仅支持在`~/.ideavimrc`
 中使用.例如`let keep_input_source_in_normal="com.apple.keylayout.ABC"`
 
+在macOS中,normal模式的输入法可以通过变量`keep_input_source_in_normal`来设置,仅支持在`~/.ideavimrc`
+中使用.例如`let keep_input_source_in_normal="com.apple.keylayout.ABC"`
+
+ideavim.rc中还可以通过以下三个变量控制插件行为：
+
+`let keep_input_source_in_insert=[input source id]` 设置insert模式使用到非英文输入法
+
+`let keep_input_source_in_normal=[input source id]` 设置normal模式使用到输入英文到输入法
+
+注意：上面两个变量仅在windows和macOS中有效
+
+`let context_aware=1` 进入insert模式时根据上下文判断是否恢复输入法，0禁用，1启用
+
 ## 更新历史
 
+* 1.6.2 支持在ideavim.rc中通过以下三个变量控制插件行为：
+
+  `let keep_input_source_in_insert=[input source id]` 设置insert模式使用到非英文输入法
+
+  `let keep_input_source_in_normal=[input source id]` 设置normal模式使用到输入英文到输入法
+
+  注意：上面两个变量仅在windows和macOS中有效
+
+  `let context_aware=1` 进入insert模式时根据上下文判断是否恢复输入法，0禁用，1启用
+
+  注意：仅在`set keep-english-in-normal-and-restore-in-insert`时有意义
+* 1.6.1 修正[#87](https://github.com/hadix-lin/ideavim_extension/issues/87)
 * 1.6.0 返回insert模式时，根据当前输入位置的字符是否为ASCII来决策是否恢复输入法
 * 1.5.2 兼容"IdeaVIM 1.10.0"
 * 1.5.0 支持Linux下的IBUS输入引擎，解决[#76](https://github.com/hadix-lin/ideavim_extension/issues/76)
@@ -115,6 +140,7 @@ The plugin supports **macOS** and **Windows**, support **Linux** via fcitx
 [trydofor](https://github.com/trydofor) contributed code to support fcitx under linux
 [yangxuanx](https://github.com/yangxuanx) helps to test in linux environment
 [yuzhou721](https://github.com/yuzhou721) contributed code to support ibus under linux
+
 ## License
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhadix-lin%2Fideavim_extension.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhadix-lin%2Fideavim_extension?ref=badge_large)

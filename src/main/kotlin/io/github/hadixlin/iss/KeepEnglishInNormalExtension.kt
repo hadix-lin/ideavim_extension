@@ -8,21 +8,21 @@ import com.maddyhome.idea.vim.extension.VimExtension
  */
 class KeepEnglishInNormalExtension : VimExtension {
 
-    override fun getName(): String {
-        return NAME
-    }
+	override fun getName(): String {
+		return NAME
+	}
 
-    override fun init() {
-        InputMethodAutoSwitcher.enable()
-    }
+	override fun init() {
+		InputMethodAutoSwitcher.enable()
+	}
 
 
-    override fun dispose() {
-        InputMethodAutoSwitcher.disable()
-    }
+	override fun dispose() {
+		InputMethodAutoSwitcher.disable()
+	}
 
-    companion object {
-        const val NAME = "keep-english-in-normal"
-    }
+	companion object {
+		const val NAME = "keep-english-in-normal"
+	}
 
 }

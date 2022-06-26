@@ -4,53 +4,53 @@ import com.sun.jna.Pointer
 import com.sun.jna.platform.win32.WinDef
 import io.github.hadixlin.iss.InputMethodSwitcher
 
-class WinInputMethodSwitcher : InputMethodSwitcher {
+class WinInputMethodSwitcher(
+	english: Long?, private var nonEnglish: Long?
+) : InputMethodSwitcher {
 
-    private var lastInputSource: Long = -1
+	private val english: Long = english ?: KEY_LAYOUT_US_DEFAULT
+	override fun storeCurrentThenSwitchToEnglish() {
+		val hwnd = WinNative.INSTANCE.GetForegroundWindow() ?: return
+		val current = getCurrentInputSource(hwnd)
+		if (current == english) {
+			return
+		}
+		if (nonEnglish == null) {
+			nonEnglish = current
+		}
+		switchToInputSource(hwnd, english)
+	}
 
-    override fun storeCurrentThenSwitchToEnglish() {
-        val hwnd = WinNative.INSTANCE.GetForegroundWindow() ?: return
-        val current = getCurrentInputSource(hwnd)
-        if (current == KEY_LAYOUT_US) {
-            return
-        }
-        lastInputSource = current
-        switchToInputSource(hwnd, KEY_LAYOUT_US)
-    }
+	private fun switchToInputSource(hwnd: WinDef.HWND, inputSourceId: Long) {
+		WinNative.INSTANCE.PostMessage(
+			hwnd,
+			WM_INPUT_LANG_CHANGE_REQUEST,
+			WinDef.WPARAM(0),
+			WinDef.LPARAM(inputSourceId)
+		)
+	}
 
-    private fun switchToInputSource(hwnd: WinDef.HWND, inputSourceId: Long) {
-        WinNative.INSTANCE.PostMessage(
-            hwnd,
-            WM_INPUTLANGCHANGEREQUEST,
-            WinDef.WPARAM(0),
-            WinDef.LPARAM(inputSourceId)
-        )
-    }
+	override fun restore() {
+		val nonEnglish = this.nonEnglish ?: return
+		val hwnd = WinNative.INSTANCE.GetForegroundWindow() ?: return
+		switchToInputSource(hwnd, nonEnglish)
+	}
 
-    override fun restore() {
-        if (lastInputSource < 0) {
-            return
-        }
-        val hwnd = WinNative.INSTANCE.GetForegroundWindow() ?: return
-        switchToInputSource(hwnd, lastInputSource)
-        lastInputSource = -1
-    }
+	override fun switchToEnglish() {
+		val hwnd = WinNative.INSTANCE.GetForegroundWindow() ?: return
+		switchToInputSource(hwnd, english)
+	}
 
-    override fun switchToEnglish() {
-        val hwnd = WinNative.INSTANCE.GetForegroundWindow() ?: return
-        switchToInputSource(hwnd, KEY_LAYOUT_US)
-    }
+	companion object {
+		private const val KEY_LAYOUT_US_DEFAULT: Long = 0x4090409
+		private const val WM_INPUT_LANG_CHANGE_REQUEST = 0x0050
 
-    companion object {
-        private const val KEY_LAYOUT_US: Long = 0x4090409
-        private const val WM_INPUTLANGCHANGEREQUEST = 0x0050
-
-        private fun getCurrentInputSource(hwnd: WinDef.HWND?): Long {
-            val handle = hwnd ?: WinNative.INSTANCE.GetForegroundWindow()
-            val pid = WinNative.INSTANCE.GetWindowThreadProcessId(handle, null)
-            val hkl = WinNative.INSTANCE.GetKeyboardLayout(WinDef.DWORD(pid.toLong()))
-            return Pointer.nativeValue(hkl.pointer)
-        }
-    }
+		private fun getCurrentInputSource(hwnd: WinDef.HWND?): Long {
+			val handle = hwnd ?: WinNative.INSTANCE.GetForegroundWindow()
+			val pid = WinNative.INSTANCE.GetWindowThreadProcessId(handle, null)
+			val hkl = WinNative.INSTANCE.GetKeyboardLayout(WinDef.DWORD(pid.toLong()))
+			return Pointer.nativeValue(hkl.pointer)
+		}
+	}
 
 }
