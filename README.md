@@ -54,7 +54,7 @@ ideavim.rc中还可以通过以下三个变量控制插件行为：
 `let context_aware=1` 进入insert模式时根据上下文判断是否恢复输入法，0禁用，1启用
 
 ## 更新历史
-
+* 1.6.3 修正非预期情况下切换输入法的问题
 * 1.6.2 支持在ideavim.rc中通过以下三个变量控制插件行为：
 
   `let keep_input_source_in_insert=[input source id]` 设置insert模式使用到非英文输入法

@@ -50,7 +50,8 @@ object InputMethodAutoSwitcher {
 			if (StringUtils.isBlank(commandName)) {
 				return
 			}
-			if (commandName == VIM_INSERT_EXIT_MODE_ACTION) {
+			val vimInsertExitModeAction = VIM_INSERT_EXIT_MODE_ACTION
+			if (commandName == vimInsertExitModeAction) {
 				executor?.execute { switcher.storeCurrentThenSwitchToEnglish() }
 				return
 			}
@@ -63,7 +64,6 @@ object InputMethodAutoSwitcher {
 			}
 			if (contextAware) {
 				if (editor.document.charsSequence.isEmpty()) {
-					executor?.execute { switcher.restore() }
 					return
 				}
 				val pos = editor.caretModel.primaryCaret.offset

@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>IdeaVimExtension</id>
     <name>IdeaVimExtension</name>
-    <version>1.6.2</version>
+    <version>1.6.3</version>
 
     <vendor
             email="hadix.lin@gmail.com"
@@ -72,6 +72,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      <p>1.6.3<br/>
+        Fix the problem of switching input methods in unexpected situations
       <p>1.6.2<br/>
         Support for controlling plugin behavior in ideavim.rc via the following three variables:<br/>
         <code>let keep_input_source_in_insert=[input source id]</code> set input method for non-English used in insert mode<br/>
@@ -133,6 +135,8 @@
       </p>
       <br/>
 
+      <p>1.6.3<br/>
+        修正非预期情况下切换输入法的问题
       <p>1.6.2<br/>
         支持在ideavim.rc中通过以下三个变量控制插件行为：<br/>
         <code>let keep_input_source_in_insert=[input source id]</code> 设置insert模式使用到非英文输入法<br/>
