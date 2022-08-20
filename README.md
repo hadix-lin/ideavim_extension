@@ -54,6 +54,11 @@ ideavim.rc中还可以通过以下三个变量控制插件行为：
 `let context_aware=1` 进入insert模式时根据上下文判断是否恢复输入法，0禁用，1启用
 
 ## 更新历史
+* 1.6.4 
+
+  修正问题[#95](https://github.com/hadix-lin/ideavim_extension/issues/95)<br/>
+  去除对独立线程池的使用，改为使用应用管理器执行输入法切换动作，减少资源消耗
+
 * 1.6.3 修正非预期情况下切换输入法的问题
 * 1.6.2 支持在ideavim.rc中通过以下三个变量控制插件行为：
 

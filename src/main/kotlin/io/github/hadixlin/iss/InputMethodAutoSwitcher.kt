@@ -13,11 +13,7 @@ import com.maddyhome.idea.vim.command.CommandState
 import com.maddyhome.idea.vim.listener.VimInsertListener
 import org.apache.commons.lang.StringUtils
 import org.apache.commons.lang3.CharUtils
-import java.lang.Long.MAX_VALUE
 import java.util.*
-import java.util.concurrent.ArrayBlockingQueue
-import java.util.concurrent.ThreadPoolExecutor
-import java.util.concurrent.TimeUnit
 import kotlin.math.max
 import kotlin.math.min
 
@@ -38,8 +34,6 @@ object InputMethodAutoSwitcher {
 	var enabled: Boolean = false
 		private set
 
-	private var executor: ThreadPoolExecutor? = null
-
 	private val switcher = SystemInputMethodSwitcher()
 
 	private var messageBusConnection: MessageBusConnection? = null
@@ -52,7 +46,7 @@ object InputMethodAutoSwitcher {
 			}
 			val vimInsertExitModeAction = VIM_INSERT_EXIT_MODE_ACTION
 			if (commandName == vimInsertExitModeAction) {
-				executor?.execute { switcher.storeCurrentThenSwitchToEnglish() }
+				ApplicationManager.getApplication().invokeLater { switcher.storeCurrentThenSwitchToEnglish() }
 				return
 			}
 		}
@@ -75,7 +69,7 @@ object InputMethodAutoSwitcher {
 					return
 				}
 			}
-			executor?.execute { switcher.restore() }
+			ApplicationManager.getApplication().invokeLater { switcher.restore() }
 		}
 	}
 
@@ -84,20 +78,6 @@ object InputMethodAutoSwitcher {
 			return
 		}
 		enabled = true
-		if (executor?.isShutdown != false) {
-			executor = ThreadPoolExecutor(
-				1, 1,
-				MAX_VALUE, TimeUnit.DAYS,
-				ArrayBlockingQueue(10),
-				{ r ->
-					val thread = Thread(r, "ideavim_extension")
-					thread.isDaemon = true
-					thread.priority = Thread.MAX_PRIORITY
-					thread
-				},
-				ThreadPoolExecutor.DiscardPolicy()
-			)
-		}
 		registerExitInsertModeListener()
 		registerFocusChangeListener()
 		if (restoreInInsert) {
@@ -133,12 +113,12 @@ object InputMethodAutoSwitcher {
 		override fun focusLost(editor: Editor) {}
 
 		override fun focusGained(editor: Editor) {
-			if (!enabled) {
+			if (!enabled || !VimPlugin.isEnabled()) {
 				return
 			}
 			val state = CommandState.getInstance(editor)
 			if (state.mode !in EDITING_MODES) {
-				executor?.execute { switcher.switchToEnglish() }
+				ApplicationManager.getApplication().invokeLater { switcher.switchToEnglish() }
 			}
 		}
 	}
@@ -150,7 +130,6 @@ object InputMethodAutoSwitcher {
 		}
 		unregisterVimInsertListener()
 		unregisterExitInsertModeListener()
-		executor?.shutdown()
 		enabled = false
 	}
 }
