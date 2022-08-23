@@ -13,7 +13,11 @@ import com.maddyhome.idea.vim.command.CommandState
 import com.maddyhome.idea.vim.listener.VimInsertListener
 import org.apache.commons.lang.StringUtils
 import org.apache.commons.lang3.CharUtils
+import java.lang.Long.MAX_VALUE
 import java.util.*
+import java.util.concurrent.ArrayBlockingQueue
+import java.util.concurrent.ThreadPoolExecutor
+import java.util.concurrent.TimeUnit
 import kotlin.math.max
 import kotlin.math.min
 
@@ -34,6 +38,8 @@ object InputMethodAutoSwitcher {
 	var enabled: Boolean = false
 		private set
 
+	private var executor: ThreadPoolExecutor? = null
+
 	private val switcher = SystemInputMethodSwitcher()
 
 	private var messageBusConnection: MessageBusConnection? = null
@@ -46,7 +52,7 @@ object InputMethodAutoSwitcher {
 			}
 			val vimInsertExitModeAction = VIM_INSERT_EXIT_MODE_ACTION
 			if (commandName == vimInsertExitModeAction) {
-				ApplicationManager.getApplication().invokeLater { switcher.storeCurrentThenSwitchToEnglish() }
+				executor?.execute { switcher.storeCurrentThenSwitchToEnglish() }
 				return
 			}
 		}
@@ -69,7 +75,7 @@ object InputMethodAutoSwitcher {
 					return
 				}
 			}
-			ApplicationManager.getApplication().invokeLater { switcher.restore() }
+			executor?.execute { switcher.restore() }
 		}
 	}
 
@@ -78,6 +84,20 @@ object InputMethodAutoSwitcher {
 			return
 		}
 		enabled = true
+		if (executor?.isShutdown != false) {
+			executor = ThreadPoolExecutor(
+				1, 1,
+				MAX_VALUE, TimeUnit.DAYS,
+				ArrayBlockingQueue(10),
+				{ r ->
+					val thread = Thread(r, "ideavim_extension")
+					thread.isDaemon = true
+					thread.priority = Thread.MAX_PRIORITY
+					thread
+				},
+				ThreadPoolExecutor.DiscardPolicy()
+			)
+		}
 		registerExitInsertModeListener()
 		registerFocusChangeListener()
 		if (restoreInInsert) {
@@ -118,7 +138,7 @@ object InputMethodAutoSwitcher {
 			}
 			val state = CommandState.getInstance(editor)
 			if (state.mode !in EDITING_MODES) {
-				ApplicationManager.getApplication().invokeLater { switcher.switchToEnglish() }
+				executor?.execute { switcher.switchToEnglish() }
 			}
 		}
 	}
@@ -130,6 +150,7 @@ object InputMethodAutoSwitcher {
 		}
 		unregisterVimInsertListener()
 		unregisterExitInsertModeListener()
+		executor?.shutdown()
 		enabled = false
 	}
 }

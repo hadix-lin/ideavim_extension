@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>IdeaVimExtension</id>
     <name>IdeaVimExtension</name>
-    <version>1.6.4</version>
+    <version>1.6.5</version>
 
     <vendor
             email="hadix.lin@gmail.com"
@@ -72,6 +72,9 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      <p>1.6.5<br/>
+        Fix <a href="https://github.com/hadix-lin/ideavim_extension/issues/96">#96</a><br/>
+        Use an independent thread pool to perform input method switching to avoid IDE lag
       <p>1.6.4<br/>
         Fix <a href="https://github.com/hadix-lin/ideavim_extension/issues/95">#95</a><br/>
         Eliminate the use of independent thread pools, use ApplicationManager to perform input method switching action, and reduce resource consumption
@@ -138,6 +141,9 @@
       </p>
       <br/>
 
+      <p>1.6.5<br/>
+        修正问题<a href="https://github.com/hadix-lin/ideavim_extension/issues/96">#96</a><br/>
+        使用独立线程池执行输入法切换动作，避免IDE卡顿
       <p>1.6.4<br/>
         修正问题<a href="https://github.com/hadix-lin/ideavim_extension/issues/95">#95</a><br/>
         去除对独立线程池的使用，改为使用应用管理器执行输入法切换动作，减少资源消耗
