@@ -6,7 +6,10 @@ import com.sun.jna.Native
 object MacNative {
 
 	init {
+		val jnaNounpack = System.getProperty("jna.nounpack")
+		System.setProperty("jna.nounpack", "false")
 		Native.register("input-source-switcher")
+		System.setProperty("jna.nounpack", jnaNounpack)
 	}
 
 	external fun getCurrentInputSourceID(): String

@@ -2,22 +2,21 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
 	id("java")
-	id("org.jetbrains.intellij") version "1.4.0"
-	id("org.jetbrains.kotlin.jvm") version "1.6.0"
+	id("org.jetbrains.intellij") version "1.10.0"
+	id("org.jetbrains.kotlin.jvm") version "1.7.22"
 }
 
 intellij {
 	pluginName.set("IdeaVimExtension")
-	version.set("IC-2021.3")
-	plugins.add("IdeaVIM:1.10.0")
+	version.set("2022.3")
+	plugins.add("IdeaVIM:2.0.0")
 	updateSinceUntilBuild.set(false)
 	downloadSources.set(true)
 }
 
 tasks.withType<KotlinCompile> {
-	kotlinOptions.apiVersion = "1.5"
-	kotlinOptions.languageVersion = "1.5"
-	kotlinOptions.jvmTarget = "1.8"
+	kotlinOptions.jvmTarget = "17"
+
 }
 
 dependencies {
@@ -25,6 +24,7 @@ dependencies {
 }
 
 group = "io.github.hadix"
+version = "1.6.6"
 
 repositories {
 	mavenCentral()

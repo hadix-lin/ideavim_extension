@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>IdeaVimExtension</id>
     <name>IdeaVimExtension</name>
-    <version>1.6.5</version>
+    <version>1.6.6</version>
 
     <vendor
             email="hadix.lin@gmail.com"
@@ -72,6 +72,9 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      <p>1.6.6<br/>
+        Compatible with IdeaVIM 2.0.0, Idea-IC 2022.3+<br/>
+        <code>context_aware</code> is set to 0 by default, avoiding unstable input method switching behaviors for users who are unclear about usage
       <p>1.6.5<br/>
         Fix <a href="https://github.com/hadix-lin/ideavim_extension/issues/96">#96</a><br/>
         Use an independent thread pool to perform input method switching to avoid IDE lag
@@ -141,6 +144,9 @@
       </p>
       <br/>
 
+      <p>1.6.6<br/>
+        兼容IdeaVIM 2.0.0，Idea-IC 2022.3+<br/>
+        context_aware默认设置为0，对不清楚用法对用户避免产生不稳定的输入发切换行为
       <p>1.6.5<br/>
         修正问题<a href="https://github.com/hadix-lin/ideavim_extension/issues/96">#96</a><br/>
         使用独立线程池执行输入法切换动作，避免IDE卡顿
@@ -211,7 +217,7 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="213"/>
+    <idea-version since-build="223"/>
 
     <depends>com.intellij.modules.lang</depends>
     <depends>IdeaVIM</depends>

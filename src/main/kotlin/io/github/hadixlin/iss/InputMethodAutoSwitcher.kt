@@ -32,7 +32,7 @@ object InputMethodAutoSwitcher {
 	@Volatile
 	var restoreInInsert: Boolean = false
 
-	var contextAware: Boolean = true
+	var contextAware: Boolean = false
 
 	@Volatile
 	var enabled: Boolean = false
@@ -71,7 +71,7 @@ object InputMethodAutoSwitcher {
 					max(pos - 1, 0),
 					min(pos + 1, editor.document.textLength - 1)
 				)
-				if (chars.any { CharUtils.isAscii(it) }) {
+				if (chars.any { CharUtils.isAsciiPrintable(it) }) {
 					return
 				}
 			}
