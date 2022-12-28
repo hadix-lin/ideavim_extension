@@ -51,9 +51,13 @@ ideavim.rc中还可以通过以下三个变量控制插件行为：
 
 注意：上面两个变量仅在windows和macOS中有效
 
-`let context_aware=1` 进入insert模式时根据上下文判断是否恢复输入法，0禁用，1启用
+`` let context_aware=1进入insert模式时根据上下文判断是否恢复输入法，0禁用，1启用
 
 ## 更新历史
+* 1.6.6
+
+  兼容IdeaVIM 2.0.0，Idea-IC 2022.3.1+
+
 * 1.6.6
   
   兼容IdeaVIM 2.0.0，Idea-IC 2022.3+

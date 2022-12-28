@@ -1,7 +1,6 @@
 <idea-plugin>
     <id>IdeaVimExtension</id>
     <name>IdeaVimExtension</name>
-    <version>1.6.6</version>
 
     <vendor
             email="hadix.lin@gmail.com"
@@ -72,6 +71,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      <p>1.6.7<br/>
+        Compatible with IdeaVIM 2.0.0, Idea-IC 2022.3.1+<br/>
       <p>1.6.6<br/>
         Compatible with IdeaVIM 2.0.0, Idea-IC 2022.3+<br/>
         <code>context_aware</code> is set to 0 by default, avoiding unstable input method switching behaviors for users who are unclear about usage
@@ -144,6 +145,8 @@
       </p>
       <br/>
 
+      <p>1.6.7<br/>
+        兼容IdeaVIM 2.0.0，Idea-IC 2022.3.1+<br/>
       <p>1.6.6<br/>
         兼容IdeaVIM 2.0.0，Idea-IC 2022.3+<br/>
         context_aware默认设置为0，对不清楚用法对用户避免产生不稳定的输入发切换行为
@@ -217,7 +220,7 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="223"/>
+    <idea-version since-build="223.8214.52"/>
 
     <depends>com.intellij.modules.lang</depends>
     <depends>IdeaVIM</depends>
