@@ -71,6 +71,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      <p>1.6.8<br/>
+        fix <a href="https://github.com/hadix-lin/ideavim_extension/issues/111">#111</a><br/>
       <p>1.6.7<br/>
         Compatible with IdeaVIM 2.0.0, Idea-IC 2022.3.1+<br/>
       <p>1.6.6<br/>
@@ -145,6 +147,8 @@
       </p>
       <br/>
 
+      <p>1.6.8<br/>
+        修正问题 <a href="https://github.com/hadix-lin/ideavim_extension/issues/111">#111</a><br/>
       <p>1.6.7<br/>
         兼容IdeaVIM 2.0.0，Idea-IC 2022.3.1+<br/>
       <p>1.6.6<br/>
@@ -220,7 +224,7 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="223.8214.52"/>
+    <idea-version since-build="223.8214"/>
 
     <depends>com.intellij.modules.lang</depends>
     <depends>IdeaVIM</depends>
