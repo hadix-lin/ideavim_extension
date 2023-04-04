@@ -30,11 +30,14 @@ class WinInputMethodSwitcher(
 		)
 	}
 
-	override fun restore() {
-		val nonEnglish = this.nonEnglish ?: return
-		val hwnd = WinNative.INSTANCE.GetForegroundWindow() ?: return
-		switchToInputSource(hwnd, nonEnglish)
-	}
+    override fun restore() {
+        val hwnd = WinNative.INSTANCE.GetForegroundWindow() ?: return
+        val currentInputSource = getCurrentInputSource(hwnd)
+        val nonEnglish = this.nonEnglish ?: return
+        if (currentInputSource != nonEnglish) {
+            switchToInputSource(hwnd, nonEnglish)
+        }
+    }
 
 	override fun switchToEnglish() {
 		val hwnd = WinNative.INSTANCE.GetForegroundWindow() ?: return
