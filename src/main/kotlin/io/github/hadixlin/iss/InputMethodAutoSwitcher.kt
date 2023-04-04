@@ -34,9 +34,11 @@ object InputMethodAutoSwitcher {
 
 	var contextAware: Boolean = false
 
-	@Volatile
-	var enabled: Boolean = false
-		private set
+    var focusAuto: Boolean = false
+
+    @Volatile
+    var enabled: Boolean = false
+        private set
 
 	private var executor: ThreadPoolExecutor? = null
 
@@ -130,18 +132,27 @@ object InputMethodAutoSwitcher {
 
 	private val focusListener = object : FocusChangeListener {
 
-		override fun focusLost(editor: Editor) {}
+        override fun focusLost(editor: Editor) {
+            if (focusAuto) {
+                executor?.execute { switcher.restore() }
+            }
+        }
 
-		override fun focusGained(editor: Editor) {
-			if (!enabled || !VimPlugin.isEnabled()) {
-				return
-			}
-			val state = CommandState.getInstance(editor)
-			if (state.mode !in EDITING_MODES) {
-				executor?.execute { switcher.switchToEnglish() }
-			}
-		}
-	}
+        override fun focusGained(editor: Editor) {
+            if (!enabled || !VimPlugin.isEnabled()) {
+                return
+            }
+            val state = CommandState.getInstance(editor)
+            if (state.mode !in EDITING_MODES) {
+                executor?.execute { switcher.switchToEnglish() }
+            }
+            if (focusAuto) {
+                if (state.mode in EDITING_MODES) {
+                    executor?.execute { switcher.restore() }
+                }
+            }
+        }
+    }
 
 
 	fun disable() {

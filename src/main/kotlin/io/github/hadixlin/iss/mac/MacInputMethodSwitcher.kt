@@ -43,10 +43,13 @@ class MacInputMethodSwitcher(
 		}
 	}
 
-	override fun restore() {
-		val nonEnglish = this.nonEnglish ?: return
-		switchInputSource(nonEnglish)
-	}
+    override fun restore() {
+        val currentInputSourceID = getCurrentInputSourceID()
+        val nonEnglish = this.nonEnglish ?: return
+        if (currentInputSourceID != nonEnglish) {
+            switchInputSource(nonEnglish)
+        }
+    }
 
 	companion object {
 		private const val KEY_LAYOUT_US = "com.apple.keylayout.US"
