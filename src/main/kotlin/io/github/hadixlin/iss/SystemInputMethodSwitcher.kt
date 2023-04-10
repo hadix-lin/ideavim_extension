@@ -25,6 +25,7 @@ class SystemInputMethodSwitcher
 					english?.toVimNumber()?.value?.toLong(), nonEnglish?.toVimNumber()?.value?.toLong()
 				)
 			}
+
 			SystemUtils.IS_OS_MAC -> {
 				if (english != null) {
 					MacInputMethodSwitcher(english.asString(), nonEnglish = nonEnglish?.asString())
@@ -32,6 +33,7 @@ class SystemInputMethodSwitcher
 					MacInputMethodSwitcher(nonEnglish = nonEnglish?.asString())
 				}
 			}
+
 			SystemUtils.IS_OS_LINUX -> {
 				//获取输入法设置的环境变量
 				val qtInputMethod = System.getenv(QT_INPUT_METHOD)
@@ -45,6 +47,7 @@ class SystemInputMethodSwitcher
 					throw IllegalArgumentException("Not Support Current Input Method [${qtInputMethod ?: gtkInputMethod}], Only Support Linux(with fcitx and ibus)")
 				}
 			}
+
 			else -> throw IllegalArgumentException("Not Support Current System OS, Only Support Windows, MacOS and Linux(with fcitx and ibus)")
 		}
 	}

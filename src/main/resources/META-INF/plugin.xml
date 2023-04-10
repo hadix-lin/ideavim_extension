@@ -71,6 +71,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      <p>1.6.9<br/>
+        merged PR<a href="https://github.com/hadix-lin/ideavim_extension/pull/113">#113</a>, restore the input method when the current editor loses focus
       <p>1.6.8<br/>
         fix <a href="https://github.com/hadix-lin/ideavim_extension/issues/111">#111</a><br/>
       <p>1.6.7<br/>
@@ -147,6 +149,8 @@
       </p>
       <br/>
 
+      <p>1.6.9<br/>
+        合并PR<a href="https://github.com/hadix-lin/ideavim_extension/pull/113">#113</a>，当前编辑器失去焦点时恢复输入法
       <p>1.6.8<br/>
         修正问题 <a href="https://github.com/hadix-lin/ideavim_extension/issues/111">#111</a><br/>
       <p>1.6.7<br/>

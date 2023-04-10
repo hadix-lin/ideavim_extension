@@ -52,17 +52,19 @@ ideavim.rc中还可以通过以下三个变量控制插件行为：
 注意：上面两个变量仅在windows和macOS中有效
 
 ``` let context_aware=1进入insert模式时根据上下文判断是否恢复输入法，0禁用，1启用```
+
 ``` let focus_auto=1当编辑器丢失焦点的时候，自动切换到非英文输入法，获得焦点的时候，
 自动根据输入模式恢复输入法(如果是norma模式，自动恢复英文输入法，insert模式自动回复成非英文输入法),0禁用，1启用
 ```
 
 ## 更新历史
+
 * 1.6.6
 
   兼容IdeaVIM 2.0.0，Idea-IC 2022.3.1+
 
 * 1.6.6
-  
+
   兼容IdeaVIM 2.0.0，Idea-IC 2022.3+
   context_aware默认设置为0，对不清楚用法对用户避免产生不稳定的输入发切换行为
 
@@ -71,7 +73,7 @@ ideavim.rc中还可以通过以下三个变量控制插件行为：
   修正问题[#96](https://github.com/hadix-lin/ideavim_extension/issues/96)<br/>
   使用独立线程池执行输入法切换动作，避免IDE卡顿
 
-* 1.6.4 
+* 1.6.4
 
   修正问题[#95](https://github.com/hadix-lin/ideavim_extension/issues/95)<br/>
   去除对独立线程池的使用，改为使用应用管理器执行输入法切换动作，减少资源消耗
@@ -100,7 +102,8 @@ ideavim.rc中还可以通过以下三个变量控制插件行为：
 * 1.4.7 在MacOS下支持,Unicode16进制输入法
 * 1.4.6 支持fcitx5
 * 1.4.5 兼容IdeaVim 0.56, Intellij IDEA 2020.1
-* 1.4.4 修正编辑器重新获取焦点时保存的输入法状态不正确的问题[#48](https://github.com/hadix-lin/ideavim_extension/issues/48)
+* 1.4.4
+  修正编辑器重新获取焦点时保存的输入法状态不正确的问题[#48](https://github.com/hadix-lin/ideavim_extension/issues/48)
 * 1.4.3 修正非预期的输入法回复问题 [#44](https://github.com/hadix-lin/ideavim_extension/issues/44)
 * 1.4.2
     1. 根据vim指令执行后编辑器状态来判断是否需要恢复输入法

@@ -1,9 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("java")
+	kotlin("jvm") version "1.8.10"
 	id("org.jetbrains.intellij") version "1.11.0"
-	id("org.jetbrains.kotlin.jvm") version "1.7.22"
 }
 
 intellij {
@@ -16,15 +15,14 @@ intellij {
 
 tasks.withType<KotlinCompile> {
 	kotlinOptions.jvmTarget = "17"
-
 }
 
 dependencies {
-	implementation(kotlin("stdlib-jdk8"))
+	implementation(kotlin("stdlib"))
 }
 
 group = "io.github.hadix"
-version = "1.6.8"
+version = "1.6.9"
 
 repositories {
 	mavenCentral()

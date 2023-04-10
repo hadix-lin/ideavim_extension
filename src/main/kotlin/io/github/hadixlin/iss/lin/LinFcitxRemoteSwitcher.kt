@@ -46,6 +46,7 @@ class LinFcitxRemoteSwitcher : InputMethodSwitcher {
 			return proc
 		}
 
+		@Suppress("unused")
 		private fun getFcitxStatus(): Int {
 			val proc = execFcitxRemote(FCITX_STATUS)
 			return Scanner(proc.inputStream).use {

@@ -11,6 +11,7 @@ import com.sun.jna.win32.W32APIOptions
  */
 interface WinNative : User32 {
 
+	@Suppress("FunctionName")
 	fun GetKeyboardLayout(pid: WinDef.DWORD): WinNT.HANDLE
 
 	companion object {
