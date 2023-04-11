@@ -34,7 +34,7 @@ object InputMethodAutoSwitcher {
 
 	var contextAware: Boolean = false
 
-	var focusAware: Boolean = false
+	var focusAware: Boolean = true
 
 	@Volatile
 	var enabled: Boolean = false
