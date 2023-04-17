@@ -53,11 +53,14 @@ ideavim.rc中还可以通过以下三个变量控制插件行为：
 
 ``` let context_aware=1进入insert模式时根据上下文判断是否恢复输入法，0禁用，1启用```
 
-``` let focus_auto=1当编辑器丢失焦点的时候，自动切换到非英文输入法，获得焦点的时候，
-自动根据输入模式恢复输入法(如果是norma模式，自动恢复英文输入法，insert模式自动回复成非英文输入法),0禁用，1启用
-```
-
 ## 更新历史
+* 1.6.8
+
+  修正问题[#111](https://github.com/hadix-lin/ideavim_extension/issues/111)
+
+* 1.6.7
+
+  兼容IdeaVIM 2.0.0，Idea-IC 2022.3.1+ 
 
 * 1.6.6
 

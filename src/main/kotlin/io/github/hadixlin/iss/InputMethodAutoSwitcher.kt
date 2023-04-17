@@ -34,8 +34,6 @@ object InputMethodAutoSwitcher {
 
 	var contextAware: Boolean = false
 
-	var focusAware: Boolean = true
-
 	@Volatile
 	var enabled: Boolean = false
 		private set
@@ -134,9 +132,6 @@ object InputMethodAutoSwitcher {
 	private val focusListener = object : FocusChangeListener {
 
 		override fun focusLost(editor: Editor) {
-			if (focusAware) {
-				executor?.execute { switcher.restore() }
-			}
 		}
 
 		override fun focusGained(editor: Editor) {
@@ -146,8 +141,6 @@ object InputMethodAutoSwitcher {
 			val state = CommandState.getInstance(editor)
 			if (state.mode !in EDITING_MODES) {
 				executor?.execute { switcher.switchToEnglish() }
-			} else if (focusAware) {
-				executor?.execute { switcher.restore() }
 			}
 		}
 	}

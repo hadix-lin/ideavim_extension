@@ -71,6 +71,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      <p>1.6.11<br/>
+        Fallback to editor focus handling behavior of 1.6.8
       <p>1.6.10<br/>
         default open focus auto
       <p>1.6.9<br/>
@@ -151,6 +153,8 @@
       </p>
       <br/>
 
+      <p>1.6.11<br/>
+        回退到1.6.8的编辑器焦点处理行为
       <p>1.6.10<br/>
         默认激活编辑器焦点事件切换输入法功能
       <p>1.6.9<br/>
