@@ -54,6 +54,18 @@ ideavim.rc中还可以通过以下三个变量控制插件行为：
 ``` let context_aware=1进入insert模式时根据上下文判断是否恢复输入法，0禁用，1启用```
 
 ## 更新历史
+* 1.6.11
+
+  回退到1.6.8的编辑器焦点处理行为 
+
+* 1.6.10
+  
+  默认激活编辑器焦点事件切换输入法功能 
+
+* 1.6.9
+
+  合并PR<a href="https://github.com/hadix-lin/ideavim_extension/pull/113">#113</a>，当前编辑器失去焦点时恢复输入法
+
 * 1.6.8
 
   修正问题[#111](https://github.com/hadix-lin/ideavim_extension/issues/111)
