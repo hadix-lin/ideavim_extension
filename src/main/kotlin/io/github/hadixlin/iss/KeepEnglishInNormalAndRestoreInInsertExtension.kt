@@ -17,10 +17,11 @@ class KeepEnglishInNormalAndRestoreInInsertExtension : VimExtension {
 	}
 
 	override fun init() {
-		InputMethodAutoSwitcher.restoreInInsert = true
 		InputMethodAutoSwitcher.contextAware =
 			VimPlugin.getVariableService().getGlobalVariableValue(CONTEXT_WARE)?.asBoolean() ?: true
 		VimPlugin.getOptionService().setOption(OptionService.Scope.GLOBAL, KeepEnglishInNormalExtension.NAME)
+
+		InputMethodAutoSwitcher.restoreInInsert = true
 	}
 
 	override fun dispose() {

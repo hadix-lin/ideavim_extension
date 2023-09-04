@@ -29,8 +29,20 @@ object InputMethodAutoSwitcher {
 		CommandState.Mode.REPLACE
 	)
 
+	var isRegisterVimInsertListener=false;
+
 	@Volatile
 	var restoreInInsert: Boolean = false
+		set(value) {
+			field = value
+			if(enabled){
+				if(value){
+					registerVimInsertListener();
+				}else{
+					unregisterVimInsertListener();
+				}
+			}
+		}
 
 	var contextAware: Boolean = false
 
@@ -116,11 +128,17 @@ object InputMethodAutoSwitcher {
 	}
 
 	private fun registerVimInsertListener() {
-		VimPlugin.getChange().addInsertListener(insertListener)
+		if(!isRegisterVimInsertListener){
+			isRegisterVimInsertListener=true;
+			VimPlugin.getChange().addInsertListener(insertListener)
+		}
 	}
 
 	private fun unregisterVimInsertListener() {
-		VimPlugin.getChange().removeInsertListener(insertListener)
+		if(isRegisterVimInsertListener){
+			isRegisterVimInsertListener=false;
+			VimPlugin.getChange().removeInsertListener(insertListener)
+		}
 	}
 
 	private fun registerFocusChangeListener() {
