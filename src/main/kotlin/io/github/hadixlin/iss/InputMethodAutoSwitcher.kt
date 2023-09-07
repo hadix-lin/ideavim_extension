@@ -31,6 +31,14 @@ object InputMethodAutoSwitcher {
 
 	@Volatile
 	var restoreInInsert: Boolean = false
+		set(value) {
+			field = value
+			if (value) {
+				registerVimInsertListener()
+			} else {
+				unregisterVimInsertListener()
+			}
+		}
 
 	var contextAware: Boolean = false
 

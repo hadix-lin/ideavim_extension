@@ -71,6 +71,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      <p>1.6.12<br/>
+        Fix the problem of being unable to restore the input method due to configuration order
       <p>1.6.11<br/>
         Fallback to editor focus handling behavior of 1.6.8
       <p>1.6.10<br/>
@@ -153,6 +155,8 @@
       </p>
       <br/>
 
+      <p>1.6.12<br/>
+        修正由于配置顺序导致无法恢复输入法的问题
       <p>1.6.11<br/>
         回退到1.6.8的编辑器焦点处理行为
       <p>1.6.10<br/>

@@ -6,7 +6,6 @@ import com.maddyhome.idea.vim.vimscript.services.OptionService
 
 
 /**
- * 输入中文
  * @author hadix
  * @date 31/03/2017
  */
