@@ -53,7 +53,22 @@ ideavim.rc中还可以通过以下三个变量控制插件行为：
 
 ``` let context_aware=1进入insert模式时根据上下文判断是否恢复输入法，0禁用，1启用```
 
+Linux 下的 fcitx5-rime 可以通过显式申明 `IDEA_VIM_EXTENSION_USE_RIME_ASCII` 环境变量在 normal 模式使用 Rime 的 ASCII Mode。
+
+版本要求：
+  - `fcitx5 > 5.0.20`
+  - `fcitx5-rime > 5.0.8`
+
 ## 更新历史
+* 1.6.13
+
+  支持 Linux 下的 fcitx5-rime 使用 Rime ASCII 模式切换输入法。
+  需要显式申明 `IDEA_VIM_EXTENSION_USE_RIME_ASCII` 环境变量
+   
+  - fcitx5 和 fcitx5-rime 版本要求：
+    - `fcitx5 > 5.0.20`
+    - `fcitx5-rime > 5.0.8`
+
 * 1.6.12
 
   修正由于配置顺序导致无法恢复输入法的问题
