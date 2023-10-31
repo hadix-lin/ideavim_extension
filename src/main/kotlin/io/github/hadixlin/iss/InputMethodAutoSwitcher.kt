@@ -58,8 +58,7 @@ object InputMethodAutoSwitcher {
 			if (StringUtils.isBlank(commandName)) {
 				return
 			}
-			val vimInsertExitModeAction = VIM_INSERT_EXIT_MODE_ACTION
-			if (commandName == vimInsertExitModeAction) {
+			if (commandName == VIM_INSERT_EXIT_MODE_ACTION) {
 				executor?.execute { switcher.storeCurrentThenSwitchToEnglish() }
 				return
 			}

@@ -43,7 +43,7 @@ gradle buildPlugin
 在macOS中,normal模式的输入法可以通过变量`keep_input_source_in_normal`来设置,仅支持在`~/.ideavimrc`
 中使用.例如`let keep_input_source_in_normal="com.apple.keylayout.ABC"`
 
-ideavim.rc中还可以通过以下三个变量控制插件行为：
+ideavim.rc中还可以通过以下几个变量控制插件行为：
 
 `let keep_input_source_in_insert=[input source id]` 设置insert模式使用到非英文输入法
 
@@ -53,17 +53,17 @@ ideavim.rc中还可以通过以下三个变量控制插件行为：
 
 ``` let context_aware=1进入insert模式时根据上下文判断是否恢复输入法，0禁用，1启用```
 
-Linux 下的 fcitx5-rime 可以通过显式申明 `IDEA_VIM_EXTENSION_USE_RIME_ASCII` 环境变量在 normal 模式使用 Rime 的 ASCII Mode。
+Linux 下的 fcitx5-rime 可以设置 `let rime-ascii = 1` 在 normal 模式使用 Rime 的 ASCII Mode。
 
 版本要求：
   - `fcitx5 > 5.0.20`
   - `fcitx5-rime > 5.0.8`
 
 ## 更新历史
-* 1.6.13
+* 1.7.0
 
   支持 Linux 下的 fcitx5-rime 使用 Rime ASCII 模式切换输入法。
-  需要显式申明 `IDEA_VIM_EXTENSION_USE_RIME_ASCII` 环境变量
+  需要在ideavim.rc中设置`let rime-ascii = 1` 
    
   - fcitx5 和 fcitx5-rime 版本要求：
     - `fcitx5 > 5.0.20`

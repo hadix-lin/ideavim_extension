@@ -1,15 +1,14 @@
 package io.github.hadixlin.iss
 
 import com.maddyhome.idea.vim.VimPlugin
-import io.github.hadixlin.iss.lin.LinFcitxRemoteSwitcher
 import io.github.hadixlin.iss.lin.LinFcitx5RimeSwitcher
+import io.github.hadixlin.iss.lin.LinFcitxRemoteSwitcher
 import io.github.hadixlin.iss.lin.LinuxIbusSwitcher
 import io.github.hadixlin.iss.mac.MacInputMethodSwitcher
 import io.github.hadixlin.iss.win.WinInputMethodSwitcher
 import org.apache.commons.lang.SystemUtils
-import java.lang.NullPointerException
+import java.util.*
 import java.util.concurrent.TimeUnit
-import java.util.Scanner
 
 
 /** Created by hadix on 26/12/2018.  */
@@ -41,16 +40,11 @@ class SystemInputMethodSwitcher
 				//获取输入法设置的环境变量
 				val qtInputMethod = System.getenv(QT_INPUT_METHOD)
 				val gtkInputMethod = System.getenv(GTK_INPUT_METHOD)
-				val useRimeASCII = try {
-					System.getenv(IDEA_VIM_EXTENSION_USE_RIME_ASCII)
-				} catch (e: NullPointerException){
-					""
-				}
 				//当前系统环境变量判断
 				if (isFcitx(qtInputMethod, gtkInputMethod)) {
-					if (useRimeASCII.isNotEmpty() && canUseRimeAscii()){
+					if (canUseRimeAscii()) {
 						LinFcitx5RimeSwitcher()
-					}else{
+					} else {
 						LinFcitxRemoteSwitcher()
 					}
 				} else if (isIbus(qtInputMethod, gtkInputMethod)) {
@@ -85,7 +79,6 @@ class SystemInputMethodSwitcher
 		private const val INPUT_METHOD_IBUS = "ibus"
 		private const val QT_INPUT_METHOD = "QT_IM_MODULE"
 		private const val GTK_INPUT_METHOD = "GTK_IM_MODULE"
-		private const val IDEA_VIM_EXTENSION_USE_RIME_ASCII = "IDEA_VIM_EXTENSION_USE_RIME_ASCII"
 
 		fun isFcitx(qtInputMethod: String?, gtkInputMethod: String?): Boolean {
 			return qtInputMethod == INPUT_METHOD_FCITX
@@ -94,19 +87,21 @@ class SystemInputMethodSwitcher
 					|| gtkInputMethod == INPUT_METHOD_FCITX5
 		}
 
-		fun canUseRimeAscii(): Boolean{
-			val cmd = arrayOf("busctl", "--user",  "call", "org.fcitx.Fcitx5", "/controller",
-				"org.fcitx.Fcitx.Controller1","CurrentInputMethod")
+		fun canUseRimeAscii(): Boolean {
+			val rimeAscii = VimPlugin.getVariableService().getGlobalVariableValue("rime-ascii")?.asBoolean() ?: false
+			if (!rimeAscii) {
+				return false
+			}
+			val cmd = arrayOf(
+				"busctl", "--user", "call", "org.fcitx.Fcitx5", "/controller",
+				"org.fcitx.Fcitx.Controller1", "CurrentInputMethod"
+			)
 			val proc = Runtime.getRuntime().exec(cmd)
 			proc.waitFor(3, TimeUnit.SECONDS)
 			return Scanner(proc.inputStream).use {
-				if (it.hasNext()) {
-					val firstToken = it.next()
-					val sb = StringBuffer()
-					while(it.hasNext()){
-						sb.append(it.next())
-					}
-					firstToken == "s" && sb.contains("rime")
+				if (it.hasNextLine()) {
+					val line = it.nextLine()
+					line.startsWith("s") && line.contains("rime")
 				} else {
 					false
 				}

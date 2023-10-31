@@ -22,7 +22,7 @@ dependencies {
 }
 
 group = "io.github.hadix"
-version = "1.6.12"
+version = "1.7.0"
 
 repositories {
 	mavenCentral()
