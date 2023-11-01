@@ -79,6 +79,7 @@ class SystemInputMethodSwitcher
 		private const val INPUT_METHOD_IBUS = "ibus"
 		private const val QT_INPUT_METHOD = "QT_IM_MODULE"
 		private const val GTK_INPUT_METHOD = "GTK_IM_MODULE"
+		private const val RIME_ASCII_MODE = "rime_ascii"
 
 		fun isFcitx(qtInputMethod: String?, gtkInputMethod: String?): Boolean {
 			return qtInputMethod == INPUT_METHOD_FCITX
@@ -88,7 +89,7 @@ class SystemInputMethodSwitcher
 		}
 
 		fun canUseRimeAscii(): Boolean {
-			val rimeAscii = VimPlugin.getVariableService().getGlobalVariableValue("rime-ascii")?.asBoolean() ?: false
+			val rimeAscii = VimPlugin.getVariableService().getGlobalVariableValue(RIME_ASCII_MODE)?.asBoolean() ?: false
 			if (!rimeAscii) {
 				return false
 			}
