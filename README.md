@@ -53,7 +53,7 @@ ideavim.rc中还可以通过以下几个变量控制插件行为：
 
 ``` let context_aware=1进入insert模式时根据上下文判断是否恢复输入法，0禁用，1启用```
 
-Linux 下的 fcitx5-rime 可以设置 `let rime-ascii = 1` 在 normal 模式使用 Rime 的 ASCII Mode。
+Linux 下的 fcitx5-rime 可以设置 `let rime_ascii = 1` 在 normal 模式使用 Rime 的 ASCII Mode。
 
 版本要求：
   - `fcitx5 > 5.0.20`
@@ -63,7 +63,7 @@ Linux 下的 fcitx5-rime 可以设置 `let rime-ascii = 1` 在 normal 模式使�
 * 1.7.0
 
   支持 Linux 下的 fcitx5-rime 使用 Rime ASCII 模式切换输入法。
-  需要在ideavim.rc中设置`let rime-ascii = 1` 
+  需要在ideavim.rc中设置`let rime_ascii = 1` 
    
   - fcitx5 和 fcitx5-rime 版本要求：
     - `fcitx5 > 5.0.20`

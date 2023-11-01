@@ -69,7 +69,7 @@
       </p>
       <p>
       <pre>
-      Linux 下的 fcitx5-rime 可以设置 `let rime-ascii = 1` 在 normal 模式使用 Rime 的 ASCII Mode。
+      Linux 下的 fcitx5-rime 可以设置 `let rime_ascii = 1` 在 normal 模式使用 Rime 的 ASCII Mode。
       版本要求：
        - `fcitx5 > 5.0.20`
        - `fcitx5-rime > 5.0.8`
@@ -83,7 +83,7 @@
       <pre>
        support using "Rime ASCII" mode to switch input method
 
-       require set `let rime-ascii = 1` in ideavim.rc.
+       require set `let rime_ascii = 1` in ideavim.rc.
        - fcitx5 and fcitx5-rime version must follow：
             - `fcitx5 > 5.0.20`
             - `fcitx5-rime > 5.0.8`
@@ -175,7 +175,7 @@
       <p>1.7.0<br/>
       <pre>
        支持 Linux 下的 fcitx5-rime 使用 Rime ASCII 模式切换输入法。
-       需要在ideavim.rc中设置`let rime-ascii = 1`
+       需要在ideavim.rc中设置`let rime_ascii = 1`
        - fcitx5 和 fcitx5-rime 版本要求：
             - `fcitx5 > 5.0.20`
             - `fcitx5-rime > 5.0.8`
