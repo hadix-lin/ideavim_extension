@@ -11,8 +11,8 @@ import com.intellij.util.messages.MessageBusConnection
 import com.maddyhome.idea.vim.VimPlugin
 import com.maddyhome.idea.vim.command.CommandState
 import com.maddyhome.idea.vim.listener.VimInsertListener
-import org.apache.commons.lang.StringUtils
 import org.apache.commons.lang3.CharUtils
+import org.apache.commons.lang3.StringUtils
 import java.lang.Long.MAX_VALUE
 import java.util.*
 import java.util.concurrent.ArrayBlockingQueue

@@ -79,6 +79,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      <p>1.7.3<br/>
+        Compatible with "IdeaVIM 2.7.0"<br/>
       <p>1.7.0<br/>
       <pre>
        support using "Rime ASCII" mode to switch input method
@@ -172,6 +174,8 @@
       </p>
       <br/>
 
+      <p>1.7.3<br/>
+        兼容"IdeaVIM 2.7.0"<br/>
       <p>1.7.0<br/>
       <pre>
        支持 Linux 下的 fcitx5-rime 使用 Rime ASCII 模式切换输入法。

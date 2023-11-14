@@ -6,7 +6,7 @@ import io.github.hadixlin.iss.lin.LinFcitxRemoteSwitcher
 import io.github.hadixlin.iss.lin.LinuxIbusSwitcher
 import io.github.hadixlin.iss.mac.MacInputMethodSwitcher
 import io.github.hadixlin.iss.win.WinInputMethodSwitcher
-import org.apache.commons.lang.SystemUtils
+import org.apache.commons.lang3.SystemUtils
 import java.util.*
 import java.util.concurrent.TimeUnit
 

@@ -60,6 +60,10 @@ Linux 下的 fcitx5-rime 可以设置 `let rime_ascii = 1` 在 normal 模式使�
   - `fcitx5-rime > 5.0.8`
 
 ## 更新历史
+* 1.7.3
+  
+  兼容IdeaVIM 2.7.0
+
 * 1.7.0
 
   支持 Linux 下的 fcitx5-rime 使用 Rime ASCII 模式切换输入法。
