@@ -40,8 +40,7 @@ gradle buildPlugin
 在macOS中,normal模式的输入法可以通过变量`keep_input_source_in_normal`来设置,仅支持在`~/.ideavimrc`
 中使用.例如`let keep_input_source_in_normal="com.apple.keylayout.ABC"`
 
-在macOS中,normal模式的输入法可以通过变量`keep_input_source_in_normal`来设置,仅支持在`~/.ideavimrc`
-中使用.例如`let keep_input_source_in_normal="com.apple.keylayout.ABC"`
+注：可以使用 [im-select](https://github.com/daipeihust/im-select) 来获取当前使用的`input source id`。比如：`ABC` 对应 `com.apple.keylayout.ABC`、`ABC Extended` 对应 `com.apple.keylayout.USExtended`。
 
 ideavim.rc中还可以通过以下几个变量控制插件行为：
 
@@ -51,7 +50,7 @@ ideavim.rc中还可以通过以下几个变量控制插件行为：
 
 注意：上面两个变量仅在windows和macOS中有效
 
-``` let context_aware=1进入insert模式时根据上下文判断是否恢复输入法，0禁用，1启用```
+`let context_aware=1` 进入insert模式时根据上下文判断是否恢复输入法，0禁用，1启用
 
 Linux 下的 fcitx5-rime 可以设置 `let rime_ascii = 1` 在 normal 模式使用 Rime 的 ASCII Mode。
 
