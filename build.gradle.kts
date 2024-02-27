@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
 	kotlin("jvm") version "1.8.10"
-	id("org.jetbrains.intellij") version "1.16.0"
+	id("org.jetbrains.intellij") version "1.17.2"
 }
 
 intellij {
@@ -22,7 +22,7 @@ dependencies {
 }
 
 group = "io.github.hadix"
-version = "1.7.3"
+version = "1.7.4"
 
 repositories {
 	mavenCentral()

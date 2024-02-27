@@ -22,7 +22,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 object InputMethodAutoSwitcher {
-    private val VIM_INSERT_EXIT_MODE_ACTION = arrayOf("Escape", "VimInsertExitModeAction")
+    private val VIM_INSERT_EXIT_MODE_ACTION = arrayOf("Escape", "Esc", "VimInsertExitModeAction")
 
     private val EDITING_MODES = EnumSet.of(
         CommandState.Mode.INSERT,
