@@ -79,6 +79,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      <p>1.7.4<br/>
+        Fixed the problem that the input method couldn't be switch automatically due to install the Chinese language pack mentioned in [issue] <a href="https://github.com/hadix-lin/ideavim_extension/issues/121">#121</a>
       <p>1.7.3<br/>
         Compatible with "IdeaVIM 2.7.0"<br/>
       <p>1.7.0<br/>
@@ -174,6 +176,8 @@
       </p>
       <br/>
 
+      <p>1.7.4<br/>
+        修正[issue] <a href="https://github.com/hadix-lin/ideavim_extension/issues/121">#121</a>中提到的由于安装中文语言包导致无法自动切换输入法的问题
       <p>1.7.3<br/>
         兼容"IdeaVIM 2.7.0"<br/>
       <p>1.7.0<br/>

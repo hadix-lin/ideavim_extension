@@ -60,6 +60,10 @@ Linux 下的 fcitx5-rime 可以设置 `let rime_ascii = 1` 在 normal 模式使�
   - `fcitx5-rime > 5.0.8`
 
 ## 更新历史
+* 1.7.4 
+
+  修正[issue] <a href="https://github.com/hadix-lin/ideavim_extension/issues/121">#121</a>中提到的由于安装中文语言包导致无法自动切换输入法的问题 
+
 * 1.7.3
   
   兼容IdeaVIM 2.7.0
@@ -174,6 +178,8 @@ Linux 下的 fcitx5-rime 可以设置 `let rime_ascii = 1` 在 normal 模式使�
 [史荣久](https://github.com/trydofor) 贡献了支持linux下的fcitx输入请求的代码
 [yangxuanx](https://github.com/yangxuanx) 帮助进行linux环境下的测试
 [邓志宇](https://github.com/yuzhou721) 贡献了支持linux下ibus输入引擎的代码
+[随云](https://github.com/suiyun39) 修正了由于安装中文语言包无法自动切换输入法的问题
+[Goofy](https://github.com/abop) 添加了如何获取 input source id 的说明
 
 ## IdeaVimExtension
 
