@@ -77,7 +77,7 @@ object InputMethodAutoSwitcher {
                 val pos = editor.caretModel.primaryCaret.offset
                 val chars = editor.document.charsSequence.subSequence(
                     max(pos - 1, 0),
-                    min(pos + 1, editor.document.textLength - 1)
+                    min(pos + 1, editor.document.textLength)
                 )
                 if (chars.any { CharUtils.isAsciiPrintable(it) }) {
                     return
