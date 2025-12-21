@@ -71,16 +71,40 @@ object InputMethodAutoSwitcher {
                 return
             }
             if (contextAware) {
-                if (editor.document.charsSequence.isEmpty()) {
+                val text = editor.document.charsSequence
+                if (text.isEmpty()) {
                     return
                 }
                 val pos = editor.caretModel.primaryCaret.offset
-                val chars = editor.document.charsSequence.subSequence(
+                val closeChars = text.subSequence(
                     max(pos - 1, 0),
                     min(pos + 1, editor.document.textLength)
                 )
-                if (chars.any { CharUtils.isAsciiPrintable(it) }) {
-                    return
+                if (closeChars.any { it.isLetter() }) {
+                    if (closeChars.any { it.isLetter() && CharUtils.isAsciiPrintable(it) }) {
+                        return
+                    }
+                } else {
+                    val distantLetters = mutableListOf<Char>()
+                    // Check backward for previous letter
+                    for (i in (max(pos - 1, 0)) downTo 0) {
+                        val c = text[i]
+                        if (c.isLetter()) {
+                            distantLetters.add(c)
+                            break
+                        }
+                    }
+                    // Check forward for next letter
+                    for (i in pos until text.length) {
+                        val c = text[i]
+                        if (c.isLetter()) {
+                            distantLetters.add(c)
+                            break
+                        }
+                    }
+                    if (distantLetters.isEmpty() || distantLetters.any { CharUtils.isAsciiPrintable(it) }) {
+                        return
+                    }
                 }
             }
             executor?.execute { switcher.restore() }
